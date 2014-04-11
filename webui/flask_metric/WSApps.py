@@ -50,4 +50,4 @@ app = Flask(__name__)
 app.add_url_rule('/list_vms.json', view_func = ListVMs.as_view('list_vms'))
 
 if __name__ == "__main__":
-    app.run(host=os.environ["FG_HOSTING_IP"], debug=True)
+    app.run(host=os.environ["CM_HOSTING_IP"], debug=True)

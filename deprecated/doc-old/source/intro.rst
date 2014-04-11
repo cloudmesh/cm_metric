@@ -129,10 +129,10 @@ TODO
 
 define variables::
 
-    FG_LOG_ANALYZER_WWW_OUTPUT - location where the www files for display are stored
-    FG_TMP - location where temporary files are located that are analyzed
-    FG_DATA - location where the permanent data is being stored 
-    FG_HOME_LOG_ANALYZER - is set to the location of the "futuregrid" directory.
+    CM_LOG_ANALYZER_WWW_OUTPUT - location where the www files for display are stored
+    CM_TMP - location where temporary files are located that are analyzed
+    CM_DATA - location where the permanent data is being stored 
+    CM_HOME_LOG_ANALYZER - is set to the location of the "futuregrid" directory.
     EUCALYPTUS_LOG_DIR - location where the eucalyptus log dirs are stored
 
 We recommend that the FutureGrid directory is included in the PATH of
