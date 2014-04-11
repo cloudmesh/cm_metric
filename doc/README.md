@@ -5,7 +5,7 @@ Cloud Metrics provides three types of documentation. The source directory gives 
 Instruction and user manual
 ---------------------------------
 - user_manual: user manual
-   - Example: http://cloudmesh.github.com/cm-metrics
+   - Example: http://cloudmesh.github.com/cm-metric
 
 Cloud Usage Reports in PDF
 ------------------------------
