@@ -72,7 +72,7 @@ Reference: [Render charts on the Server](http://www.highcharts.com/component/con
 
 ### How to get a pdf report (final step)
 
-```sphinx-build -b latex``` easily creates pdf reports based on rst files. [conf.py](/doc/pdf_reports/conf.py) contains configuration information such as authors, titles, type of documents ('manual', 'howto'), etc.
+```sphinx-build -b latex``` easily creates pdf reports based on rst files. [conf.py](conf.py) contains configuration information such as authors, titles, type of documents ('manual', 'howto'), etc.
 - ```make latexpdf``` performs this step.
 * For implementation, see [Makefile](/doc/pdf_reports/Makefile)
 
