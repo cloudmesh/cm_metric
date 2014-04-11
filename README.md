@@ -1,12 +1,12 @@
 ==========================
-FutureGrid Cloud Metrics
+CloudMesh Metrics
 ==========================
 
 Results pages on the portal
 
-* https://portal.cloudmesh.org/metrics
+* https://portal.futuregrid.org/metrics
 
 Documentation can be found at 
 
-* http://cloudmesh.github.com/cloud-metrics
+* http://cloudmesh.github.com/cm_metric
 
