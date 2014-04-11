@@ -2,7 +2,7 @@ from datetime import date, datetime, timedelta
 from argparse import ArgumentParser
 import sys
 
-class FGReportGenerator:
+class ReportGenerator:
     def __init__(self):
         self.cmd_ext = ".txt"
         self.rst_ext = ".rst"
@@ -163,7 +163,7 @@ class FGReportGenerator:
                 
     def start_with_header_index_rst(self):
         today = date.today().strftime("%a, %d %b %Y")
-        msg = ["FG Usage Report", \
+        msg = ["CM Usage Report", \
                 "===============", \
                 "Date Created: ",\
                 today, \
@@ -259,7 +259,7 @@ class FGReportGenerator:
         self.append_footer_rst()
 
 if __name__ == "__main__":
-    report = FGReportGenerator()
+    report = ReportGenerator()
     report.get_parameter()
     report.read_template()
     report.generate_cmd_text()

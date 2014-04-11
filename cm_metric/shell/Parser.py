@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 """OUTDATED. WILL BE DEPRECATED"""
-'''FGParser'''
+'''Parser'''
 
 import re
 import json
@@ -970,8 +970,8 @@ def main():
 
     # Clean database if -cleandb is true
     # if args.cleandb:
-        # import FGCleanupTable
-        # FGCleanupTable.main()
+        # import CleanupTable
+        # CleanupTable.main()
 
     if args.input_dir == "-":
         read_from_stdin_and_store_to_db(instances, args.linetypes)

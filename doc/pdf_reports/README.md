@@ -8,8 +8,8 @@ PDF Report generates Cloud Usage Reports with Sphinx PDF generation with latex a
 Quick Start
 -------------
 - ```make report FROM_DATE=20130101 TO_DATE=20130331```
-- (linux) ```evince _build/latex/FGResourceReport.pdf```
-- (mac) ```open _build/latex/FGResourceReport.pdf```
+- (linux) ```evince _build/latex/CMResourceReport.pdf```
+- (mac) ```open _build/latex/CMResourceReport.pdf```
 
 ***Installing prerequisites is required.***
 
@@ -37,7 +37,7 @@ PDF Report creates a report in a certain period with selected hosts and cloud se
 
 There is a Python script to generate rst files based on templates. The template files (located in examples/*.rst) are contained ```%(variable)s``` Python variables  that can be replaced by ```%```.
 
-- Create reStructuredText(.rst) files by [FGReportGenerator.py](/doc/pdf_reports/FGReportGenerator.py)
+- Create reStructuredText(.rst) files by [CMReportGenerator.py](/doc/pdf_reports/CMReportGenerator.py)
 - ```make generatereport``` performs this step.
 * For implementation, see [Makefile](/doc/pdf_reports/Makefile)
 

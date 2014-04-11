@@ -1,5 +1,5 @@
 #! /usr/bin/env python
-'''FGLogParser'''
+'''LogParser'''
 
 ''' This is a log parser.
     [Platforms] Plan to support Nimbus, openstack, eucalyptus, etc
@@ -96,7 +96,7 @@ speed up processing. multiple files, can be concatenated simply with cat.
 """
 
 
-class FGLogParser:
+class LogParser:
 
     debug = False
     progress = True
@@ -487,7 +487,7 @@ class FGLogParser:
 
 
 def main():
-    parser = FGLogParser()
+    parser = LogParser()
     parser.set_argparser()
     parser.check_argparser()
     parser.get_cloudplatform_info()

@@ -1,7 +1,7 @@
 from pygooglechart import SimpleLineChart, StackedVerticalBarChart, Axis
 from cm_metric.util.Utility import Utility
 
-class FGPyGoogleChart:
+class PyGoogleChart:
 
     Name = "PyGoogleChart"
 

@@ -48,7 +48,7 @@ sys.path.insert(0, os.path.abspath('.'))
 #
 
 extlinks = {
-    'jira':('http://jira.futuregrid.org/browse/FG-%s', 'jira:'),
+    'jira':('http://jira.futuregrid.org/browse/CM-%s', 'jira:'),
     'portal':('http://portal.futuregrid.org/%s', 'portal:')
 }
 

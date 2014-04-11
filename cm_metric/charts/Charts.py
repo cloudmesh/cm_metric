@@ -1,4 +1,4 @@
-from cm_metric.charts.FGPygooglechart import FGPyGoogleChart
+from cm_metric.charts.Pygooglechart import PyGoogleChart
 from cm_metric.charts.Highcharts import Highcharts
 from cm_metric.util.Utility import Utility
 import sys
@@ -17,7 +17,7 @@ class Charts:
         self.yaxis = None
         self.output_path = "./"#None
         self.output_type = "html"
-        self.title = "FG Charts"#None
+        self.title = "CM Charts"#None
         self.subtitle = ""#None
         self.filename = Utility.timeStamped("chart") + "." + self.output_type#None
         self.script_path = "global"#"local"
@@ -150,7 +150,7 @@ class Charts:
             if self.chart_api == "highcharts":
                 self.chart = Highcharts()
             elif self.chart_api == "googlechart":
-                self.chart = FGPyGoogleChart()
+                self.chart = PyGoogleChart()
             self.chart.set_type(self.type)
             self.chart.set_sort(self.sort)
             self.chart.set_data(self.data)

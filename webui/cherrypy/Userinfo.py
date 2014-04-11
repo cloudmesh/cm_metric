@@ -1,4 +1,4 @@
-from cm_metric.shell.FGParser import Instances
+from cm_metric.shell.Parser import Instances
 import MySQLdb
 import sys
 import cherrypy
@@ -116,6 +116,6 @@ class Userinfo:
         self.instances.read_userinfo_from_db()
 
     def do_loadnovadb(self):
-        self.nova = FGNovaMetric()
+        self.nova = NovaMetric()
         # gets also data from the database
         self.nova.read_from_db()

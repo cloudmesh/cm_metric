@@ -3,7 +3,7 @@ import ConfigParser
 from pprint import pprint
 import calendar
 
-class FGExampleGenerator:
+class ExampleGenerator:
 
     template = {}
     template_path = ".template/"
@@ -13,7 +13,7 @@ class FGExampleGenerator:
     def get_conf(self):
         config = ConfigParser.ConfigParser()
         config.read(".conf")
-        section = "FGReports"
+        section = "Reports"
 
         try:
             self.start_date = config.get(section, "start_date")
@@ -138,7 +138,7 @@ class FGExampleGenerator:
         pprint(vars(self))
 
 if __name__ == "__main__":
-    examples = FGExampleGenerator()
+    examples = ExampleGenerator()
     examples.initialize()
     examples.show_variable()
     examples.generate_examples()

@@ -1143,7 +1143,7 @@ class HtmlReportsRSTs:
         """Return header of index.rst file. (outdated"""
 
         res =   html.heading(1, "Cloud Metric Results") + \
-            "We have collected cloud utilization data from Eucalyptus on FutureGrid such as India and Sierra resources and provide weekly and monthly reports to show usage of system resources measured by FG Cloud Metric." + html.newline + \
+            "We have collected cloud utilization data from Eucalyptus on FutureGrid such as India and Sierra resources and provide weekly and monthly reports to show usage of system resources measured by CM Cloud Metric." + html.newline + \
             html.newline + \
             "Contents:" + html.newline + \
             html.newline + \

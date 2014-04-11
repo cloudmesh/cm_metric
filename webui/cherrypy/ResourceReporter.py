@@ -7,7 +7,7 @@ import MySQLdb
 from cm_metric.shell.Database import Database
 from cm_metric.cherrypy.DescribeInstances import DescribeInstances
 
-class FGResourceReporter:
+class ResourceReporter:
     def __init__(self):
         self.euca2ools = DescribeInstances()
         self.euca2ools.init_stats()
@@ -187,10 +187,10 @@ class FGResourceReporter:
                 cnt += 1
         return cnt
 
-class FGRRWeb(object):
+class RRWeb(object):
 
     def __init__(self):
-        self.ins = FGResourceReporter()
+        self.ins = ResourceReporter()
 
     def list(self):
         html_table = ""
@@ -228,7 +228,7 @@ def connect(thread_index):
 
 def main():
     if len(sys.argv) > 1 and sys.argv[1] == "cmd":
-        obj = FGResourceReporter()
+        obj = ResourceReporter()
         print obj.list()
     else:
         cherrypy.config.update({'server.socket_host': os.environ["CM_HOSTING_IP"],
@@ -236,7 +236,7 @@ def main():
         #    'server.thread_pool': 10,
             })
         cherrypy.engine.subscribe('start_thread', connect)
-        cherrypy.quickstart(FGRRWeb())
+        cherrypy.quickstart(RRWeb())
 
 if __name__ == "__main__":
     main()

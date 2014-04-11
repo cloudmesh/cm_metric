@@ -3,7 +3,7 @@ import json
 from cm_metric.realtime.Mongodb import Mongodb
 from cm_metric.charts.Charts import Charts
 
-class FGmonitorWeb:
+class monitorWeb:
     def __init__(self):
         self.fgmongodb = Mongodb()
         self.fgmongodb.connect()
@@ -119,7 +119,7 @@ def main():
                             'server.socket_port': 28080,
                             'server.thread_pool': 10})
     #cherrypy.engine.subscribe('start_thread', connect)
-    cherrypy.quickstart(FGmonitorWeb())
+    cherrypy.quickstart(monitorWeb())
 
 if __name__ == "__main__":
     main()

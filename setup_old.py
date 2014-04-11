@@ -112,10 +112,10 @@ setup(
             [
              #'fg-cleanup-db = cm_metric.shell.EucaMetricsDB:command_clean_database',
              'fg-euca-gather-log-files = cm_metric.shell.CollectFiles:main',
-             'fg-parser = cm_metric.shell.FGParser:main',
-             'fg-logparser = cm_metric.shell.FGLogParser:main',
-             'fg-metric-converter = cm_metric.shell.FGConverter:main',
-             #'fg-metric-old = cm_metric.shell.FGAnalyzer:main',
+             'fg-parser = cm_metric.shell.Parser:main',
+             'fg-logparser = cm_metric.shell.LogParser:main',
+             'fg-metric-converter = cm_metric.shell.Converter:main',
+             #'fg-metric-old = cm_metric.shell.Analyzer:main',
              'fg-metric = cm_metric.shell.CMMetricShell:main',
              'fg-metric-install = cm_metric.setup.Install:main'
              # TODO: fg-metric-install will be merged into fg-metric subshell
@@ -125,7 +125,7 @@ setup(
     )
 
     # Removed console script
-    # 'fg-log-gz-decompressor = futuregrid.eucalyptus.analyzer.FGLogGzDecompressor:main',
+    # 'fg-log-gz-decompressor = futuregrid.eucalyptus.analyzer.LogGzDecompressor:main',
 
 
 # http://docs.python.org/distutils/introduction.html#distutils-simple-example

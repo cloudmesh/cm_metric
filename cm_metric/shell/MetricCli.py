@@ -22,7 +22,7 @@ class CMMetricCli:
     As a cli version of fg-metric, this module provides usage data with search options.
 
     - Excutable name is fg-metric-cli (defined by setup.py).
-    - FG Cloud Mesh would be one of the examples using fg-metric-cli.
+    - CM Cloud Mesh would be one of the examples using fg-metric-cli.
 
     Basic data structure
     ====================

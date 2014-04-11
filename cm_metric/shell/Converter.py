@@ -10,7 +10,7 @@ from cm_metric.shell.Database import Database
 from cm_metric.util.Utility import Utility
 
 
-class FGConverter:
+class Converter:
 
     # future = instances.in_the_future
     # past = instances.in_the_past
@@ -357,7 +357,7 @@ class FGConverter:
 
 
 def main():
-    converter = FGConverter()
+    converter = Converter()
     converter.set_parser()
     converter.convert_to_fg()
 

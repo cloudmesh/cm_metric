@@ -1,7 +1,7 @@
 import os
 from flask import Flask, jsonify
 from flask.views import View
-from FGMimerender import mimerender
+from Mimerender import mimerender
 from cm_metric.shell.Database import Database
 
 class ListVMs(View):

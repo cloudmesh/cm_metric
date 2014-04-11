@@ -21,7 +21,7 @@ SPHINXBUILD   = sphinx-build
 PAPER         =
 BUILDDIR      = _build_$(FROM_DATE)_$(TO_DATE)
 
-# Latest FG Cloud Metrics should be installed to run Makefile.
+# Latest CM Cloud Metrics should be installed to run Makefile.
 CMMETRIC      = fg-metric
 PHANTOMJS     = phantomjs
 HTMLPATH      = output
@@ -29,8 +29,8 @@ IMGPATH       = images
 REPORTPATH1   = reports/cmd
 REPORTPATH2   = reports/rst
 PYTHON        = python
-#REPORTGENERATOR = $(PYTHON) FGReportGenerator.py -n $(RESOURCES) -s $(SERVICES) -t $(TEMPLATE) --from $(FROM_DATE)T00:00:00 --to $(TO_DATE)T23:59:59
-REPORTGENERATOR = $(PYTHON) FGReportGenerator.py -n $(RESOURCES) -t $(TEMPLATE) --from $(FROM_DATE)T00:00:00 --to $(TO_DATE)T23:59:59
+#REPORTGENERATOR = $(PYTHON) ReportGenerator.py -n $(RESOURCES) -s $(SERVICES) -t $(TEMPLATE) --from $(FROM_DATE)T00:00:00 --to $(TO_DATE)T23:59:59
+REPORTGENERATOR = $(PYTHON) ReportGenerator.py -n $(RESOURCES) -t $(TEMPLATE) --from $(FROM_DATE)T00:00:00 --to $(TO_DATE)T23:59:59
 
 # Internal variables.
 PAPEROPT_a4     = -D latex_paper_size=a4
@@ -148,17 +148,17 @@ qthelp:
 	@echo
 	@echo "Build finished; now you can run "qcollectiongenerator" with the" \
 	      ".qhcp project file in $(BUILDDIR)/qthelp, like this:"
-	@echo "# qcollectiongenerator $(BUILDDIR)/qthelp/FGSierra6monthsReport.qhcp"
+	@echo "# qcollectiongenerator $(BUILDDIR)/qthelp/Sierra6monthsReport.qhcp"
 	@echo "To view the help file:"
-	@echo "# assistant -collectionFile $(BUILDDIR)/qthelp/FGSierra6monthsReport.qhc"
+	@echo "# assistant -collectionFile $(BUILDDIR)/qthelp/Sierra6monthsReport.qhc"
 
 devhelp:
 	$(SPHINXBUILD) -b devhelp $(ALLSPHINXOPTS) $(BUILDDIR)/devhelp
 	@echo
 	@echo "Build finished."
 	@echo "To view the help file:"
-	@echo "# mkdir -p $$HOME/.local/share/devhelp/FGSierra6monthsReport"
-	@echo "# ln -s $(BUILDDIR)/devhelp $$HOME/.local/share/devhelp/FGSierra6monthsReport"
+	@echo "# mkdir -p $$HOME/.local/share/devhelp/Sierra6monthsReport"
+	@echo "# ln -s $(BUILDDIR)/devhelp $$HOME/.local/share/devhelp/Sierra6monthsReport"
 	@echo "# devhelp"
 
 epub:

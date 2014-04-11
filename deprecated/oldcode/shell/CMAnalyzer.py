@@ -1,6 +1,6 @@
 """OUTDATED. WILL BE DEPRECATED"""
 """
-   module:: FGAnalyzer
+   module:: Analyzer
    :platform: Unix
    :synopsis: An analyzer of system utilization for the cloud based on the
               database collected by log files.  It calculates metrics
@@ -24,13 +24,13 @@ import calendar
 import re
 import string
 
-from cm_metric.shell.FGParser import Instances
+from cm_metric.shell.Parser import Instances
 
 from cm_metric.util.Utility import Utility
 # GVL: THE NEXT LINE IS NOT IN THE CODE
-from cm_metric.shell.FGNovaMetric import FGNovaMetric
+from cm_metric.shell.NovaMetric import NovaMetric
 
-from cm_metric.charts.FGPygooglechart import FGPyGoogleChart
+from cm_metric.charts.Pygooglechart import PyGoogleChart
 from cm_metric.charts.GoogleMotionChart import GoogleMotionChart
 from cm_metric.charts.Highcharts import Highcharts
 from cm_metric.charts.Charts import Charts
@@ -449,7 +449,7 @@ class CmdLineAnalyzeEucaData(Cmd):
 
         try:
             maxY = int(round(max(chart_data) / 10) * 10)
-            chart = FGPyGoogleChart(chart_type, maxY)
+            chart = PyGoogleChart(chart_type, maxY)
             chart.set_data(chart_data)
             topY = maxY + 1
             chart.set_yaxis([str(x) for x in range(
@@ -785,7 +785,7 @@ class CmdLineAnalyzeEucaData(Cmd):
     def realtime_all(self, param):
         euca_nimbus = Instances()
         res1 = euca_nimbus.eucadb.count()
-        nova = FGNovaMetric()
+        nova = NovaMetric()
         res2 = nova.novadb.count()
         print Utility.convertOutput(str(res1[0].values()[0]+res2[0].values()[0]), "total")
 
@@ -829,7 +829,7 @@ class CmdLineAnalyzeEucaData(Cmd):
         self.sys_stat_new = {'total': ""}
         self.sys_stat_new['total'] = {'count_node': {}}
 
-        # self.stats = FGStats()
+        # self.stats = Stats()
         self.chart = Charts()
 
     def postloop(self):
@@ -891,7 +891,7 @@ class CmdLineAnalyzeEucaData(Cmd):
     def do_loadnovadb(self, arg):
 
         print "\r... loading data from nova database"
-        self.nova = FGNovaMetric()
+        self.nova = NovaMetric()
         # gets also data from the database
         self.nova.read_from_db()
 
