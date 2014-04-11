@@ -58,7 +58,7 @@ and the content has the following template::
     novadb=<nova database name which includes instances table>
     keystonedb=<nova keystone database name which includes user table> 
 
-1. Download FG Cloud Metric
+1. Download CM Cloud Metric
 ---------------------------
 from github
 

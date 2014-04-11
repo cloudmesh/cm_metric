@@ -7,11 +7,11 @@ import subprocess
 from datetime import datetime
 from calendar import monthrange
 from pprint import pprint
-from cm_metric.shell.FGSearch import FGSearch
-from cm_metric.shell.FGInstances import FGInstances
-from cm_metric.charts.FGCharts import FGCharts
-from cm_metric.shell.FGDatabase import FGDatabase
-from cm_metric.util.FGUtility import FGUtility
+from cm_metric.shell.Search import Search
+from cm_metric.shell.Instances import Instances
+from cm_metric.charts.Charts import Charts
+from cm_metric.shell.Database import Database
+from cm_metric.util.Utility import Utility
 
 
 class CMMetricShell(Cmd):
@@ -26,9 +26,9 @@ class CMMetricShell(Cmd):
 
     def initialize(self, arg="all"):
         """Clear all instance data and user data on the memory"""
-        self.search = FGSearch()
-        self.chart = FGCharts()
-        self.instances = FGInstances()
+        self.search = Search()
+        self.chart = Charts()
+        self.instances = Instances()
         self.instances.db.conf()
         self.instances.db.connect()
 

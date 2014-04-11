@@ -1,5 +1,5 @@
 from pygooglechart import SimpleLineChart, StackedVerticalBarChart, Axis
-from cm_metric.util.FGUtility import FGUtility
+from cm_metric.util.Utility import Utility
 
 class FGPyGoogleChart:
 
@@ -40,7 +40,7 @@ class FGPyGoogleChart:
         self.chart.set_axis_labels(Axis.BOTTOM, value)
 
     def set_output_path(self, directory):
-        FGUtility.ensure_dir(directory + "/" + self.filename)
+        Utility.ensure_dir(directory + "/" + self.filename)
         self.filepath = directory
 
     def set_filename(self, filename):

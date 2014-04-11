@@ -4,7 +4,7 @@ Quick Start
 Download 
 ---------------------------
 
-Download FG Cloud Metric from PyPI. You can achieve this with::
+Download CM Cloud Metric from PyPI. You can achieve this with::
 
         pip install futuregrid-cloud-metric
 
@@ -12,7 +12,7 @@ Create A Log Backup of Eucalyptus
 ----------------------------------
 
 This section explains how to make a log backup transaction of
-eucalyptus using FG Metric tools.  The Cluster Controller (CC) of
+eucalyptus using CM Metric tools.  The Cluster Controller (CC) of
 eucalyptus generates a log file (named cc.log) which is a main
 resource provider for the tools, so creating log backup of eucalyptus
 is the most important start-up.

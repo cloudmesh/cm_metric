@@ -9,7 +9,7 @@ from datetime import *
 from collections import deque
 import argparse
 
-from cm_metric.shell.FGDatabase import FGDatabase
+from cm_metric.shell.Database import Database
 
 manual = """
 MANUAL PAGE DRAFT
@@ -26,7 +26,7 @@ support unified data formats.
 """
 
 
-class FGInstances:
+class Instances:
 
     instance = {}
     userinfo = []
@@ -52,7 +52,7 @@ class FGInstances:
 
     def __init__(self):
 
-        self.db = FGDatabase()
+        self.db = Database()
         self.in_the_future = datetime.strptime(
             "3000-01-01 00:00:00", '%Y-%m-%d %H:%M:%S')
         self.in_the_past = datetime.strptime(

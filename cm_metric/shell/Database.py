@@ -6,10 +6,10 @@ import MySQLdb
 import sqlite3
 import pprint
 from datetime import datetime
-from cm_metric.shell.FGConstants import FGConst
+from cm_metric.shell.Constants import CMConst
 
 
-class FGDatabase:
+class Database:
 
     instance_table = "instance"
     userinfo_table = "userinfo"
@@ -26,8 +26,8 @@ class FGDatabase:
     pp = pprint.PrettyPrinter(indent=0)
 
     def __init__(self):
-        self.config_filename = FGConst.DEFAULT_CONFIG_FILENAME
-        self.config_filepath = FGConst.DEFAULT_CONFIG_FILEPATH
+        self.config_filename = CMConst.DEFAULT_CONFIG_FILENAME
+        self.config_filepath = CMConst.DEFAULT_CONFIG_FILEPATH
         self.db_type = "mysql"
 
     def __del__(self):

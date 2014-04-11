@@ -1,4 +1,4 @@
-class FGHighchartsTemplate:
+class HighchartsTemplate:
 
     @staticmethod
     def get_datatable2pie():

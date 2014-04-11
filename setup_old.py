@@ -110,14 +110,14 @@ setup(
     entry_points={
         'console_scripts':
             [
-             #'fg-cleanup-db = cm_metric.shell.FGEucaMetricsDB:command_clean_database',
-             'fg-euca-gather-log-files = cm_metric.shell.FGCollectFiles:main',
+             #'fg-cleanup-db = cm_metric.shell.EucaMetricsDB:command_clean_database',
+             'fg-euca-gather-log-files = cm_metric.shell.CollectFiles:main',
              'fg-parser = cm_metric.shell.FGParser:main',
              'fg-logparser = cm_metric.shell.FGLogParser:main',
              'fg-metric-converter = cm_metric.shell.FGConverter:main',
              #'fg-metric-old = cm_metric.shell.FGAnalyzer:main',
              'fg-metric = cm_metric.shell.CMMetricShell:main',
-             'fg-metric-install = cm_metric.setup.FGInstall:main'
+             'fg-metric-install = cm_metric.setup.Install:main'
              # TODO: fg-metric-install will be merged into fg-metric subshell
              ]},
 

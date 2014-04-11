@@ -17,8 +17,8 @@ from datetime import *
 import argparse
 import fileinput
 
-from cm_metric.shell.FGInstances import FGInstances
-import cm_metric.util.FGTimeZone
+from cm_metric.shell.Instances import Instances
+import cm_metric.util.TimeZone
 
 manual = """
 MANUAL PAGE DRAFT
@@ -105,7 +105,7 @@ class FGLogParser:
     instances = None
 
     def __init__(self):
-        self.instances = FGInstances()
+        self.instances = Instances()
 
     def convert_data_to_list(self, data, attribute):
         rest = data[attribute]
@@ -141,7 +141,7 @@ class FGLogParser:
                     r'\[(.*)\]\[(.*)\]\[(.*)\](.*)', line, re.M | re.I)
                 data['date'] = datetime.strptime(
                     m.group(1), '%a %b %d %H:%M:%S %Y')
-                data['date'] = cm_metric.util.FGTimeZone.convert_timezone(
+                data['date'] = cm_metric.util.TimeZone.convert_timezone(
                     data['date'], self.args.timezone, "EST")
                 data['id'] = m.group(2)
                 data['msgtype'] = m.group(3)

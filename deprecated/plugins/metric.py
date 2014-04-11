@@ -9,14 +9,14 @@ from cmd3.cyberaide.decorators import command
 
 # IMPORT PLUGIN MODULE #####################################
 from cm_metric.shell.CMMetricAPI import CMMetricAPI
-from cm_metric.charts.FGCharts import FGCharts
+from cm_metric.charts.Charts import Charts
 ############################################################
 
 class metric:
 
     def activate_metric(self):
         self.cmetrics = CMMetricAPI()
-        self.chart = FGCharts()
+        self.chart = Charts()
 
     @command
     def do_set(self, line, args):

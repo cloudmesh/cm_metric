@@ -26,14 +26,14 @@ import string
 
 from cm_metric.shell.FGParser import Instances
 
-from cm_metric.util.FGUtility import FGUtility
+from cm_metric.util.Utility import Utility
 # GVL: THE NEXT LINE IS NOT IN THE CODE
 from cm_metric.shell.FGNovaMetric import FGNovaMetric
 
 from cm_metric.charts.FGPygooglechart import FGPyGoogleChart
-from cm_metric.charts.FGGoogleMotionChart import FGGoogleMotionChart
-from cm_metric.charts.FGHighcharts import FGHighcharts
-from cm_metric.charts.FGCharts import FGCharts
+from cm_metric.charts.GoogleMotionChart import GoogleMotionChart
+from cm_metric.charts.Highcharts import Highcharts
+from cm_metric.charts.Charts import Charts
 
 
 class CmdLineAnalyzeEucaData(Cmd):
@@ -468,7 +468,7 @@ class CmdLineAnalyzeEucaData(Cmd):
     def create_highcharts(self, chart_data, output, chart_type="column"):
         """Create highcharts in a javascript html file format"""
         try:
-            highchart = FGHighcharts(chart_type)
+            highchart = Highcharts(chart_type)
             highchart.set_data(chart_data)
             if self.nodename:
                 data_name = self.nodename
@@ -507,7 +507,7 @@ class CmdLineAnalyzeEucaData(Cmd):
             print highchart.filepath + "/" + highchart.filename + " created."
         except:
             print "highcharts is not created.", sys.exc_info()[0]
-            FGUtility.ensure_dir(output + "/" + chart_type + "highcharts.html")
+            Utility.ensure_dir(output + "/" + chart_type + "highcharts.html")
             print output + "/" + chart_type + "highcharts.html" 
             f = open(output + "/" + chart_type + "highcharts.html", "w")
             f.write("Data does not exist in this time period or namespace.")
@@ -522,7 +522,7 @@ class CmdLineAnalyzeEucaData(Cmd):
             filepath = os.path.dirname(abspath)
             filename = os.path.basename(outfile)
             # filename = "text.csv"
-            FGUtility.ensure_dir(filepath)
+            Utility.ensure_dir(filepath)
             writer = csv.writer(
                 open(filepath + "/" + filename, 'wb'), delimiter=",",
                 quotechar="|", quoting=csv.QUOTE_MINIMAL)
@@ -674,19 +674,19 @@ class CmdLineAnalyzeEucaData(Cmd):
             url = chart.get_url()
             print url
         else:
-            FGUtility.ensure_dir(filepath)
+            Utility.ensure_dir(filepath)
             chart.download(filepath)
 
     def make_google_motion_chart(self, directory):
-        """Create "FGGoogleMotionChart.html"
+        """Create "GoogleMotionChart.html"
 
         * Should be obsolete due to the new way to display charts
         """
 
-        filename = "FGGoogleMotionChart.html"
+        filename = "GoogleMotionChart.html"
         filepath = directory + "/" + filename
-        FGUtility.ensure_dir(filepath)
-        test = FGGoogleMotionChart()
+        Utility.ensure_dir(filepath)
+        test = GoogleMotionChart()
         self.set_fullname()
         output = test.display(self.users, str(self.from_date))
         f = open(filepath, "w")
@@ -787,7 +787,7 @@ class CmdLineAnalyzeEucaData(Cmd):
         res1 = euca_nimbus.eucadb.count()
         nova = FGNovaMetric()
         res2 = nova.novadb.count()
-        print FGUtility.convertOutput(str(res1[0].values()[0]+res2[0].values()[0]), "total")
+        print Utility.convertOutput(str(res1[0].values()[0]+res2[0].values()[0]), "total")
 
     def realtime_user(self, param):
         users = {}
@@ -818,7 +818,7 @@ class CmdLineAnalyzeEucaData(Cmd):
         for user in users:
             output = self.convert_ownerId_str(
                 user) + ", " + str(users[user][metric])
-            print FGUtility.convertOutput(output, "realtime")
+            print Utility.convertOutput(output, "realtime")
 
     def preloop(self):
         if not self.nopreload:
@@ -830,7 +830,7 @@ class CmdLineAnalyzeEucaData(Cmd):
         self.sys_stat_new['total'] = {'count_node': {}}
 
         # self.stats = FGStats()
-        self.chart = FGCharts()
+        self.chart = Charts()
 
     def postloop(self):
         print "BYE ..."
@@ -1006,8 +1006,8 @@ class CmdLineAnalyzeEucaData(Cmd):
         """Get Date range of the instances table in mysql db"""
 
         res = self.instances.getDateRange()
-        print FGUtility.convertOutput(res[0], "first_date")
-        print FGUtility.convertOutput(res[1], "last_date")
+        print Utility.convertOutput(res[0], "first_date")
+        print Utility.convertOutput(res[1], "last_date")
         # print self.instances.eucadb.read("", " order by date limit 1")
         # print self.instances.eucadb.read("", " order by date DESC limit 1")
 

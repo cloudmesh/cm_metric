@@ -10,7 +10,7 @@ import getpass
 
 pp = pprint.PrettyPrinter(indent=0)
     
-class FGInstall(object):
+class Install(object):
 
     instance_table = "instance"
     userinfo_table = "userinfo"
@@ -243,7 +243,7 @@ class FGInstall(object):
         pass
 
 def main():
-    install = FGInstall()
+    install = Install()
 
 if __name__ == '__main__':
     main()

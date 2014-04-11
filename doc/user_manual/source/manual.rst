@@ -112,7 +112,7 @@ Some developers may prefer using https for accessing git::
 Production Version
 ----------------------------------------------------------------------
 
-The FG Cloud Metric is available from PyPI and can be easily installed
+The CM Cloud Metric is available from PyPI and can be easily installed
 with pip. We recommend that you use virtualenv to manage your local
 python installation::
 
@@ -343,10 +343,10 @@ To see the python code::
 Database Configuration
 ======================================================================
 
-|  DB access information for MySQL and mongodb needed to run FG CloudMetrics.
+|  DB access information for MySQL and mongodb needed to run CM CloudMetrics.
 |  MySQL server installation is not required.
 
-To obtain access information, `DB access information for FG CloudMetrics <https://docs.google.com/document/d/1aAyrEfZpRukqvsf3-HWdKKE5mMolh-EGtBVaZIgDUck/edit>`_
+To obtain access information, `DB access information for CM CloudMetrics <https://docs.google.com/document/d/1aAyrEfZpRukqvsf3-HWdKKE5mMolh-EGtBVaZIgDUck/edit>`_
 (only accessible by collaborators)
 
 .. `mysql community server <http://dev.mysql.com/downloads/mysql/>`_
@@ -382,10 +382,10 @@ Eucalyptus
 Log Frequency
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-FG CloudMetrics is collecting accounting information from log files in
+CM CloudMetrics is collecting accounting information from log files in
 a Eucalyptus management server. Two methods have been used: real-time and daily update.
 
-First, we need to specify which files that FG CloudMetrics is looking for::
+First, we need to specify which files that CM CloudMetrics is looking for::
 
   cc.log
 
@@ -404,7 +404,7 @@ This way allows us to collect accounting information instantly from logs.
 * logwatcher.py script observes cc.log files like a 'tail -f' command,
       but it does not lose file control if the cc.log file is rotated to cc.log.1 or .*
     
-2. fg-logparser (FGParser.py) parses log messages and stores metric values into FG Cloud Metrics db.
+2. fg-logparser (CMParser.py) parses log messages and stores metric values into CM Cloud Metrics db.
 
 3. Daily update::
 
@@ -413,7 +413,7 @@ This way allows us to collect accounting information instantly from logs.
 
 **This is based on backups of log files**
 
-4. ``fg-euca-gather-log-files (FGCollectFiles.py)`` makes backups by hourly checking log directory with cron::
+4. ``fg-euca-gather-log-files (CMCollectFiles.py)`` makes backups by hourly checking log directory with cron::
 
        ``2 * * * * fg-euca-gather-log-files``
 
@@ -505,7 +505,7 @@ into existing data::
 OpenStack
 ----------------------------------------------------------------------
 
-Please refer: `DB access information for FG CloudMetrics <https://docs.google.com/document/d/1aAyrEfZpRukqvsf3-HWdKKE5mMolh-EGtBVaZIgDUck/edit>`_
+Please refer: `DB access information for CM CloudMetrics <https://docs.google.com/document/d/1aAyrEfZpRukqvsf3-HWdKKE5mMolh-EGtBVaZIgDUck/edit>`_
 (only accessible by collaborators) to obtain db access information.
 
 In ``~/.futuregrid/futuregrid.cfg`` please add::
@@ -522,7 +522,7 @@ Nimbus
 ----------------------------------------------------------------------
 
 Nimbus has sqlite3 database to keep the record on cloud usage. 
-**FG Cloud Metrics** provides a tool to convert service-oriented db into unified FG Cloud Metrics database.
+**CM Cloud Metrics** provides a tool to convert service-oriented db into unified CM Cloud Metrics database.
 ``fg-metric-converter -s YYYMMDD -e YYYMMDD -p $cloud_service (e.g.nimbus) -db $db_type (e.g. sqlite3, mysql) -i $file_path (sqlite3 is used a single file as a database) -n $nodename (e.g. hotel, india)``
 
 For example, FutureGrid collects nimbus data daily and uses cron to convert and store as following:

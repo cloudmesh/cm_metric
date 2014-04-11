@@ -1,9 +1,9 @@
 import sys
 import pymongo
 import ConfigParser
-from cm_metric.shell.FGConstants import FGConst
+from cm_metric.shell.Constants import CMConst
 
-class FGMongodb:
+class Mongodb:
 
     def __init__(self):
         # If your database server is running in auth mode, you will need user and
@@ -77,8 +77,8 @@ class FGMongodb:
 
 
     def load_conf(self):
-        self.config_filename = FGConst.DEFAULT_CONFIG_FILENAME
-        self.config_filepath = FGConst.DEFAULT_CONFIG_FILEPATH
+        self.config_filename = CMConst.DEFAULT_CONFIG_FILENAME
+        self.config_filepath = CMConst.DEFAULT_CONFIG_FILEPATH
         self._set_conf()
 
     def _set_conf(self):

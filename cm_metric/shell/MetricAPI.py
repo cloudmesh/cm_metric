@@ -1,26 +1,26 @@
-# from cm_metric.shell.FGDatabase import FGDatabase
+# from cm_metric.shell.Database import Database
 import sys
 from pprint import pprint
-from cm_metric.shell.FGSearch import FGSearch
-from cm_metric.shell.FGInstances import FGInstances
+from cm_metric.shell.Search import Search
+from cm_metric.shell.Instances import Instances
 
 
 class CMMetricAPI:
-    """ FG Metric Python API
+    """ CM Metric Python API
 
-    This API supports usage statistics in FG Metric way, but rely on database query.
+    This API supports usage statistics in CM Metric way, but rely on database query.
 
     In a nutshell,
-    FG Metric retrieves all records on the database and collects matching records on Python programmatically.
-    However, FG Metric API retrieves records on the database with search condition, especially 'ownerid' is required field to search.
+    CM Metric retrieves all records on the database and collects matching records on Python programmatically.
+    However, CM Metric API retrieves records on the database with search condition, especially 'ownerid' is required field to search.
     Mainly, this API calls database with a query look like " select * from instance where start >= date and end <= date and ownerid = id "
-    Other than that, rest of processes are same as FG Metric.
+    Other than that, rest of processes are same as CM Metric.
 
     return value is python 'dict' type
 
     Description
     ===========
-    FG Metric Python API to provide usage data like FG Metric's cmd tool but through python API.
+    CM Metric Python API to provide usage data like CM Metric's cmd tool but through python API.
 
     Requirement
     ^^^^^^^^^^^
@@ -41,8 +41,8 @@ class CMMetricAPI:
     """
 
     def __init__(self):
-        self.search = FGSearch()
-        self.instances = FGInstances()
+        self.search = Search()
+        self.instances = Instances()
         self.init_db()
         self.init_vars()
 

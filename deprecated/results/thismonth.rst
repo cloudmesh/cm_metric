@@ -16,7 +16,7 @@ Usage Report for Eucalyptus on india.futuregrid.org
 .. raw:: html
 
 	<div style="margin-top:10px;">
-	<iframe id="the_iframe2" onLoad="calcHeight('the_iframe2');" width="100%" height="1" src="data/thismonth/india/eucalyptus/user/FGGoogleMotionChart.html" frameborder="0"></iframe>
+	<iframe id="the_iframe2" onLoad="calcHeight('the_iframe2');" width="100%" height="1" src="data/thismonth/india/eucalyptus/user/CMGoogleMotionChart.html" frameborder="0"></iframe>
 	</div>
 	Figure 2. Requested VMs count per user for this month on india (Google Motion Chart)
 

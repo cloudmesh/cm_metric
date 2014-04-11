@@ -1,13 +1,13 @@
 import cherrypy
 import json
-from cm_metric.realtime.FGMongodb import FGMongodb
-from cm_metric.charts.FGCharts import FGCharts
+from cm_metric.realtime.Mongodb import Mongodb
+from cm_metric.charts.Charts import Charts
 
 class FGmonitorWeb:
     def __init__(self):
-        self.fgmongodb = FGMongodb()
+        self.fgmongodb = Mongodb()
         self.fgmongodb.connect()
-        self.chart = FGCharts()
+        self.chart = Charts()
 
     def count_floatingIPs(self):
         res = []

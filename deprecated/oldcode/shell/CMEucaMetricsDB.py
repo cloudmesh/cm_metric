@@ -13,7 +13,7 @@ from datetime import datetime
 pp = pprint.PrettyPrinter(indent=0)
 
 
-class FGEucaMetricsDB(object):
+class EucaMetricsDB(object):
 
     # Default values
     euca_version = "3.0.2"
@@ -605,7 +605,7 @@ def testing():
         }'
     testobj = eval(tstobj)
     testobj2 = eval(tstobj2)
-    eucadb = FGEucaMetricsDB("futuregrid.cfg.local")
+    eucadb = EucaMetricsDB("futuregrid.cfg.local")
     eucadb.write(testobj)
     eucadb.write(testobj2)
     keys = ["instanceId", "ownerId"]
@@ -670,7 +670,7 @@ def command_clean_database():
                         help="configuraton file of the database to be used")
     args = parser.parse_args()
 
-    eucadb = FGEucaMetricsDB(args.conf)
+    eucadb = EucaMetricsDB(args.conf)
     eucadb.change_table(args.table_name)
 
     # where_clause need to be query dict type

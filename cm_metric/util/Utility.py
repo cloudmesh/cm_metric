@@ -3,17 +3,17 @@ import sys
 import re
 import subprocess
 import datetime
-from cm_metric.shell.FGInstances import FGInstances  # for insert_userinfo
+from cm_metric.shell.Instances import Instances  # for insert_userinfo
 import errno
 
 
-class FGUtility:
+class Utility:
 
     prefix = "[output]"
 
     @staticmethod
     def convertOutput(argument, name):
-        return FGUtility.prefix + "[" + name + "]" + argument
+        return Utility.prefix + "[" + name + "]" + argument
 
     @staticmethod
     def ensure_dir(f):
@@ -72,7 +72,7 @@ class FGUtility:
                $ fg-metrics-utility insert_userinfo userid [hostname]
         '''
 
-        i = FGInstances()
+        i = Instances()
         filename = ""
         userid = ""
         ownerid = ""

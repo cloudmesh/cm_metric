@@ -1,4 +1,4 @@
-class FGTester:
+class Tester:
 
     def run(self):
         self.check_config()
@@ -9,5 +9,5 @@ class FGTester:
         self.check_crontabs() #?
 
 if __name__ == "__main__":
-    main = FGTester()
+    main = Tester()
     main.run()

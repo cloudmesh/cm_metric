@@ -1,8 +1,8 @@
 import paramiko
 from datetime import datetime
-from cm_metric.realtime.FGMongodb import FGMongodb
+from cm_metric.realtime.Mongodb import Mongodb
 
-class FGMonitor:
+class Monitor:
 
     def __init__(self):
         self.data = {}
@@ -57,8 +57,8 @@ class FGMonitor:
         return clusters
 
 if __name__ == "__main__":
-    fgmonitor = FGMonitor()
-    fgmongodb = FGMongodb()
+    fgmonitor = Monitor()
+    fgmongodb = Mongodb()
     fgmongodb.connect()
     res = fgmonitor.get_floatingIPs()
     fgmongodb.insert("floatingip", res)

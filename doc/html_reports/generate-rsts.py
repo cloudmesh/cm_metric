@@ -1,5 +1,5 @@
 import datetime
-from futuregrid.cloud.metric.FGUtility import FGUtility
+from futuregrid.cloud.metric.Utility import Utility
 
 class HtmlReportsRSTs:
     ''' HtmlReportsRSTs class generates cloud usage reports in 
@@ -152,7 +152,7 @@ class HtmlReportsRSTs:
             current_month = self.start_date.timetuple()[1]
             if ((month + 1) % 12 or 12) == current_month:
                 contents = monthly_report + weekly_report
-                FGUtility.ensure_dir(content_filepath)
+                Utility.ensure_dir(content_filepath)
                 f = open (content_filepath, "w")
                 f.write(contents)
                 f.close
@@ -166,7 +166,7 @@ class HtmlReportsRSTs:
                 contents = self.get_content_quarter()
                 content_filename = self.start_date.strftime("%Y-Q") + str(self.get_quarter(current_month))
                 content_filepath = self.docs_path + content_filename + self.docs_ext
-                FGUtility.ensure_dir(content_filepath)
+                Utility.ensure_dir(content_filepath)
                 f = open (content_filepath, "w")
                 f.write(contents)
                 f.close
@@ -185,7 +185,7 @@ class HtmlReportsRSTs:
             ## END OF LOOP
 
         contents = monthly_report + weekly_report
-        FGUtility.ensure_dir(content_filepath)
+        Utility.ensure_dir(content_filepath)
         f = open (content_filepath, "w")
         f.write(contents)
         f.close
@@ -317,7 +317,7 @@ class HtmlReportsRSTs:
         content = content % vars()
 
         number += 1
-        src = "data/%(month)s/%(nodename)s/%(platform)s/%(groupby)s/FGGoogleMotionChart.html"
+        src = "data/%(month)s/%(nodename)s/%(platform)s/%(groupby)s/GoogleMotionChart.html"
         content = content + (self.get_chart() % vars()) % vars()
 
         number += 1
@@ -635,7 +635,7 @@ class HtmlReportsRSTs:
         content = content % vars()
 
         number += 1
-        src = "data/%(month)s/%(nodename)s/%(platform)s/user/FGGoogleMotionChart.html"
+        src = "data/%(month)s/%(nodename)s/%(platform)s/user/GoogleMotionChart.html"
         content = content + (self.get_chart() % vars()) % vars()
 
         number += 1

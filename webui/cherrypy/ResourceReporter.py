@@ -4,14 +4,14 @@ import cherrypy
 import sys
 import os
 import MySQLdb
-from cm_metric.shell.FGDatabase import FGDatabase
-from cm_metric.cherrypy.FGDescribeInstances import DescribeInstances
+from cm_metric.shell.Database import Database
+from cm_metric.cherrypy.DescribeInstances import DescribeInstances
 
 class FGResourceReporter:
     def __init__(self):
         self.euca2ools = DescribeInstances()
         self.euca2ools.init_stats()
-        self.db = FGDatabase()
+        self.db = Database()
         self.db.conf()
         self.db.connect()
         self.cloudservice = None

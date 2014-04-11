@@ -30,27 +30,27 @@ File contents
 
 ::
 
-  | FGAnalyzer.py - old version of metric analyzer
-  | FGCollectFiles.py - log backup tool
-  | FGConverter.py - data converting tool from Nimbus, Openstack to Cloud Metrics
-  | FGEucaMetricsDB.py - old version of metrics db
-  | FGHighcharts.py - Highcharts API
-  | FGInstall.py - Initializer of Cloud Metrics (db configuration, etc)
-  | FGLogParser.py - Eucalyptus log parser
+  | CMAnalyzer.py - old version of metric analyzer
+  | CMCollectFiles.py - log backup tool
+  | CMConverter.py - data converting tool from Nimbus, Openstack to Cloud Metrics
+  | CMEucaMetricsDB.py - old version of metrics db
+  | CMHighcharts.py - Highcharts API
+  | CMInstall.py - Initializer of Cloud Metrics (db configuration, etc)
+  | CMLogParser.py - Eucalyptus log parser
   | CMMetricsCli.py - fg-metric-cli command tool
-  | FGNovaDB.py - outdated OpenStack API
-  | FGParser.py - old version of VM instance class
-  | FGSearch.py - New version of 
-  | FGTimeZone.py - TimeZone helper for managing timestamp in logs
-  | FGCharts.py - Chart library API
-  | FGConstants.py - Constants class
-  | FGDatabase.py - New version of database class
-  | FGGoogleMotionChart.py - Old version of Google Chart API
-  | FGHighchartsTemplate.py - outdated Highcharts API
-  | FGInstances.py - New version of VM instance class
+  | CMNovaDB.py - outdated OpenStack API
+  | CMParser.py - old version of VM instance class
+  | CMSearch.py - New version of 
+  | CMTimeZone.py - TimeZone helper for managing timestamp in logs
+  | CMCharts.py - Chart library API
+  | CMConstants.py - Constants class
+  | CMDatabase.py - New version of database class
+  | CMGoogleMotionChart.py - Old version of Google Chart API
+  | CMHighchartsTemplate.py - outdated Highcharts API
+  | CMInstances.py - New version of VM instance class
   | CMMetricsAPI.py - New version of Metrics API class
   | CMMetrics.py - New version of main class of Cloud Metrics
-  | FGNovaMetric.py - outdated OpenStack class for metric
-  | FGPygooglechart.py - outdated python google chart API
-  | FGTester.py - outdated Tester
-  | FGUtility.py - Utility libraries
+  | CMNovaMetric.py - outdated OpenStack class for metric
+  | CMPygooglechart.py - outdated python google chart API
+  | CMTester.py - outdated Tester
+  | CMUtility.py - Utility libraries

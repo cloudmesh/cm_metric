@@ -17,8 +17,8 @@ def make_csv_file(users, filename, output_dir):
 def make_google_motion_chart(users, args):
 
 	output_dir = args.output_dir
-	filename = output_dir + "/FGGoogleMotionChart." + args.s_date + "-" + args.e_date + ".html"
-	output = FGGoogleMotionChart.gmc_display(users, args)
+	filename = output_dir + "/GoogleMotionChart." + args.s_date + "-" + args.e_date + ".html"
+	output = GoogleMotionChart.gmc_display(users, args)
 	
 	f = open(filename, "w")
 	f.write(output)

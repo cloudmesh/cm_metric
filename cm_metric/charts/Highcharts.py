@@ -1,16 +1,16 @@
 #!/usr//bin/env python
 # -*- coding: UTF-8 -*-
 
-# FGHighcharts.py (python)
+# Highcharts.py (python)
 # ------------------------
 import re
 import sys
 from datetime import timedelta, datetime
 
-from cm_metric.util.FGUtility import FGUtility
-from cm_metric.charts.FGHighchartsTemplate import FGHighchartsTemplate
+from cm_metric.util.Utility import Utility
+from cm_metric.charts.HighchartsTemplate import HighchartsTemplate
 
-class FGHighcharts:
+class Highcharts:
 
     chart_type = ""
     html_header = ""
@@ -164,7 +164,7 @@ class FGHighcharts:
         return yaxis
 
     def get_template(self, name):
-        func = getattr(FGHighchartsTemplate, "get_" + name)
+        func = getattr(HighchartsTemplate, "get_" + name)
         return func()
 
     def get_template_from_file(self, filename):
@@ -242,7 +242,7 @@ class FGHighcharts:
 
     def set_output_path(self, path):
         try:
-            FGUtility.ensure_dir(path + "/" + self.filename)
+            Utility.ensure_dir(path + "/" + self.filename)
         except:
             path = "./"
 

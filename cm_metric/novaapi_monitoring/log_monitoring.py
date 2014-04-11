@@ -1,6 +1,6 @@
 import logging
 from mongolog.handlers import MongoHandler
-from cm_metric.shell.FGConfig import FGConfig
+from cm_metric.shell.Config import Config
 from docopt import docopt
 import re
 import time
@@ -17,7 +17,7 @@ class log_monitoring:
     def get_dbinfo(self):
         #access info
         try:
-            fgconfig = FGConfig()
+            fgconfig = Config()
             self.dbinfo = fgconfig.get_config("CloudMetricsMongoDB")
         except:
             print "Failed to load futuregrid.yaml"

@@ -1,5 +1,5 @@
 import datetime
-from futuregrid.cloud.metric.FGUtility import FGUtility
+from futuregrid.cloud.metric.Utility import Utility
 import os
 
 class html:
@@ -137,7 +137,7 @@ class HtmlReportsRSTs:
         f.close
 
     def write_contents(self, filepath, contents):
-        FGUtility.ensure_dir(filepath)
+        Utility.ensure_dir(filepath)
         f = open(filepath, "w")
         f.write(contents)
         f.close
@@ -365,7 +365,7 @@ class HtmlReportsRSTs:
 
         # ---------------------------------------------------------------------
         number += 1
-        src = "data/%(month)s/%(nodename)s/%(platform)s/%(groupby)s/FGGoogleMotionChart.html"
+        src = "data/%(month)s/%(nodename)s/%(platform)s/%(groupby)s/GoogleMotionChart.html"
         content += (self.get_chart() % vars()) % vars()
 
         # ---------------------------------------------------------------------
@@ -724,7 +724,7 @@ class HtmlReportsRSTs:
 
         # ---------------------------------------------------------------------
         number += 1
-        src = "data/%(month)s/%(nodename)s/%(platform)s/user/FGGoogleMotionChart.html"
+        src = "data/%(month)s/%(nodename)s/%(platform)s/user/GoogleMotionChart.html"
         content += (self.get_chart() % vars()) % vars()
 
         # ---------------------------------------------------------------------

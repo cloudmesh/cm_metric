@@ -1,7 +1,7 @@
 import os
 import yaml
 
-class FGConfig:
+class Config:
     default_cfg = os.getenv("HOME") + "/.futuregrid/" 
     default_yaml = "futuregrid.yaml"
     default_yaml_path = default_cfg + default_yaml

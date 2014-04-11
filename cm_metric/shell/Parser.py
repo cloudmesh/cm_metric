@@ -13,10 +13,10 @@ from datetime import *
 from collections import deque
 import argparse
 
-import cm_metric.shell.FGEucaMetricsDB
+import cm_metric.shell.EucaMetricsDB
 
-from cm_metric.shell.FGEucaMetricsDB import FGEucaMetricsDB
-import cm_metric.util.FGTimeZone
+from cm_metric.shell.EucaMetricsDB import EucaMetricsDB
+import cm_metric.util.TimeZone
 
 manual = """
 MANUAL PAGE DRAFT
@@ -112,7 +112,7 @@ class Instances:
             "1970-01-01 00:00:00", '%Y-%m-%d %H:%M:%S')
         self.pp = pprint.PrettyPrinter(indent=0)
         self.data = {}
-        self.eucadb = FGEucaMetricsDB("futuregrid.cfg")
+        self.eucadb = EucaMetricsDB("futuregrid.cfg")
         self.withSQL = False
         self.first_date = datetime.strptime(
             "3000-01-01 00:00:00", '%Y-%m-%d %H:%M:%S')
@@ -125,7 +125,7 @@ class Instances:
         return
 
     def set_conf(self, filename):
-        self.eucadb = cm_metric.FGEucaMetricsDB.FGEucaMetricsDB(filename)
+        self.eucadb = cm_metric.EucaMetricsDB.EucaMetricsDB(filename)
         return
 
     def get(self):
@@ -478,7 +478,7 @@ def parse_type_and_date(line, data):
     try:
         m = re.search(r'\[(.*)\]\[(.*)\]\[(.*)\](.*)', line, re.M | re.I)
         data['date'] = datetime.strptime(m.group(1), '%a %b %d %H:%M:%S %Y')
-        data['date'] = cm_metric.FGTimeZone.convert_timezone(
+        data['date'] = cm_metric.TimeZone.convert_timezone(
             data['date'], global_timezone, "EST")
         data['id'] = m.group(2)
         data['msgtype'] = m.group(3)

@@ -62,12 +62,12 @@ Related Activities
 
 Inca
       Inca does monitoring at specific time intervals. The information
-      about clouds on FG is available at
+      about clouds on CM is available at
       https://portal.futuregrid.org/monitoring/cloud
 
 
 Nimbus
-    Nimbus provides their own metric framework. For FG you can see it
+    Nimbus provides their own metric framework. For CM you can see it
     at http://inca.futuregrid.org/nimbus-stats/.
     This front page is not very pretty, but lists in its pu data the
     following metrics for each machine:

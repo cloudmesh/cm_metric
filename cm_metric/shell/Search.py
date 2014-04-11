@@ -2,8 +2,8 @@ import re
 import sys
 import copy
 from datetime import datetime, timedelta
-from cm_metric.util.FGUtility import dotdict
-from cm_metric.util.FGUtility import FGUtility
+from cm_metric.util.Utility import dotdict
+from cm_metric.util.Utility import Utility
 
 from math import ceil
 from pprint import pprint
@@ -11,7 +11,7 @@ from collections import Counter, OrderedDict
 from calendar import monthrange
 
 
-class FGSearch:
+class Search:
 
     '''
     metric = None
@@ -340,7 +340,7 @@ class FGSearch:
             days = (to_date + datetime.timedelta(days=1) - from_date).days
             return [from_date + timedelta(days=n) for n in range(days)]
         except:
-            FGUtility.debug(str(sys.exc_info()))
+            Utility.debug(str(sys.exc_info()))
 
     def create_dates_between_dates(self, from_date, to_date, val=None):
         """ Get dates between two dates
@@ -361,7 +361,7 @@ class FGSearch:
             days = (to_date + timedelta(days=1) - from_date).days
             return {from_date + timedelta(days=n): val for n in range(days)}
         except:
-            FGUtility.debug(str(sys.exc_info()))
+            Utility.debug(str(sys.exc_info()))
 
     def create_months_between_dates(self, from_date, to_date, val=None):
         """ Get months between two dates
@@ -379,7 +379,7 @@ class FGSearch:
             months = self.get_months_between_dates(from_date, to_date)
             return {month: val for month in months}
         except:
-            FGUtility.debug(str(sys.exc_info()))
+            Utility.debug(str(sys.exc_info()))
 
     def set_months(self):
         dates = self.get_months_between_dates(self.from_date, self.to_date)
@@ -503,7 +503,7 @@ class FGSearch:
                     series.append(stat)
         except:
             print sys.exc_info()
-            FGUtility.debug(True)
+            Utility.debug(True)
 
             # Just try  01/08/2013
             for metric_name in self.metric:  # self.metric is list

@@ -2,12 +2,12 @@ import os
 from flask import Flask, jsonify
 from flask.views import View
 from FGMimerender import mimerender
-from cm_metric.shell.FGDatabase import FGDatabase
+from cm_metric.shell.Database import Database
 
 class ListVMs(View):
 
     def __init__(self):
-        self.db = FGDatabase()
+        self.db = Database()
         self.db.conf()
         self.db.connect()
         self.cloudservice = None

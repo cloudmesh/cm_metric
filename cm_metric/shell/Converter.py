@@ -5,9 +5,9 @@ import sqlite3 as lite
 import MySQLdb
 from collections import deque
 from datetime import datetime
-from cm_metric.shell.FGConstants import FGConst
-from cm_metric.shell.FGDatabase import FGDatabase
-from cm_metric.util.FGUtility import FGUtility
+from cm_metric.shell.Constants import CMConst
+from cm_metric.shell.Database import Database
+from cm_metric.util.Utility import Utility
 
 
 class FGConverter:
@@ -35,8 +35,8 @@ class FGConverter:
     argparser = None
 
     def __init__(self):
-        self.db = FGDatabase()
-        self.db_dest = FGDatabase()
+        self.db = Database()
+        self.db_dest = Database()
 
     def __del__(self):
         self.db_close()
@@ -54,8 +54,8 @@ class FGConverter:
 
     def _check_platform_nimbus(self):
 
-        self.platform_version = self.platform_version or FGConst.DEFAULT_NIMBUS_VERSION
-        self.db.db_type = self.db.db_type or FGConst.DEFAULT_NIMBUS_DB
+        self.platform_version = self.platform_version or CMConst.DEFAULT_NIMBUS_VERSION
+        self.db.db_type = self.db.db_type or CMConst.DEFAULT_NIMBUS_DB
 
         # this query is for sqlite3 because [timestamp] is only used on
         # sqlite3?
@@ -77,8 +77,8 @@ class FGConverter:
             print msg
             raise ValueError(msg)
 
-        self.platform_version = self.platform_version or FGConst.DEFAULT_OPENSTACK_VERSION
-        self.db.db_type = self.db.db_type or FGConst.DEFAULT_OPENSTACK_DB
+        self.platform_version = self.platform_version or CMConst.DEFAULT_OPENSTACK_VERSION
+        self.db.db_type = self.db.db_type or CMConst.DEFAULT_OPENSTACK_DB
         self.db.dbname = self.dbname_nova
 
         self.query = 'SELECT created_at as trace_pending_start, \
@@ -149,7 +149,7 @@ class FGConverter:
         records = []
         for row in userinfo:
             try:
-                res = FGUtility.retrieve_userinfo_ldap(row["user_name"])
+                res = Utility.retrieve_userinfo_ldap(row["user_name"])
                 if not res:
                     res = {}
                 res["ownerid"] = row["user_id"]

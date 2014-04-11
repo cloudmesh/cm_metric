@@ -1,9 +1,9 @@
 from cm_metric.charts.FGPygooglechart import FGPyGoogleChart
-from cm_metric.charts.FGHighcharts import FGHighcharts
-from cm_metric.util.FGUtility import FGUtility
+from cm_metric.charts.Highcharts import Highcharts
+from cm_metric.util.Utility import Utility
 import sys
 
-class FGCharts:
+class Charts:
 
     def __init__(self):
         self.chart = None
@@ -19,7 +19,7 @@ class FGCharts:
         self.output_type = "html"
         self.title = "FG Charts"#None
         self.subtitle = ""#None
-        self.filename = FGUtility.timeStamped("chart") + "." + self.output_type#None
+        self.filename = Utility.timeStamped("chart") + "." + self.output_type#None
         self.script_path = "global"#"local"
 
         self.sort = "bykey"
@@ -148,7 +148,7 @@ class FGCharts:
         try:
             # inherit object variables?
             if self.chart_api == "highcharts":
-                self.chart = FGHighcharts()
+                self.chart = Highcharts()
             elif self.chart_api == "googlechart":
                 self.chart = FGPyGoogleChart()
             self.chart.set_type(self.type)

@@ -147,14 +147,14 @@ import shutil
 from datetime import datetime
 import fnmatch
 import argparse
-from cm_metric.util.FGUtility import FGUtility
+from cm_metric.util.Utility import Utility
 from pprint import pprint
 import gzip
 import sys
 import zlib
 
 
-class FGCollectFiles:
+class CollectFiles:
     def_input_dir = "/var/log/eucalyptus/"
     def_output_dir = "/volumes/log/backup/eucalyptus/"
     filename = "cc.log"
@@ -208,7 +208,7 @@ class FGCollectFiles:
         and the next file in the subdirectory will be attempted to be
         copied to backup.
         """
-        if not FGUtility.ensure_dir(self.output_dir+"/"):
+        if not Utility.ensure_dir(self.output_dir+"/"):
             print "to_path '" + self.output_dir + "' doesn't exist"
             return
 
@@ -410,7 +410,7 @@ def works():
 
 def main():
 
-    obj = FGCollectFiles()
+    obj = CollectFiles()
     obj.set_argparse()
     obj.display_settings()
     obj.collect_files()
