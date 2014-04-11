@@ -42,8 +42,7 @@ Subprocess of generating pdf report
 -------------------------------------
 CM Metric Report in pdf needs several processes to produce reports in a pdf format. The following sections explain the process.
 
-How to generate reStructuredText to the report
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+### How to generate reStructuredText to the report
 
 There is a Python script that generates rst files automatically from a basic or a selected template. The template files (located in examples/*.rst) includes ```%(variable)s``` Python variables which can be replaced by ```%```.
 
@@ -51,8 +50,8 @@ There is a Python script that generates rst files automatically from a basic or 
 - ```make generatereport``` executes ReportGenerator.py.
 * For implementation, see [Makefile](Makefile)
 
-How to generate data
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+### How to generate data
+
 cm-metric command analyzes usage data and provides statistics in csv, json, or image files with chart tools.
 
 ```
@@ -60,8 +59,8 @@ cm-metric command analyzes usage data and provides statistics in csv, json, or i
 - make data executes cm-metric
 ```
 
-Converting html figures to images
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+### Converting html figures to images
+
 To include chart figures in pdf reports, converting javascript-based chart files (.html) to images files (.png or .jpeg) is needed. Highcharts can be rendered to image files with [PhantomJS](http://phantomjs.org/) that parses html source codes and converts them to image formats.
 
 Reference: [Render charts on the Server](http://www.highcharts.com/component/content/article/2-news/52-serverside-generated-charts)
@@ -71,8 +70,8 @@ Reference: [Render charts on the Server](http://www.highcharts.com/component/con
 - ```make html2png``` performs this step.
 * For implementation, see [Makefile](Makefile)
 
-How to get a pdf report (final step)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+### How to get a pdf report (final step)
+
 ```sphinx-build -b latex``` easily creates pdf reports based on rst files. [conf.py](/doc/pdf_reports/conf.py) contains configuration information such as authors, titles, type of documents ('manual', 'howto'), etc.
 - ```make latexpdf``` performs this step.
 * For implementation, see [Makefile](/doc/pdf_reports/Makefile)
@@ -81,20 +80,20 @@ How to get a pdf report (final step)
 FAQ
 -----
 
-How to generate a report?
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+### How to generate a report?
+
 Like a quick start at first of this page, simply run the following command:
 
 - ``make report FROM_DATE=YYYYMMDD TO_DATE=YYYYMMDD``
 - open pdf file under _build/latex directory
 
-How to change a template of the report?
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+### How to change a template of the report?
+
 
 Edit ``examples/xsede.*.rst`` files for using **xsede** template
 
-How to modify Metric analysis commands?
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+### How to modify Metric analysis commands?
+
 
 Edit ``examples/xsede.*.txt`` files for using **xsede** template
 
