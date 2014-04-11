@@ -1,17 +1,12 @@
-Documentation
-===============
-Cloud Metrics provides three types of documentation. The source directory gives a general instruction and user manual of Cloud Metrics and the pdf_reports directory gives a usage report in a pdf format. The results directory is about html-based cloud usage reports by Python Sphinx. Each directory has README.md file which describes as how to open or use the documentation.
+User Manual
+============
+Quick Start, installation and detailed information for developers and administrators are available in this documentation.
+For usage reports in a html or pdf format, goto [reports](../reports).
 
-Instruction and user manual
----------------------------------
-- user_manual: user manual
-   - Example: http://cloudmesh.github.com/cm_metric
+Creating Documentation on local
+================================
+$ fab doc.html
 
-Cloud Usage Reports in PDF
-------------------------------
-- pdf_reports: report in pdf format  
-
-Cloud Usage Reports in html (by Sphinx)
----------------------------------------
-- html_reports: report in html
-   - Example: https://portal.futuregrid.org/metrics
+Online Documentation
+====================
+http://cloudmesh.futuregrid.org/cm_metric/index.html
