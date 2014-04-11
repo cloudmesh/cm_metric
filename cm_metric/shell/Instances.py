@@ -14,11 +14,11 @@ from cm_metric.shell.Database import Database
 manual = """
 MANUAL PAGE DRAFT
 
-NAME - FutureGrid instances
+NAME - CloudMesh (previously FutureGrid) instances
 
 DESCRIPTION
 
-This class provides a main data structure for the FutureGrid Cloud
+This class provides a main data structure for the CloudMesh (previously FutureGrid) Cloud
 Metrics framework.  This class should be used when VM instance
 information is collected by the log parser or the metrics analyzer to
 support unified data formats.

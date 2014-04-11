@@ -1,4 +1,4 @@
-Real-time monitoring for HPC in FutureGrid
+Real-time monitoring for HPC in CloudMesh (previously FutureGrid)
 ------------------------------------------
 
 Sample

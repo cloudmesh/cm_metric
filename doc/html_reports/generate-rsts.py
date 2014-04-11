@@ -995,7 +995,7 @@ class HtmlReportsRSTs:
 
         res =   "Cloud Metric Results" + self.newline + \
                 "====================" + self.newline + \
-                "We have collected cloud utilization data from Eucalyptus on FutureGrid such as India and Sierra resources and provide weekly and monthly reports to show usage of system resources measured by CM Cloud Metric." + self.newline + \
+                "We have collected cloud utilization data from Eucalyptus on CloudMesh (previously FutureGrid) such as India and Sierra resources and provide weekly and monthly reports to show usage of system resources measured by CM Cloud Metric." + self.newline + \
                 self.newline + \
                 "Contents:" + self.newline + \
                 self.newline + \

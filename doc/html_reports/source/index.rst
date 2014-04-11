@@ -27,7 +27,7 @@
 
 Cloud Usage Reports
 ====================
-FutureGrid Cloud Metric provides Cloud Usage reports across all sections of IaaS.
+CloudMesh (previously FutureGrid) Cloud Metric provides Cloud Usage reports across all sections of IaaS.
 
 - Period: daily, weekly, monthly, and quarterly
 - Cloud (IaaS):

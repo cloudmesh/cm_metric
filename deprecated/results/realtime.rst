@@ -1,7 +1,7 @@
 Real-time data
 =======================================
 
-Total VM instances count on FutureGrid
+Total VM instances count on CloudMesh (previously FutureGrid)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. raw:: html

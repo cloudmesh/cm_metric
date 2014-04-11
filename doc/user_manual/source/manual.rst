@@ -525,7 +525,7 @@ Nimbus has sqlite3 database to keep the record on cloud usage.
 **CM Cloud Metrics** provides a tool to convert service-oriented db into unified CM Cloud Metrics database.
 ``cm-metric-converter -s YYYMMDD -e YYYMMDD -p $cloud_service (e.g.nimbus) -db $db_type (e.g. sqlite3, mysql) -i $file_path (sqlite3 is used a single file as a database) -n $nodename (e.g. hotel, india)``
 
-For example, FutureGrid collects nimbus data daily and uses cron to convert and store as following:
+For example, CloudMesh (previously FutureGrid) collects nimbus data daily and uses cron to convert and store as following:
 
 ::
 
@@ -544,7 +544,7 @@ environment. Here we show an example on how to analyze and create
 reports for the year 2012::
 
         $ cm-metric-beta
-        Welcome to FutureGrid Cloud Metrics!
+        Welcome to CloudMesh (previously FutureGrid) Cloud Metrics!
         cm-metric] set date 2012-01-01T00:00:00 2012-12-31T00:00:00
         cm-metric] set metric runtime
         cm-metric] analyze 

@@ -22,7 +22,7 @@ class CMMetricShell(Cmd):
     def __init__(self):
         Cmd.__init__(self)
         self.prompt = "cm-metric> "
-        self.intro = "Welcome to FutureGrid Cloud Metrics!"
+        self.intro = "Welcome to CloudMesh (previously FutureGrid) Cloud Metrics!"
 
     def initialize(self, arg="all"):
         """Clear all instance data and user data on the memory"""

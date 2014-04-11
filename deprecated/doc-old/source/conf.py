@@ -72,7 +72,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Cloud Metrics'
-copyright = u'2012, Developed for FutureGrid by Gregor von Laszewski, Fugang Wang, Hyungro Lee, Javier Diaz'
+copyright = u'2012, Developed for CloudMesh (previously FutureGrid) by Gregor von Laszewski, Fugang Wang, Hyungro Lee, Javier Diaz'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the

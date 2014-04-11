@@ -50,7 +50,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Cloud Metrics'
-copyright = u'2013, Developed for FutureGrid by Gregor von Laszewski, Hyungro Lee, Fugang Wang'
+copyright = u'2013, Developed for CloudMesh (previously FutureGrid) by Gregor von Laszewski, Hyungro Lee, Fugang Wang'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -204,7 +204,7 @@ latex_elements = {
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
   ('index', 'CloudMetrics.tex', u'Cloud Metrics Documentation',
-   u'Developed for FutureGrid by Gregor von Laszewski, Hyungro Lee, FUgang Wang', 'manual'),
+   u'Developed for CloudMesh (previously FutureGrid) by Gregor von Laszewski, Hyungro Lee, FUgang Wang', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -234,7 +234,7 @@ latex_documents = [
 # (source start file, name, description, authors, manual section).
 man_pages = [
     ('index', 'cloudmetrics', u'Cloud Metrics Documentation',
-     [u'Developed for FutureGrid by Gregor von Laszewski, Hyungro Lee, FUgang Wang'], 1)
+     [u'Developed for CloudMesh (previously FutureGrid) by Gregor von Laszewski, Hyungro Lee, FUgang Wang'], 1)
 ]
 
 # If true, show URL addresses after external links.
@@ -248,7 +248,7 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
   ('index', 'CloudMetrics', u'Cloud Metrics Documentation',
-   u'Developed for FutureGrid by Gregor von Laszewski, Hyungro Lee, FUgang Wang', 'CloudMetrics', 'One line description of project.',
+   u'Developed for CloudMesh (previously FutureGrid) by Gregor von Laszewski, Hyungro Lee, FUgang Wang', 'CloudMetrics', 'One line description of project.',
    'Miscellaneous'),
 ]
 
@@ -266,9 +266,9 @@ texinfo_documents = [
 
 # Bibliographic Dublin Core info.
 epub_title = u'Cloud Metrics'
-epub_author = u'Developed for FutureGrid by Gregor von Laszewski, Hyungro Lee, FUgang Wang'
-epub_publisher = u'Developed for FutureGrid by Gregor von Laszewski, Hyungro Lee, FUgang Wang'
-epub_copyright = u'2013, Developed for FutureGrid by Gregor von Laszewski, Hyungro Lee, FUgang Wang'
+epub_author = u'Developed for CloudMesh (previously FutureGrid) by Gregor von Laszewski, Hyungro Lee, FUgang Wang'
+epub_publisher = u'Developed for CloudMesh (previously FutureGrid) by Gregor von Laszewski, Hyungro Lee, FUgang Wang'
+epub_copyright = u'2013, Developed for CloudMesh (previously FutureGrid) by Gregor von Laszewski, Hyungro Lee, FUgang Wang'
 
 # The language of the text. It defaults to the language option
 # or en if the language is not set.

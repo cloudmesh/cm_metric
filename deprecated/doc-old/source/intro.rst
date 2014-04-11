@@ -135,7 +135,7 @@ define variables::
     CM_HOME_LOG_ANALYZER - is set to the location of the "cloudmesh" directory.
     EUCALYPTUS_LOG_DIR - location where the eucalyptus log dirs are stored
 
-We recommend that the FutureGrid directory is included in the PATH of
+We recommend that the CloudMesh (previously FutureGrid) directory is included in the PATH of
 the shell that will run the commands.
 
 ------------

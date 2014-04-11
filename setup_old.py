@@ -1,4 +1,4 @@
-"""FutureGrid: Cloud Metrics
+"""CloudMesh (previously FutureGrid): Cloud Metrics
 
 This project is the basis for providing several metrics as part of the
 usage analysis of multiple cloud environments. 
@@ -95,7 +95,7 @@ setup(
     description=doclines[0],
     long_description = "\n".join(doclines[2:]),
     classifiers=[], # Get strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers
-    keywords='FutureGrid Eucalyptys Log File Analysis',
+    keywords='CloudMesh (previously FutureGrid) Eucalyptys Log File Analysis',
     author='Gregor von Laszewski, Hyungro Lee, Fugang Wang',
     maintainer='Gregor von Laszewski, Hyungro Lee',
     maintainer_email="laszewski@gmail.com",

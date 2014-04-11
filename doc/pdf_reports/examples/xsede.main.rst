@@ -7,7 +7,7 @@
 
 .. Hyungro Lee (lee212@indiana.edu)
 .. 01/11/2013
-.. FutureGrid project
+.. CloudMesh (previously FutureGrid) project
 .. =================================================================================================
 
 .. Usage Report for %(service)s on %(hostname)s
