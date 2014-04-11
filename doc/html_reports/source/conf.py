@@ -280,7 +280,7 @@ texinfo_documents = [
 epub_title = u'Cloud Metrics'
 epub_author = u'Gregor von Laszewski, Fugang Wang, Hyungro Lee, Javier Diaz'
 epub_publisher = u'Gregor von Laszewski, Fugang Wang, Hyungro Lee, Javier Diaz'
-epub_copyright = u'2013, Gregor von Laszewski, Fugang Wang, Hyungro Lee, Javier Diaz'
+epub_copyright = u'2014, Gregor von Laszewski, Fugang Wang, Hyungro Lee, Javier Diaz'
 
 # The language of the text. It defaults to the language option
 # or en if the language is not set.

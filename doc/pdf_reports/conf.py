@@ -37,7 +37,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'CM Resource Report'
-copyright = u'2013, CloudMesh (previously FutureGrid)'
+copyright = u'2014, CloudMesh (previously FutureGrid)'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
