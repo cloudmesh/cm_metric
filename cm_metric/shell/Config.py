@@ -2,8 +2,8 @@ import os
 import yaml
 
 class Config:
-    default_cfg = os.getenv("HOME") + "/.futuregrid/" 
-    default_yaml = "futuregrid.yaml"
+    default_cfg = os.getenv("HOME") + "/.cloudmesh/" 
+    default_yaml = "cloudmesh.yaml"
     default_yaml_path = default_cfg + default_yaml
 
     def __init__(self):

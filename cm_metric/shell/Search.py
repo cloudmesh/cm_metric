@@ -689,7 +689,7 @@ class Search:
 
         if not self.groupby in mdict:
             mdict[self.groupby] = {}
-        project = re.sub("fg-None:None", "Others", "fg-" + str(
+        project = re.sub("cm-None:None", "Others", "cm-" + str(
             selected["ProjectId"]) + ":" + str(selected["Title"]))
         if not project in mdict[self.groupby]:
             mdict[self.groupby][project] = val

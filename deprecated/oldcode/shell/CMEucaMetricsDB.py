@@ -26,11 +26,11 @@ class EucaMetricsDB(object):
     column_cp_cp = "cloudPlatformId"
 
     # Initialize
-    def __init__(self, configfile="futuregrid.cfg"):
+    def __init__(self, configfile="cloudmesh.cfg"):
 
         # read config from file configfile
         config = ConfigParser.ConfigParser()
-        cfgfile = os.getenv("HOME") + "/.futuregrid/" + configfile
+        cfgfile = os.getenv("HOME") + "/.cloudmesh/" + configfile
         config.read(cfgfile)
 
         try:
@@ -605,7 +605,7 @@ def testing():
         }'
     testobj = eval(tstobj)
     testobj2 = eval(tstobj2)
-    eucadb = EucaMetricsDB("futuregrid.cfg.local")
+    eucadb = EucaMetricsDB("cloudmesh.cfg.local")
     eucadb.write(testobj)
     eucadb.write(testobj2)
     keys = ["instanceId", "ownerId"]
@@ -622,14 +622,14 @@ def command_clean_database():
     """
     MANUAL PAGE DRAFT
 
-    NAME - fg-cleanup-table
+    NAME - cm-cleanup-table
 
     DESCRIPTION
 
     usage
-        fg-cleanup-db <arguments>
+        cm-cleanup-db <arguments>
 
-    fg-cleanup-db
+    cm-cleanup-db
 
         -t tbl_name
            deletes rows from tbl_name
@@ -652,12 +652,12 @@ def command_clean_database():
 
            if this parameter is not specified and a database is used the default location for this file is in
 
-           ~/.futuregrid/futuregrid.cfg
+           ~/.cloudmesh/cloudmesh.cfg
 
     """
     def_table = "instance"
     def_db = "euca"
-    def_conf = "futuregrid.cfg.local"
+    def_conf = "cloudmesh.cfg.local"
 
     parser = argparse.ArgumentParser()
     parser.add_argument("-t", dest="table_name", default=def_table,

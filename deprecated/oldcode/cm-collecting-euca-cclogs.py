@@ -1,11 +1,11 @@
 #!/bin/sh
 # 
-# fg-collecting-euca-cclogs.sh
+# cm-collecting-euca-cclogs.sh
 # ----------------------------
 #
 # Description
 # ============================
-# Once a result from log analyzer comes, the metrics from it will be reported via netlogger tools to inca.futuregrid.org
+# Once a result from log analyzer comes, the metrics from it will be reported via netlogger tools to inca.cloudmesh.org
 # This script will be executed by crontab hourly
 #
 # ============================
@@ -32,7 +32,7 @@ $FIND_SH $EUCA_LOG_DIR -name "cc.log*" -mmin -60 -exec grep " $HOUR:" {} \; > $c
 #/bin/cut -d":" -f2- $TMP > $cclogs
 
 cd $BIN
-RES=`$BIN/fg-euca-log-analyzer.pl cc.logs`
+RES=`$BIN/cm-euca-log-analyzer.pl cc.logs`
 
 NumofTer=`echo -e "$RES"|grep Terminate|cut -d":" -f2`
 NumofRun=`echo -e "$RES"|grep RunInstance|cut -d":" -f2`

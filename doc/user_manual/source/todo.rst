@@ -16,14 +16,14 @@ List
 Observations
 ----------------------------------------------------------------------
 
-.. todo:: integrate fg-=cleanup into fg-metric shell
+.. todo:: integrate cm-=cleanup into cm-metric shell
 
 There is little need to have a second command to cleanup the table, this
 should become a plugin to the shell and be called with
 
-fg-metric database .....
+cm-metric database .....
 
-with the parameters from fg-clean-table
+with the parameters from cm-clean-table
 
 
 Examples

@@ -1,5 +1,5 @@
 #! /usr/bin/env python
-import fg-parser
+import cm-parser
 
 ''' output (CSV type) for 'used minutes by users' and 'number of running instances per user' graphs are expected like below.
 

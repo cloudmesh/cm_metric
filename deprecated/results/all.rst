@@ -1,7 +1,7 @@
 Average VM instance count over time
 ========================================
 
-Eucalyptus on india.futuregrid.org
+Eucalyptus on india.cloudmesh.org
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. raw:: html
@@ -18,7 +18,7 @@ Eucalyptus on india.futuregrid.org
 	</div>
 	Figure 2. Total runtime (hour) of VMs launched on india since 11/01/2011
 
-Eucalyptus on sierra.futuregrid.org
+Eucalyptus on sierra.cloudmesh.org
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. raw:: html

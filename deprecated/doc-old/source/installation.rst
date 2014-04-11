@@ -39,7 +39,7 @@ Cloud Metrics has a configuration file to manage access information of databases
 
 The default file path and name look like::
 
-           ~/.futuregrid/futuregrid.cfg
+           ~/.cloudmesh/cloudmesh.cfg
 
 and the content has the following template::
 
@@ -64,23 +64,23 @@ from github
 
 We have a development version on github that you can install with::
 
-        git clone https://github.com/futuregrid/futuregrid-cloud-metrics.git
+        git clone https://github.com/cloudmesh/cloudmesh-cloud-metrics.git
 
 2. Create Web pages using Sphinx
 --------------------------------
 Now you are ready to create results in a sphinx web page::
 
-   cd futuregrid-cloud-metric*/doc
+   cd cloudmesh-cloud-metric*/doc
    make force
 
 If you met all the prerequisits, you will find the index file in::
 
-   futuregrid-cloud-metric*/doc/build/html/index.html
+   cloudmesh-cloud-metric*/doc/build/html/index.html
 
 ..
 
 
 live example of the data is available at
 
-*   `http://portal.futuregrid.org/metrics/html/results.html <http://portal.futuregrid.org/metrics/html/results.html>`_
+*   `http://portal.cloudmesh.org/metrics/html/results.html <http://portal.cloudmesh.org/metrics/html/results.html>`_
 

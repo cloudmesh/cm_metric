@@ -1,16 +1,16 @@
 ================
-fg-cleanup-table
+cm-cleanup-table
 ================
 
 NAME
 ====
 
- **fg-cleanup-table** - delete database records of MySQL
+ **cm-cleanup-table** - delete database records of MySQL
 
 SYNOPSIS
 ========
 
- **fg-cleanup-table** [OPTION]...
+ **cm-cleanup-table** [OPTION]...
 
 DESCRIPTION
 ===========
@@ -49,7 +49,7 @@ DESCRIPTION
 	      if this parameter is not specified and a database is
 	      used the default location for this file is in::
  	   
-	        ~/.futuregrid/futuregrid.cfg
+	        ~/.cloudmesh/cloudmesh.cfg
 
 EXAMPLES
 ========
@@ -57,23 +57,23 @@ EXAMPLES
  Delete all records in a default table and database with default
  configuration file::
 
-    $ fg-cleanup-table
+    $ cm-cleanup-table
 
  Delete all records in a specific table::
 
-    $ fg-cleanup-table -t table_name
+    $ cm-cleanup-table -t table_name
 
  Delete all records in a specific table and a specific database::
 
-    $ fg-cleanup-table -t table_name -d db_name
+    $ cm-cleanup-table -t table_name -d db_name
 
- Delete records with a different configuration file (~/futuregrid.cfg)::
+ Delete records with a different configuration file (~/cloudmesh.cfg)::
 
-    $ fg-cleanup-table --conf ~/futuregrid.cfg
+    $ cm-cleanup-table --conf ~/cloudmesh.cfg
 
  Delete records with where clause::
 
-    $ fg-cleanup-table -w "instanceId = i-534109B6"
+    $ cm-cleanup-table -w "instanceId = i-534109B6"
 
 AUTHOR
 ======
@@ -83,9 +83,9 @@ AUTHOR
 REPORTING BUGS
 ==============
 
- Report fg-cleanup-table bugs to laszewski@gmail.com
+ Report cm-cleanup-table bugs to laszewski@gmail.com
 
- Github home page: <https://github.com/futuregrid/futuregrid-cloud-metrics>
+ Github home page: <https://github.com/cloudmesh/cloudmesh-cloud-metrics>
 
 SEE ALSO
 ========

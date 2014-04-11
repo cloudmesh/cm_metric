@@ -2,11 +2,11 @@ Summary Report (All)
 ====================
 
 - Period: %(tmpl_period)s
-- Cloud(india.futuregrid.org): eucalyptus, openstack
-- Cloud(sierra.futuregrid.org): eucalyptus, nimbus
-- Cloud(hotel.futuregrid.org): nimbus
-- Cloud(alamo.futuregrid.org): nimbus
-- Cloud(foxtrot.futuregrid.org): nimbus
+- Cloud(india.cloudmesh.org): eucalyptus, openstack
+- Cloud(sierra.cloudmesh.org): eucalyptus, nimbus
+- Cloud(hotel.cloudmesh.org): nimbus
+- Cloud(alamo.cloudmesh.org): nimbus
+- Cloud(foxtrot.cloudmesh.org): nimbus
 - Metrics: VMs count, Users count, Wall hours, Distribution by Wall Hours, Project, Project Leader, and Institution, and Systems
 
 Wall Hours by Clusters (Total, monthly)

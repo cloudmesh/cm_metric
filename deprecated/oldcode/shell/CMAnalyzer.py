@@ -44,7 +44,7 @@ class CmdLineAnalyzeEucaData(Cmd):
     .. note::
 
         Examples of this class are in the examples/ directory from the
-        root repository of /futuregrid-cloud-metrics/
+        root repository of /cloudmesh-cloud-metrics/
 
     '''
 

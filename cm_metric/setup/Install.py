@@ -16,9 +16,9 @@ class Install(object):
     userinfo_table = "userinfo"
     projectinfo_table = "projectinfo"
     cloudplatform_table = "cloudplatform"
-    def_cfg_path = os.getenv("HOME") + "/.futuregrid/"
-    def_cfg_filename = "futuregrid.cfg"
-    def_yaml_filename = "futuregrid.yaml"
+    def_cfg_path = os.getenv("HOME") + "/.cloudmesh/"
+    def_cfg_filename = "cloudmesh.cfg"
+    def_yaml_filename = "cloudmesh.yaml"
     cfg_section_name = "CloudMetricsDB"
     dbinfo = { "host": None,
                 "port": None,
@@ -55,7 +55,7 @@ class Install(object):
     def create_cfgfile(self):
         config = ConfigParser.RawConfigParser()
         config.add_section(self.cfg_section_name)
-        config.set(self.cfg_section_name, 'host', self.dbinfo['host'])#=suzie.futuregrid.org\n\
+        config.set(self.cfg_section_name, 'host', self.dbinfo['host'])#=suzie.cloudmesh.org\n\
         config.set(self.cfg_section_name, 'port', self.dbinfo['port'])#=3306\n\
         config.set(self.cfg_section_name, 'user', self.dbinfo['userid'])#=cm_metric\n\
         config.set(self.cfg_section_name, 'passwd', self.dbinfo['passwd'])#=\n\

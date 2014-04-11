@@ -13,16 +13,16 @@ class CMMetricCli:
 
     CMMetricCli
     -----------
-    Command Line Interface for fg-metric.
+    Command Line Interface for cm-metric.
 
-    Usage: fg-metric-cli
+    Usage: cm-metric-cli
 
     Description
     ===========
-    As a cli version of fg-metric, this module provides usage data with search options.
+    As a cli version of cm-metric, this module provides usage data with search options.
 
-    - Excutable name is fg-metric-cli (defined by setup.py).
-    - CM Cloud Mesh would be one of the examples using fg-metric-cli.
+    - Excutable name is cm-metric-cli (defined by setup.py).
+    - CM Cloud Mesh would be one of the examples using cm-metric-cli.
 
     Basic data structure
     ====================
@@ -44,7 +44,7 @@ class CMMetricCli:
 
     Example 1. Get user statistics
 
-    $ fg-metric-cli -u hrlee
+    $ cm-metric-cli -u hrlee
 
     """
 

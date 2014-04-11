@@ -1,23 +1,23 @@
 =========
-fg-metric
+cm-metric
 =========
 
 NAME
 ====
 
- **fg-metric** - analyze utilization data and generate graphical reports using various chart formats
+ **cm-metric** - analyze utilization data and generate graphical reports using various chart formats
 
 SYNOPSIS
 ========
 
- **fg-metric**
+ **cm-metric**
 
 DESCRIPTION
 ===========
 
  This tool works in python cmd2 mode. It accepts multi-lines stdin to
  run cmd2 commands. Also, it goes into a new command line interfaces
- by simply run fg-metric.
+ by simply run cm-metric.
 
  **analyze**
    function to analyze utilization of cloud
@@ -69,7 +69,7 @@ DESCRIPTION
  count_images_
         Count bucket images per user
 
- .. _count_images: fg-metric/commands.html
+ .. _count_images: cm-metric/commands.html
 
 
 EXAMPLES
@@ -83,8 +83,8 @@ AUTHOR
 REPORTING BUGS
 ==============
 
- Report fg-cleanup-table bugs to laszewski@gmail.com
- Github home page: <https://github.com/futuregrid/futuregrid-cloud-metrics>
+ Report cm-cleanup-table bugs to laszewski@gmail.com
+ Github home page: <https://github.com/cloudmesh/cloudmesh-cloud-metrics>
 
 COPYRIGHT
 =========

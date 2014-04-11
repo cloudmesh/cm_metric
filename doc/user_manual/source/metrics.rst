@@ -21,7 +21,7 @@ Starting the cloud metric shell
 
 To activate the metric shell please execute the command::
 
- $ fg-metric
+ $ cm-metric
 
 Once you do this you can issue some of the metric shell commands. Here
 is a simple example that analyzes the runtime metric for a machine
@@ -40,28 +40,28 @@ Before performing an analysis, several settings need to be specified
 with the ``set`` command. This command allows to associate
 one or more values with a key::
 
-  fg-metric> set $key $value[ $value2 ...]
+  cm-metric> set $key $value[ $value2 ...]
 
 Set the date range
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To analyze data between these two dates please set the date range::
  
-  fg-metric> set date 2012-01-01T00:00:00 2012-12-31T23:59:59
+  cm-metric> set date 2012-01-01T00:00:00 2012-12-31T23:59:59
 
 
 Set the metric
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 To specify  which metric item will be calculated please set it as follows::
 
-  fg-metric> set metric runtime
+  cm-metric> set metric runtime
 
   (multiple metrics)
-  fg-metric> set metric runtime count
+  cm-metric> set metric runtime count
 
 We are supporting the following metrics::
  
- fg-metric> set metric help
+ cm-metric> set metric help
  Possible commands
  =================
   set metric count
@@ -78,7 +78,7 @@ As our metric system can handle multiple coulds, it is important to
 set for which host the calculations are to be specified. Please set it
 ass follows where the name india is your machine that holds the IaaS::
 
-  fg-metric> set hostname india
+  cm-metric> set hostname india
 
 
 Set the cloud service
@@ -87,7 +87,7 @@ Set the cloud service
 To specify which cloud service will be included please use the
 following command::
 
-  fg-metric> set platform openstack
+  cm-metric> set platform openstack
 
 The "help" command
 ----------------------------------------------------------------------
@@ -96,7 +96,7 @@ The "help" command
 The ``help`` command is useful to obtain a simple help message for the
 available commoand::
 
-  fg-metric> help
+  cm-metric> help
 
   Documented commands (type help <topic>):
   ========================================
@@ -114,10 +114,10 @@ available commoand::
 To find out more details about an available shell command, simply type
 in help followed by the command::
 
-  fg-metric> help set
+  cm-metric> help set
   Set a function with parameter(s)
 
-  fg-metric> set help
+  cm-metric> set help
 
   Possible commands
   =================
@@ -129,7 +129,7 @@ in help followed by the command::
 To ask for help for a parameter you can do this as follows (here we
 give an example for finding mor out about the set data command::
 
-  fg-metric> set date help
+  cm-metric> set date help
   Usage: set date from_date(YYYY-MM-DDTHH:MM:SS) to_date(YYYY-MM-DDTHH:MM:SS). 
   (e.g. set date 2012-01-01T00:00:00 2012-12-31T23:59:59)
 
@@ -164,9 +164,9 @@ Assume, the data is:
 
 Example usage of the ``chart`` command::
 
-  fg-metric> ...(skipped)...
-  fg-metric> analyze
-  fg-metric> chart -t pie-basic --directory $directory_name
+  cm-metric> ...(skipped)...
+  cm-metric> analyze
+  cm-metric> chart -t pie-basic --directory $directory_name
 
 The "csv" command
 ----------------------------------------------------------------------
@@ -175,13 +175,13 @@ The "csv" command
 
 Example usage of ``csv`` command::
 
-  fg-metric> ...(skipped)...
-  fg-metric> analyze
-  fg-metric> csv
+  cm-metric> ...(skipped)...
+  cm-metric> analyze
+  cm-metric> csv
   2012-01-01T00:00:00-2013-01-01T00:00:00-runtime-openstack-india-dailyAll.csv is created
 
   (or)
-  fg-metric> csv -o test/result.csv
+  cm-metric> csv -o test/result.csv
   test/result.csv is created
 
 Examples of using the metric shell
@@ -277,13 +277,13 @@ Create a summary table for the month of January
 
 The following will create a table with data produced for the month of January::
 
-    > fg-metric
-    fg> clear users
-    fg> analyze -M 01
-    fg> table --type users --separator ,  --caption Testing_the_csv_table
-    fg> quit
+    > cm-metric
+    cm-metric> clear users
+    cm-metric> analyze -M 01
+    cm-metric> table --type users --separator ,  --caption Testing_the_csv_table
+    cm-metric> quit
 
-Naturally you could store this script in a file and pipe to fg-metric
+Naturally you could store this script in a file and pipe to cm-metric
 in case you have more complex or repetitive analysis to do. 
 
 Create a summary analysis for multiple month
@@ -313,7 +313,7 @@ included. The resulting report is an html report.
 
 To start the script, simply use::
 
-    cat analyze.txt | fg-metric
+    cat analyze.txt | cm-metric
 
 This will produce a nice directory tree with all the data needed for a
 display.
@@ -331,7 +331,7 @@ includes loops, we can just use loops to create such a script
 programatically, while changing some parameters at the beginning::
 
   #! /usr/bin/env python
-  from sh import fg-metric as metric
+  from sh import cm-metric as metric
 
   filename = "/tmp/analyze.txt"
 

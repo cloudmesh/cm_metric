@@ -3,7 +3,7 @@
 """
 Manual Page
 
-NAME - fg-euca-gather-log-files
+NAME - cm-euca-gather-log-files
 
 DESCRIPTION
 ===========
@@ -19,7 +19,7 @@ integration of this script into cron.
 USAGE
 =====
 
-fg-euca-gather-log-files -i <from_dir> -o <backup_dir>
+cm-euca-gather-log-files -i <from_dir> -o <backup_dir>
 
 The program has a number of parameters by default it takes two
 directories. The first directory is the directory from which all
@@ -52,11 +52,11 @@ Specific arguments can be controlled as follows
 If any of the parameters are used the specification of any
 parameters without named parameters is not allowed. Calling
 
-fg-euca-gather-log-files --source <from_dir> --backup <backup_dir>
+cm-euca-gather-log-files --source <from_dir> --backup <backup_dir>
 
 is equicvalent to
 
-fg-euca-gather-log-files -i <from_dir> -o <backup_dir>
+cm-euca-gather-log-files -i <from_dir> -o <backup_dir>
 
 
 In a production environment we recommend using explicit parameter naming
@@ -73,7 +73,7 @@ Download
 --------
 Download the code from Git
 
-git@github.com:futuregrid/eucalyptus-cloud-metrics.git
+git@github.com:cloudmesh/eucalyptus-cloud-metrics.git
 
 describe here.
 
@@ -90,13 +90,13 @@ This will install the program(s) into
 
 There you will find the program
 
-fg-euca-gather-log-files
+cm-euca-gather-log-files
 
 
 Cron Setup
 ----------
-The following line causes the fg-euca-gather-log-files to be run once an hour.
-0       *       *       *       * /usr/local/bin/fg-euca-gather-log-files --source <from_dir> --backup <backup_dir>
+The following line causes the cm-euca-gather-log-files to be run once an hour.
+0       *       *       *       * /usr/local/bin/cm-euca-gather-log-files --source <from_dir> --backup <backup_dir>
 
 Update
 ------
@@ -114,11 +114,11 @@ Easy install/Pip
 
 In future we intent to host this program in pypi and the administrator will be able to call
 
-  pip install fg-metrics
+  pip install cm-metrics
 
 or
 
-   easyinstall install fg-metrics
+   easyinstall install cm-metrics
 
 without needing to get the code from github
 
@@ -128,7 +128,7 @@ Contribution
 If you like to contribute to the code, please contact Gregor von Laszewski
 at laszewski@gmail.com. The code is located on github at
 
- https://github.com/futuregrid/eucalyptus-cloud-metrics
+ https://github.com/cloudmesh/eucalyptus-cloud-metrics
 
 in the directory cloud-metrics
 

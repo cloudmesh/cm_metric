@@ -31,11 +31,11 @@ FutureGrid Cloud Metric provides Cloud Usage reports across all sections of IaaS
 
 - Period: daily, weekly, monthly, and quarterly
 - Cloud (IaaS):
-   - india.futuregrid.org: Openstack, Eucalyptus
-   - sierra.futuregrid.org: Nimbus
-   - hotel.futuregrid.org: Nimbus
-   - alamo.futuregrid.org: Nimbus
-   - foxtrot.futuregrid.org: Nimbus
+   - india.cloudmesh.org: Openstack, Eucalyptus
+   - sierra.cloudmesh.org: Nimbus
+   - hotel.cloudmesh.org: Nimbus
+   - alamo.cloudmesh.org: Nimbus
+   - foxtrot.cloudmesh.org: Nimbus
 - Metric: VM instance count, instance wall time, VM CPU cores, memories, disks, and VM instance count per compute node.
 
 Contents:

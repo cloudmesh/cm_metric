@@ -37,7 +37,7 @@ File contents
   | CMHighcharts.py - Highcharts API
   | CMInstall.py - Initializer of Cloud Metrics (db configuration, etc)
   | CMLogParser.py - Eucalyptus log parser
-  | CMMetricsCli.py - fg-metric-cli command tool
+  | CMMetricsCli.py - cm-metric-cli command tool
   | CMNovaDB.py - outdated OpenStack API
   | CMParser.py - old version of VM instance class
   | CMSearch.py - New version of 

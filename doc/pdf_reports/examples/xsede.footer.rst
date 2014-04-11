@@ -7,11 +7,11 @@ User table (Cloud)
 
 This table provides wall time usage of cloud users with the project id (first appearance).
 - Cloud:
-   - india.futuregrid.org: openstack, eucalyptus
-   - sierra.futuregrid.org: nimbus, (openstack expected soon)
-   - hotel.futuregrid.org: nimbus
-   - alamo.futuregrid.org: nimbus, (openstack expected soon)
-   - foxtrot.futuregrid.org: nimbus
+   - india.cloudmesh.org: openstack, eucalyptus
+   - sierra.cloudmesh.org: nimbus, (openstack expected soon)
+   - hotel.cloudmesh.org: nimbus
+   - alamo.cloudmesh.org: nimbus, (openstack expected soon)
+   - foxtrot.cloudmesh.org: nimbus
 
 User table (HPC)
 ----------------
@@ -22,5 +22,5 @@ User table (HPC)
 
 This table provides detailed information on users, including average job size, average wait time, and average run time. 
 - HPC: alamo, bravo, hotel, india xray, sierra
-- Data obtained from ubmod.futuregrid.org
+- Data obtained from ubmod.cloudmesh.org
 \**** Missing user name is represented as a hidden userid under asterisks.

@@ -21,7 +21,7 @@ class CMMetricShell(Cmd):
 
     def __init__(self):
         Cmd.__init__(self)
-        self.prompt = "fg-metric> "
+        self.prompt = "cm-metric> "
         self.intro = "Welcome to FutureGrid Cloud Metrics!"
 
     def initialize(self, arg="all"):
@@ -294,22 +294,22 @@ class CMMetricShell(Cmd):
         """Refresh component (same as 'load')
 
         Usage example:
-        fg-metric] refresh db"""
+        cm-metric] refresh db"""
         self.do_load(line, opts)
 
     def do_load(self, line, opts=None):
         """Load component
 
         Usage example:
-        fg-metric] load db"""
+        cm-metric] load db"""
         self.call_attr(line, "load_")
 
     def do_showconf(self, line, opts=None):
         """Display current settings
 
         Usage example:
-        fg-metric] showconf dbinfo
-        fg-metric] showconf filter_setting"""
+        cm-metric] showconf dbinfo
+        cm-metric] showconf filter_setting"""
         self.call_attr(line, "show_")
 
     def do_show(self, line, opts=None):
@@ -320,7 +320,7 @@ class CMMetricShell(Cmd):
         """Show current settings
 
         Usage example:
-        fg-metric] get filter"""
+        cm-metric] get filter"""
         self.call_attr(line, "get_", "self.search")
 
     def do_setconf(self, line, opts=None):

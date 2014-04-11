@@ -10,11 +10,11 @@ class NovaDB(object):
     instances_table = "instances" # in nova
     userinfo_table = "user" # in keystone
 
-    def __init__(self, configfile="futuregrid.cfg"):
+    def __init__(self, configfile="cloudmesh.cfg"):
 
         #read config from file configfile
         config = ConfigParser.ConfigParser()
-        cfgfile = os.getenv("HOME") + "/.futuregrid/" + configfile
+        cfgfile = os.getenv("HOME") + "/.cloudmesh/" + configfile
         config.read(cfgfile)
 
         try:

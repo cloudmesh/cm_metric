@@ -77,7 +77,7 @@ Together thes components provide the following functionality: (a) various clouds
 many log files, (b) the log files will be moved to a backup directory,
 (c) the log files that have been recently moved will be inspected and
 their contents will be added to the database, (d) the database is
-queried by a fg-metric command which is a simple shell that allows to
+queried by a cm-metric command which is a simple shell that allows to
 quey for some very elementary iformation. It also allows to generate
 graphics for this information and place them in a web server (e) a
 sphinx portal framework - no login required (f) a flask portal
@@ -106,8 +106,8 @@ the prefix: "METRICS: " in the subject of email messages.
 
 The contribution impact is recorded at
 
-* https://github.com/futuregrid/cloud-metrics/graphs
-* https://github.com/futuregrid/cloud-metrics/contributors
+* https://github.com/cloudmesh/cloud-metrics/graphs
+* https://github.com/cloudmesh/cloud-metrics/contributors
 
 The original database integration was contributed by Fugang Wang and
 was not tracked.
@@ -117,17 +117,17 @@ than discuss how best you can contribute. You may have enhanced our
 code already or used it in your system. If so, please let us know.
 
 If you run into problems when using the cloud metric framework, please use our 
-help form at `https://portal.futuregrid.org/help <https://portal.futuregrid.org/help>`_.
+help form at `https://portal.cloudmesh.org/help <https://portal.cloudmesh.org/help>`_.
 
 
 Production Deployment
 ----------------------
 
-`Cloud Metrics <https://portal.futuregrid.org/metrics>`_ is our main
+`Cloud Metrics <https://portal.cloudmesh.org/metrics>`_ is our main
 monitoring system for clouds on FuturegGrid. In addition we also
-deployed other monitoring systems such as `Inca <https://portal.futuregrid.org/monitoring/cloud>`_ which does
+deployed other monitoring systems such as `Inca <https://portal.cloudmesh.org/monitoring/cloud>`_ which does
 monitoring at specific time intervals, and `Nimbus
-<http://inca.futuregrid.org/nimbus-stats/>`_ which offers a less
+<http://inca.cloudmesh.org/nimbus-stats/>`_ which offers a less
 sophisticated and less comprehensive set of monitoring tools than our
 framework provides. However we integrate the data from Nimbus in our
 framework.

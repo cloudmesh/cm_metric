@@ -41,7 +41,7 @@ class Converter:
     def __del__(self):
         self.db_close()
 
-    def convert_to_fg(self):
+    def convert_to_cm(self):
         self.check_platform()
         self.db_connect()
         self.convert_instance()
@@ -123,7 +123,7 @@ class Converter:
 
     def convert_instance(self):
         self.read_from_source()
-        self.map_to_fg()
+        self.map_to_cm()
         self.write_to_dest()
 
     def convert_userinfo(self):
@@ -182,7 +182,7 @@ class Converter:
                 continue
         return None
 
-    def map_to_fg(self):
+    def map_to_cm(self):
         rows = self.rows
         records = []
 
@@ -287,7 +287,7 @@ class Converter:
     def set_parser(self):
         def_s_date = "19700101"
         def_e_date = "29991231"
-        def_conf = "futuregrid.cfg"
+        def_conf = "cloudmesh.cfg"
         def_nova = "nova"
         def_keystone = "keystone"
         def_db = "mysql"
@@ -305,7 +305,7 @@ class Converter:
         parser.add_argument("-n", "--hostname", required=True,
                             help="Hostname of the cloud platform, required. (e.g., hotel, sierra, india, alamo, foxtrot)")
         parser.add_argument("--conf", dest="conf",
-                            help="futuregrid.cfg filepath (e.g. $HOME/.futuregrid/futuregrid.cfg)")
+                            help="cloudmesh.cfg filepath (e.g. $HOME/.cloudmesh/cloudmesh.cfg)")
 
         parser.add_argument("-db", "--database", default=def_db,
                             help="database type to load (e.g. mysql or sqlite3)")
@@ -359,7 +359,7 @@ class Converter:
 def main():
     converter = Converter()
     converter.set_parser()
-    converter.convert_to_fg()
+    converter.convert_to_cm()
 
 if __name__ == "__main__":
     main()

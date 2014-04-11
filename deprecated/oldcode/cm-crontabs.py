@@ -28,10 +28,10 @@ source log-analyzer.cfg
 # cd $BIN
 
 # a) Decompressing logs
-bash $BIN/fg-log-gz-decompressor.sh -s $sdate -e $edate >> $LOG_DIR/fg-log-gz-decompressor-sh-log
+bash $BIN/cm-log-gz-decompressor.sh -s $sdate -e $edate >> $LOG_DIR/cm-log-gz-decompressor-sh-log
 
 # b) Merging logs
-bash $BIN/fg-log-merger.sh -i logs -o $BIN/merged.logs >> $LOG_DIR/fg-log-merger.sh.log
+bash $BIN/cm-log-merger.sh -i logs -o $BIN/merged.logs >> $LOG_DIR/cm-log-merger.sh.log
 
 # c) temporary step for reducing file loading burden
 grep "print_ccInstance(): refresh_instances():" $LOG_DIR/merged.${sdate}*.${edate}*.cc.logs > $LOG_DIR/fined.merged.$sdate.cc.logs
@@ -40,7 +40,7 @@ grep "print_ccInstance(): refresh_instances():" $LOG_DIR/merged.${sdate}*.${edat
 ln -s $LOG_DIR/fined.merged.$sdate.cc.logs cc.log
 
 # e) log analyzer
-perl $BIN/fg-log-analyzer-4-eucalyptus-pl cc.log > $DATA/user.data.of.eucalyptus.india.$sdate.$edate
+perl $BIN/cm-log-analyzer-4-eucalyptus-pl cc.log > $DATA/user.data.of.eucalyptus.india.$sdate.$edate
 
 # e) remove
 rm -rf $EUCA_LOGOUTPUT_DIR/${sdate}*

@@ -8,7 +8,7 @@ class Monitor:
         self.data = {}
     def get_clusters(self):
         return [{"service": "openstack",
-                "hostname": "india.futuregrid.org"}]
+                "hostname": "india.cloudmesh.org"}]
 
     def get_floatingIPs(self):
         '''Display a list of all floating IP addresses.'''
@@ -57,11 +57,11 @@ class Monitor:
         return clusters
 
 if __name__ == "__main__":
-    fgmonitor = Monitor()
-    fgmongodb = Mongodb()
-    fgmongodb.connect()
-    res = fgmonitor.get_floatingIPs()
-    fgmongodb.insert("floatingip", res)
-    res = fgmonitor.get_computenodes()
-    fgmongodb.insert("computenodes", res)
+    cm_monitor = Monitor()
+    cmmongodb = Mongodb()
+    cmmongodb.connect()
+    res = cm_monitor.get_floatingIPs()
+    cmmongodb.insert("floatingip", res)
+    res = cm_monitor.get_computenodes()
+    cmmongodb.insert("computenodes", res)
 

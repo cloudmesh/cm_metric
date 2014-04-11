@@ -8,7 +8,7 @@ class NovaMetric:
         self.userinfo = []
         self.users = {}
         self.nodename = None
-        self.novadb = CM_metric.NovaDB.NovaDB("futuregrid.cfg")
+        self.novadb = CM_metric.NovaDB.NovaDB("cloudmesh.cfg")
 
         self.from_date = None
         self.to_date = None

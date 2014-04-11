@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 #
-# fg-google-line-chart.ph
+# cm-google-line-chart.ph
 # =======================
 #
 # This script generates csv typed data file from an output of log analyzer looks like below.

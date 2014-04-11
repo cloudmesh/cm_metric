@@ -5,13 +5,13 @@ from cm_metric.charts.Charts import Charts
 
 class monitorWeb:
     def __init__(self):
-        self.fgmongodb = Mongodb()
-        self.fgmongodb.connect()
+        self.cmmongodb = Mongodb()
+        self.cmmongodb.connect()
         self.chart = Charts()
 
     def count_floatingIPs(self):
         res = []
-        found = self.fgmongodb.find("floatingip", {})
+        found = self.cmmongodb.find("floatingip", {})
         for record in found:
             total = len(record["data"])
             avail = 0
@@ -28,7 +28,7 @@ class monitorWeb:
 
     def series_floatingIPs(self):
         res = {}
-        found = self.fgmongodb.find("floatingip", {})
+        found = self.cmmongodb.find("floatingip", {})
         for record in found:
             total = len(record["data"])
             avail = total
@@ -43,7 +43,7 @@ class monitorWeb:
 
     def count_computenodes(self):
         res = []
-        found = self.fgmongodb.find("computenodes", {})
+        found = self.cmmongodb.find("computenodes", {})
         for record in found:
             total = len(record["data"])
             avail = total
@@ -60,7 +60,7 @@ class monitorWeb:
 
     def series_computenodes(self):
         res = {}
-        found = self.fgmongodb.find("computenodes", {})
+        found = self.cmmongodb.find("computenodes", {})
         for record in found:
             total = len(record["data"])
             avail = total

@@ -5,7 +5,7 @@ Cloud Metrics provides three types of documentation. The source directory gives 
 Instruction and user manual
 ---------------------------------
 - user_manual: user manual
-   - Example: http://futuregrid.github.com/cloud-metrics
+   - Example: http://cloudmesh.github.com/cloud-metrics
 
 Cloud Usage Reports in PDF
 ------------------------------
@@ -14,4 +14,4 @@ Cloud Usage Reports in PDF
 Cloud Usage Reports in html (by Sphinx)
 ---------------------------------------
 - html_reports: report in html
-   - Example: https://portal.futuregrid.org/metrics
+   - Example: https://portal.cloudmesh.org/metrics

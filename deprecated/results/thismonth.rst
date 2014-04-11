@@ -3,7 +3,7 @@ Current Month Summary
 
 (from the first day of this month to today)
 
-Usage Report for Eucalyptus on india.futuregrid.org
+Usage Report for Eucalyptus on india.cloudmesh.org
 --------------------------------------------------------
 
 .. raw:: html
@@ -69,7 +69,7 @@ Usage Report for Eucalyptus on india.futuregrid.org
 	</div>
 	Figure 9. VMs count per compute node for this month on india
 
-Usage Report for Openstack on india.futuregrid.org
+Usage Report for Openstack on india.cloudmesh.org
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. raw:: html

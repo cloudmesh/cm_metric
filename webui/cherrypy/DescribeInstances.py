@@ -179,12 +179,12 @@ class DescribeInstances:
         cmd = ["euca-describe-instances", "verbose", "--debug"]
         if self.platform == "eucalyptus":
             if self.hostname == "india":
-                cmd.extend(["--config", "/home/hyungro/.futuregrid/eucalyptus/admin/eucarc"])
+                cmd.extend(["--config", "/home/hyungro/.cloudmesh/eucalyptus/admin/eucarc"])
             elif self.hostname == "sierra":
-                cmd.extend(["--config", "/home/hyungro/.futuregrid/eucalyptus/sierra/admin/eucarc"])
+                cmd.extend(["--config", "/home/hyungro/.cloudmesh/eucalyptus/sierra/admin/eucarc"])
         elif self.platform == "openstack":
             if self.hostname == "india":
-                cmd.extend(["--config", "/home/hyungro/.futuregrid/openstack/novarc"])
+                cmd.extend(["--config", "/home/hyungro/.cloudmesh/openstack/novarc"])
                 cmd.remove("verbose")
 
         return cmd

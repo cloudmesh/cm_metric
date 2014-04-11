@@ -28,13 +28,13 @@ Example: Create a summary table for the month of January
 
 The following will create a table with data produced for the month of January::
 
-    > fg-metric
-    fg> clear users
-    fg> analyze -M 01
-    fg> table --type users --separator ,  --caption Testing_the_csv_table
-    fg> quit
+    > cm-metric
+    cm-metric> clear users
+    cm-metric> analyze -M 01
+    cm-metric> table --type users --separator ,  --caption Testing_the_csv_table
+    cm-metric> quit
 
-Naturally you could store this script in a file and pipe to fg-metric
+Naturally you could store this script in a file and pipe to cm-metric
 in case you have more complex or repetitive analysis to do. 
 
 Example: How to create a summary analysis for multiple month
@@ -61,7 +61,7 @@ included. The resulting report is an html report.
 
 To start the script, simply use::
 
-    cat analyze.txt | fg-metric
+    cat analyze.txt | cm-metric
 
 This will produce a nice directory tree with all the data needed for a
 display.
@@ -111,7 +111,7 @@ that it is in your path
 
 Now you can call the command::
 
-   [fg-euca-gather-log-files](./man/fg-euca-gather-log-files.md)
+   [cm-euca-gather-log-files](./man/cm-euca-gather-log-files.md)
    
 which will copy all logfiles that has not yet been copied into our
 backup directory. The log files have a numerical value from 1 to 9 as
@@ -120,7 +120,7 @@ the commandline or a web page to create information about usage and
 utilization.
 
 To see more information about this command, please visit the manual
-page [fg-euca-gather-log-files](./man/fg-euca-gather-log-files.md)
+page [cm-euca-gather-log-files](./man/cm-euca-gather-log-files.md)
 
 
 ----
@@ -132,7 +132,7 @@ define variables::
     CM_LOG_ANALYZER_WWW_OUTPUT - location where the www files for display are stored
     CM_TMP - location where temporary files are located that are analyzed
     CM_DATA - location where the permanent data is being stored 
-    CM_HOME_LOG_ANALYZER - is set to the location of the "futuregrid" directory.
+    CM_HOME_LOG_ANALYZER - is set to the location of the "cloudmesh" directory.
     EUCALYPTUS_LOG_DIR - location where the eucalyptus log dirs are stored
 
 We recommend that the FutureGrid directory is included in the PATH of
@@ -156,9 +156,9 @@ If you are adventures, you can work with our newest code checked into
 github. To obtain this code, please conduct the following steps.  We
 assume you have root privileges to execute "make force"::
 
-    wget https://github.com/futuregrid/futuregrid-cloud-metrics/tarball/v2.1.1
+    wget https://github.com/cloudmesh/cloudmesh-cloud-metrics/tarball/v2.1.1
     tar xvzf v2.1.1
-    cd futuregrid-futuregrid-cloud-metrics-4635fc9
+    cd cloudmesh-cloudmesh-cloud-metrics-4635fc9
     make force 
     
 This will install the programs in::
@@ -178,16 +178,16 @@ Note: Please see our documentation on virtual cluster on how to do that ;-)
 COMMANDS
 --------
 
-[fg-cleanup-db](./man/fg-cleanup-db.md)
+[cm-cleanup-db](./man/cm-cleanup-db.md)
 
 erases the content of the database
 
-[fg-parser](./man/fg-parser.md)
+[cm-parser](./man/cm-parser.md)
 
 parses eucalyptus log entries and includes them into the database
 
 
-[fg-euca-gather-log-files](./man/fg-euca-gather-log-files.md)
+[cm-euca-gather-log-files](./man/cm-euca-gather-log-files.md)
 
 gathers all eucalyptus log files into a single directory from the
 eucalyptus log file directory. This script can be called from cron
@@ -195,7 +195,7 @@ repeatedly in order to avoid that log data is lost by using log file
 rotation in eucalyptus.
 
 
-[fg-metric](./man/fg-metric.md)
+[cm-metric](./man/cm-metric.md)
 
 a shell to interact with the metric database. 
 

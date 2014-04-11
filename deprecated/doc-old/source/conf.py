@@ -19,7 +19,7 @@ import sphinx_bootstrap_theme
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 sys.path.insert(0, os.path.abspath('.'))
 #sys.path.insert(0, os.path.abspath('_themes'))
-sys.path.insert(0, os.path.abspath('../../futuregrid/cloud/metric'))
+sys.path.insert(0, os.path.abspath('../../cloudmesh/cloud/metric'))
 
 # -- General configuration -----------------------------------------------------
 
@@ -52,8 +52,8 @@ sys.path.insert(0, os.path.abspath('../../futuregrid/cloud/metric'))
 
 
 extlinks = {
-    'jira':('http://jira.futuregrid.org/browse/FG-%s', 'jira:'),
-    'portal':('http://portal.futuregrid.org/%s', 'portal:')
+    'jira':('http://jira.cloudmesh.org/browse/FG-%s', 'jira:'),
+    'portal':('http://portal.cloudmesh.org/%s', 'portal:')
 }
 
 plantuml = 'java -jar /Applications/plantuml.jar'
@@ -161,7 +161,7 @@ html_theme_path = sphinx_bootstrap_theme.get_html_theme_path()
 
 # The name of an image file (relative to this directory) to place at the top
 # of the sidebar.
-html_logo = "_static/fg-logo-white-24x36.png"
+html_logo = "_static/cm-logo-white-24x36.png"
 
 # The name of an image file (within the static path) to use as favicon of the
 # docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32

@@ -6,5 +6,5 @@ class CMConst:
     DEFAULT_NIMBUS_DB = "sqlite3"
     DEFAULT_OPENSTACK_VERSION = "essex"
 
-    DEFAULT_CONFIG_FILENAME = "futuregrid.cfg"
-    DEFAULT_CONFIG_FILEPATH = os.getenv("HOME") + "/.futuregrid/"
+    DEFAULT_CONFIG_FILENAME = "cloudmesh.cfg"
+    DEFAULT_CONFIG_FILEPATH = os.getenv("HOME") + "/.cloudmesh/"

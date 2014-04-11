@@ -38,7 +38,7 @@ communicating with each other to gather and display the data
 2. the log files will be moved to a backup directory
 3. the log files that have been recently moved will be inspected and
      their contents will be added to the database
-4. the database is queried by a fg-metric commandwhich is a simple
+4. the database is queried by a cm-metric commandwhich is a simple
      shell that allows to quey for some very elementary iformation. It also
      allows to generate graphics for this information and place them in
      a web server
@@ -58,13 +58,13 @@ Create a summary table for the month of January
 
 The following will create a table with data produced for the month of January::
 
-    > fg-metric
-    fg> clear users
-    fg> analyze -M 01
-    fg> table --type users --separator ,  --caption Testing_the_csv_table
-    fg> quit
+    > cm-metric
+    cm-metric> clear users
+    cm-metric> analyze -M 01
+    cm-metric> table --type users --separator ,  --caption Testing_the_csv_table
+    cm-metric> quit
 
-Naturally you could store this script in a file and pipe to fg-metric
+Naturally you could store this script in a file and pipe to cm-metric
 in case you have more complex or repetitive analysis to do. 
 
 Create a summary analysis for multiple month
@@ -91,7 +91,7 @@ included. The resulting report is an html report.
 
 To start the script, simply use::
 
-    cat analyze.txt | fg-metric
+    cat analyze.txt | cm-metric
 
 This will produce a nice directory tree with all the data needed for a
 display.
@@ -177,17 +177,17 @@ following
 
 Here is how you set this up::
 
-    pip install futuregrid.cloud.metric
+    pip install cloudmesh.cloud.metric
     
 This will install several commands in the bin directory. Make sure
 that it is in your path
 
 Now you can call the command::
 
-    fg-euca-gather-log-files
+    cm-euca-gather-log-files
 
 A more detailed description is provided as part of the
-`fg-euca-gather-log-files <./man/fg-euca-gather-log-files.html>`_
+`cm-euca-gather-log-files <./man/cm-euca-gather-log-files.html>`_
 manual page
    
 which will copy all logfiles that has not yet been copied into our
@@ -197,7 +197,7 @@ the commandline or a web page to create information about usage and
 utilization.
 
 To see more information about this command, please visit the manual
-page [fg-euca-gather-log-files](./man/fg-euca-gather-log-files.md)
+page [cm-euca-gather-log-files](./man/cm-euca-gather-log-files.md)
 
 
 Installation
@@ -220,7 +220,7 @@ TODO: there seem to be other dependencies that are not listed here
 Installation from pypi 
 ~~~~~~~~~~~~~~~~~~~~~~
 
-The programs are distributed in `pypi <http://pypi.python.org/pypi/futuregrid.cloud.metric/>`_ . It
+The programs are distributed in `pypi <http://pypi.python.org/pypi/cloudmesh.cloud.metric/>`_ . It
 contains our current release version of the software.
 
 
@@ -231,9 +231,9 @@ If you are adventures, you can work with our newest code checked into
 github. To obtain this code, please conduct the following steps.  We
 assume you have root privileges to execute "make force"::
 
-    wget https://github.com/futuregrid/futuregrid-cloud-metrics/tarball/v2.1.1
+    wget https://github.com/cloudmesh/cloudmesh-cloud-metrics/tarball/v2.1.1
     tar xvzf v2.1.1
-    cd futuregrid-futuregrid-cloud-metrics-4635fc9
+    cd cloudmesh-cloudmesh-cloud-metrics-4635fc9
     make force 
     
 This will install the programs in::
@@ -250,23 +250,23 @@ via pythons virtualenv.
 Commands
 --------
 
-`fg-cleanup-db <./man/fg-cleanup-db.html>`_
+`cm-cleanup-db <./man/cm-cleanup-db.html>`_
 
      erases the content of the database
 
-`fg-parser <./man/fg-parser.html>`_
+`cm-parser <./man/cm-parser.html>`_
 
      parses eucalyptus log entries and includes them into the database
 
 
-`fg-euca-gather-log-files <./man/fg-euca-gather-log-files.html>`_
+`cm-euca-gather-log-files <./man/cm-euca-gather-log-files.html>`_
 
      gathers all eucalyptus log files into a single directory from the
      eucalyptus log file directory. This script can be called from
      cron repeatedly in order to avoid that log data is lost by using
      log file rotation in eucalyptus.
 
-`fg-metric <./man/fg-metric.html>`_
+`cm-metric <./man/cm-metric.html>`_
 
      a shell to interact with the metric database. 
 

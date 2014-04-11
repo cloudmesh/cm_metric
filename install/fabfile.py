@@ -42,7 +42,7 @@ def deploy():
 @task
 def download():
     '''downloads'''
-    local("git clone git@github.com:futuregrid/cloud-metrics.git")
+    local("git clone git@github.com:cloudmesh/cloud-metrics.git")
 
 @task
 def install():

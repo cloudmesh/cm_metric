@@ -1,18 +1,18 @@
 ========================
-fg-euca-gather-log-files
+cm-euca-gather-log-files
 ========================
 
 NAME
 ====
  
- **fg-euca-gather-log-files** - collect cc.log files of eucalyptus and
+ **cm-euca-gather-log-files** - collect cc.log files of eucalyptus and
  rename it with unique file names with 'YYYY-MM-DD-HH-mm-ss-cc.log'
  type. Duplicated file s are ignored.
 
 SYNOPSIS
 ========
 
- **fg-euca-gather-log-files** [OPTION]... -i <from_dir> -o <backup_dir>
+ **cm-euca-gather-log-files** [OPTION]... -i <from_dir> -o <backup_dir>
 
 DESCRIPTION
 ===========
@@ -56,11 +56,11 @@ DESCRIPTION
  If any of the parameters are used the specification of any
  parameters without named parameters is not allowed. Calling::
 
-    fg-euca-gather-log-files --source <from_dir> --backup <backup_dir>
+    cm-euca-gather-log-files --source <from_dir> --backup <backup_dir>
 
  is equicvalent to::
 
-    fg-euca-gather-log-files -i <from_dir> -o <backup_dir>
+    cm-euca-gather-log-files -i <from_dir> -o <backup_dir>
 
  In a production environment we recommend using explicit parameter naming
  in order to be more transparent.
@@ -70,9 +70,9 @@ EXAMPLES
 
  **Cron Setup**
  
- The following line causes the fg-euca-gather-log-files to be run once an hour::
+ The following line causes the cm-euca-gather-log-files to be run once an hour::
 
-    0 * * * * /usr/local/bin/fg-euca-gather-log-files --source <from_dir> --backup <backup_dir>
+    0 * * * * /usr/local/bin/cm-euca-gather-log-files --source <from_dir> --backup <backup_dir>
 
 
 AUTHOR
@@ -83,8 +83,8 @@ AUTHOR
 REPORTING BUGS
 ==============
 
- Report fg-cleanup-table bugs to laszewski@gmail.com
- Github home page: <https://github.com/futuregrid/futuregrid-cloud-metrics>
+ Report cm-cleanup-table bugs to laszewski@gmail.com
+ Github home page: <https://github.com/cloudmesh/cloudmesh-cloud-metrics>
 
 CONTRIBUTION
 ============
@@ -92,7 +92,7 @@ CONTRIBUTION
  If you like to contribute to the code, please contact Gregor von Laszewski
  at laszewski@gmail.com. The code is located on github at
 
- https://github.com/futuregrid/eucalyptus-cloud-metrics
+ https://github.com/cloudmesh/eucalyptus-cloud-metrics
 
  in the directory cloud-metrics
 

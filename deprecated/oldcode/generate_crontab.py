@@ -30,10 +30,10 @@ def main():
     
     #---------------------------------------------------------------------
     # READING THE CONFIGURATION PARAMETERS from
-    # etc/fg-log-analyzer.cfg
+    # etc/cm-log-analyzer.cfg
     #---------------------------------------------------------------------
     config = ConfigParser.ConfigParser()
-    config.read("etc/fg-log-analyzer.cfg")
+    config.read("etc/cm-log-analyzer.cfg")
     crontab_file = config.get("crontab", "filename")
     crontab_template = config.get("crontab", "template")
     log_dir = config.get("environment", "log_dir")

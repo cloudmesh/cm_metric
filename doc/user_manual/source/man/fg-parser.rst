@@ -1,15 +1,15 @@
 ==================
-fg-euca-log-parser
+cm-euca-log-parser
 ==================
 
 NAME
 ====
- **fg-euca-log-parser** - Parse log files and store values into database (MySQL)
+ **cm-euca-log-parser** - Parse log files and store values into database (MySQL)
 
 DESCRIPTION
 ===========
 
- cat filename.log | fg-euca-log-parser <parameters>
+ cat filename.log | cm-euca-log-parser <parameters>
 
  All log entries are included through a pipe into the program
 
@@ -32,7 +32,7 @@ DESCRIPTION
         if this parameter is not specified and a database is used the
         default location for this file is in::
 
-          ~/.futuregrid/futuregrid.cfg
+          ~/.cloudmesh/cloudmesh.cfg
       
       --cleardb
 
@@ -89,8 +89,8 @@ AUTHOR
 REPORTING BUGS
 ==============
 
- Report fg-cleanup-table bugs to laszewski@gmail.com
- Github home page: <https://github.com/futuregrid/futuregrid-cloud-metrics>
+ Report cm-cleanup-table bugs to laszewski@gmail.com
+ Github home page: <https://github.com/cloudmesh/cloudmesh-cloud-metrics>
 
 COPYRIGHT
 =========

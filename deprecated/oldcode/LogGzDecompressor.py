@@ -1,12 +1,12 @@
 '''
-fg-log-gz-decompressor.py
+cm-log-gz-decompressor.py
 =========================
 
 This script is decompressing cc.log.tar.gz files under /var/log/eucalyptus/logbackup/YYYYMMDDhhmmss/
 
 Usage
 -----
-fg-log-gz-decompressor.py [arguments] [options]
+cm-log-gz-decompressor.py [arguments] [options]
 
 Arguments
 ---------
@@ -22,7 +22,7 @@ Options
 
 Example
 -------
-./fg-log-gz-decompressor.py -s 20120216 -e 20120216 -o /var/log/eucalyptus/BACKUP
+./cm-log-gz-decompressor.py -s 20120216 -e 20120216 -o /var/log/eucalyptus/BACKUP
 
 Contact
 =========================

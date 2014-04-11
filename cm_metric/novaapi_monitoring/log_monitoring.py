@@ -20,7 +20,7 @@ class log_monitoring:
             fgconfig = Config()
             self.dbinfo = fgconfig.get_config("CloudMetricsMongoDB")
         except:
-            print "Failed to load futuregrid.yaml"
+            print "Failed to load cloudmesh.yaml"
             raise
 
     def open_handler(self):

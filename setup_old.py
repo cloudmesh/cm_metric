@@ -100,7 +100,7 @@ setup(
     maintainer='Gregor von Laszewski, Hyungro Lee',
     maintainer_email="laszewski@gmail.com",
     author_email='laszewski@gmail.com',
-    url='https://github.com/futuregrid/futuregrid-cloud-metrics',
+    url='https://github.com/cloudmesh/cloudmesh-cloud-metrics',
     license='Apache 2.0',
     package_dir = {'': 'src'},
     packages = find_packages('src',exclude=['ez_setup', 'examples', 'tests']),
@@ -110,22 +110,22 @@ setup(
     entry_points={
         'console_scripts':
             [
-             #'fg-cleanup-db = cm_metric.shell.EucaMetricsDB:command_clean_database',
-             'fg-euca-gather-log-files = cm_metric.shell.CollectFiles:main',
-             'fg-parser = cm_metric.shell.Parser:main',
-             'fg-logparser = cm_metric.shell.LogParser:main',
-             'fg-metric-converter = cm_metric.shell.Converter:main',
-             #'fg-metric-old = cm_metric.shell.Analyzer:main',
-             'fg-metric = cm_metric.shell.CMMetricShell:main',
-             'fg-metric-install = cm_metric.setup.Install:main'
-             # TODO: fg-metric-install will be merged into fg-metric subshell
+             #'cm-cleanup-db = cm_metric.shell.EucaMetricsDB:command_clean_database',
+             'cm-euca-gather-log-files = cm_metric.shell.CollectFiles:main',
+             'cm-parser = cm_metric.shell.Parser:main',
+             'cm-logparser = cm_metric.shell.LogParser:main',
+             'cm-metric-converter = cm_metric.shell.Converter:main',
+             #'cm-metric-old = cm_metric.shell.Analyzer:main',
+             'cm-metric = cm_metric.shell.CMMetricShell:main',
+             'cm-metric-install = cm_metric.setup.Install:main'
+             # TODO: cm-metric-install will be merged into cm-metric subshell
              ]},
 
         install_requires=install_requires
     )
 
     # Removed console script
-    # 'fg-log-gz-decompressor = futuregrid.eucalyptus.analyzer.LogGzDecompressor:main',
+    # 'cm-log-gz-decompressor = cloudmesh.eucalyptus.analyzer.LogGzDecompressor:main',
 
 
 # http://docs.python.org/distutils/introduction.html#distutils-simple-example

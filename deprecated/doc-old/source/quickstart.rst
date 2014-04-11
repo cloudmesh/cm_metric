@@ -6,7 +6,7 @@ Download
 
 Download CM Cloud Metric from PyPI. You can achieve this with::
 
-        pip install futuregrid-cloud-metric
+        pip install cloudmesh-cloud-metric
 
 Create A Log Backup of Eucalyptus
 ----------------------------------
@@ -20,26 +20,26 @@ is the most important start-up.
         1. Log into the management node of eucalyptus with access to the log files
         2. Create crontab::
            #Hourly
-           0 * * * * fg-euca-gather-log-files -i <directory of log files> -o <directory of backup>
+           0 * * * * cm-euca-gather-log-files -i <directory of log files> -o <directory of backup>
 
 Parse the Log Backup 
 -----------------------------------
 
-Once we collected log backup by ``fg-euca-gather-log-files``, we need to
+Once we collected log backup by ``cm-euca-gather-log-files``, we need to
 parse and store log files into database. MySQL configuration should be
-set by ``.futuregrid.cfg`` such as hostname, id, password, and port
+set by ``.cloudmesh.cfg`` such as hostname, id, password, and port
 number.
 
  ::
 
-        fg-parser -i <directory of the backup>
+        cm-parser -i <directory of the backup>
 
 Generate Results
 -------------------
 
-Now you can use the convenient fg-metric shell to create results::
+Now you can use the convenient cm-metric shell to create results::
 
-        $ fg-metric
+        $ cm-metric
         ...
         (Cmd) analyze -Y 2012
         (Cmd) createreport -d 2012 
@@ -48,9 +48,9 @@ Now you can use the convenient fg-metric shell to create results::
 
 
 You can sore also the templates you use to create results with in a
-file and input them to our fg-metric shell::
+file and input them to our cm-metric shell::
 
-        cat examples/example2.txt | fg-metric
+        cat examples/example2.txt | cm-metric
 
 
  
@@ -71,12 +71,12 @@ You will need the following python libraries::
 
 Now you just download the code from github::
 
-   git clone git@github.com:futuregrid/futuregrid-cloud-metrics.git
+   git clone git@github.com:cloudmesh/cloudmesh-cloud-metrics.git
 
 ..
 
 
-Create a ~/.futuregrid/futuregrid.cfg file that includes the
+Create a ~/.cloudmesh/cloudmesh.cfg file that includes the
 following::
 
     [EucaLogDB]
@@ -88,17 +88,17 @@ following::
 
 Now you are ready to create results in a sphinx web page::
 
-   cd futuregrid-cloud-metric*/doc
+   cd cloudmesh-cloud-metric*/doc
    make force
 
 If you met all the prerequisits, you will find the index file in::
 
-   futuregrid-cloud-metric*/doc/build/html/index.html
+   cloudmesh-cloud-metric*/doc/build/html/index.html
 
 
 ..
 
 A live example of the data is available at
 
-*  `http://portal.futuregrid.org/doc/metric/results.html <http://portal.futuregrid.org/doc/metric/results.html>`_
+*  `http://portal.cloudmesh.org/doc/metric/results.html <http://portal.cloudmesh.org/doc/metric/results.html>`_
 

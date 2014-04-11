@@ -38,8 +38,8 @@ class Utility:
     @staticmethod
     def retrieve_userinfo_ldap(ownerid):
 
-        # cmd = ['python', 'fg-user-project-info.py', '-u', ownerid, '-n']
-        cmd = ['fg-user-project-info.py', '-u', ownerid, '-n']
+        # cmd = ['python', 'cm-user-project-info.py', '-u', ownerid, '-n']
+        cmd = ['cm-user-project-info.py', '-u', ownerid, '-n']
         try:
             output = subprocess.check_output(cmd)
             res = re.split(',', output.rstrip())
@@ -67,9 +67,9 @@ class Utility:
         userid(s) and do ldapsearch to find userinfo. And then it will
         store the userinfo into mysql database.
 
-        Usage: $ fg-metrics-utility insert_userinfo -i filename [hostname]
+        Usage: $ cm-metrics-utility insert_userinfo -i filename [hostname]
                or
-               $ fg-metrics-utility insert_userinfo userid [hostname]
+               $ cm-metrics-utility insert_userinfo userid [hostname]
         '''
 
         i = Instances()
@@ -80,9 +80,9 @@ class Utility:
         project = ""
 
         if len(sys.argv) < 3 or sys.argv[1] != "insert_userinfo":
-            print "usage: ./$ fg-metrics-utility insert_userinfo -i filename [hostname] \n\
+            print "usage: ./$ cm-metrics-utility insert_userinfo -i filename [hostname] \n\
                    or \n\
-                   $ fg-metrics-utility insert_userinfo userid [hostname]"
+                   $ cm-metrics-utility insert_userinfo userid [hostname]"
             return
 
         if sys.argv[2] == "-i":

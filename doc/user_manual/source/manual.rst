@@ -100,14 +100,14 @@ First, obtain a vanilla ubuntu system. Make sure that git is installed, which is
 
 Next execute the following commands ::
 
-    $ git clone git@github.com:futuregrid/cloud-metrics.git
+    $ git clone git@github.com:cloudmesh/cloud-metrics.git
     $ cd cloud-metrics
     $ fab -f install/fabfile.py deploy
     $ fab build.install
 
 Some developers may prefer using https for accessing git::
 
-  $ git clone https://github.com/futuregrid/cloud-metrics
+  $ git clone https://github.com/cloudmesh/cloud-metrics
 
 Production Version
 ----------------------------------------------------------------------
@@ -116,7 +116,7 @@ The CM Cloud Metric is available from PyPI and can be easily installed
 with pip. We recommend that you use virtualenv to manage your local
 python installation::
 
-        pip install futuregrid-cloud-metric
+        pip install cloudmesh-cloud-metric
 
 Development Version
 ----------------------------------------------------------------------
@@ -124,7 +124,7 @@ Development Version
 The development version is available from github at and you can clone
 it and install with::
 
-  git clone https://github.com/futuregrid/cloud-metrics
+  git clone https://github.com/cloudmesh/cloud-metrics
   cd cloud-metrics
   python setup.py install
 
@@ -157,14 +157,14 @@ You should have installed mysql on your machine or remote.
 
 TODO: Once we have moved to mongodb, this section should be replaced with mongodb installation.
 
-Access Information (futuregrid.cfg) and DB (MySQL) tables creation
+Access Information (cloudmesh.cfg) and DB (MySQL) tables creation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-futuregrid.cfg includes dbusername, password, hostname, port number,
+cloudmesh.cfg includes dbusername, password, hostname, port number,
 and database name. Database tables (MySQL) will also be created.
 
 ::
 
- $ fg-metric-install
+ $ cm-metric-install
  ==========================================
  Installing Cloud Metrics ...
  ==========================================
@@ -181,7 +181,7 @@ and database name. Database tables (MySQL) will also be created.
  db password: <type password>
  db name: <type dbname>
 
- ... creating $HOME/.futuregrid/futuregrid.cfg file ...
+ ... creating $HOME/.cloudmesh/cloudmesh.cfg file ...
  ... database information successfully saved. ...
 
  ----------------------------------------------------
@@ -203,7 +203,7 @@ be stored into Cloud Metrics database.
 
 Eucalyptus
 ^^^^^^^^^^
-For Eucalyptus, Cloud Metrics uses fg-logparser to parse and 
+For Eucalyptus, Cloud Metrics uses cm-logparser to parse and 
 store metric information to Cloud Metrics database.
 
 *This is a real-time collector with log watcher python module.*
@@ -211,19 +211,19 @@ store metric information to Cloud Metrics database.
 * Log into management node
   ```ssh $mangement_node_ip```
 * Install Cloud Metrics
-  ```pip install futuregrid-cloud-metrics```
+  ```pip install cloudmesh-cloud-metrics```
 * Setup configuration
-  ```fg-metric-install```
+  ```cm-metric-install```
 * Run a log parser script
-  ```fg-logparser -i /var/log/eucalyptus```
+  ```cm-logparser -i /var/log/eucalyptus```
   *Log directory should be accessible*
 * Run a log parser with real-time logwatcher script (optional)
-  ```logwatcher.py|fg-logparser -i -```
+  ```logwatcher.py|cm-logparser -i -```
 
 OpenStack
 ^^^^^^^^^
 For OpenStack, Cloud Metrics converts OpenStack's MySQL database
-to Cloud Metrics database using fg-converter.
+to Cloud Metrics database using cm-converter.
 
 *This works in a daily basis with cron.*
 
@@ -248,25 +248,25 @@ to Cloud Metrics database using fg-converter.
 * Configuring data importer
   ::
 
-    fg-metric-converter -p openstack -n $nodename -db mysql[postreSQL] -dh $mysql_server_ip -du cloudmetrics -dp YOUR_PASSWORD
+    cm-metric-converter -p openstack -n $nodename -db mysql[postreSQL] -dh $mysql_server_ip -du cloudmetrics -dp YOUR_PASSWORD
 
-  + What fg-metric-converter basically does...
+  + What cm-metric-converter basically does...
     ::
   
       SELECT * from instances (OPENSTACK) 
       and then 
       INSERT into instance (CLOUD METRICS)
 
-* New cron job for fg-metric-converter
+* New cron job for cm-metric-converter
   ::
 
-   5 * * * * fg-metric-converter ...
+   5 * * * * cm-metric-converter ...
 *If you have several openstack services, iterate these steps.*
 
 Nimbus
 ^^^^^^
 For Nimbus, Cloud Metrics simplys converts Nimbus' sqlite3
-to Cloud Metrics database using fg-converter.
+to Cloud Metrics database using cm-converter.
 
 *This is a daily update based on cron.*
 
@@ -277,16 +277,16 @@ to Cloud Metrics database using fg-converter.
 
   Example::
     
-    scp -r -i ssh.key ./nimbus/ cloudmetrics@futuregrid.iu.edu:nimbus/*
+    scp -r -i ssh.key ./nimbus/ cloudmetrics@cloudmesh.iu.edu:nimbus/*
 * Import Nimbus' sqlite3 database into Cloud Metrics
-  ``fg-metric-converter -p nimbus -db sqlite3 -i $sqlite3_filepath -n $nodename``
+  ``cm-metric-converter -p nimbus -db sqlite3 -i $sqlite3_filepath -n $nodename``
 
   Example with cron::
 
-     0 6 * * * fg-metric-converter -p nimbus -db sqlite3 -i /nimbus/hotel/hotel -n hotel
-     0 6 * * * fg-metric-converter -p nimbus -db sqlite3 -i /nimbus/alamo/alamo -n alamo
-     0 6 * * * fg-metric-converter -p nimbus -db sqlite3 -i /nimbus/foxtrot/foxtrot -n foxtrot
-     0 6 * * * fg-metric-converter -p nimbus -db sqlite3 -i /nimbus/sierra/sierra -n sierra
+     0 6 * * * cm-metric-converter -p nimbus -db sqlite3 -i /nimbus/hotel/hotel -n hotel
+     0 6 * * * cm-metric-converter -p nimbus -db sqlite3 -i /nimbus/alamo/alamo -n alamo
+     0 6 * * * cm-metric-converter -p nimbus -db sqlite3 -i /nimbus/foxtrot/foxtrot -n foxtrot
+     0 6 * * * cm-metric-converter -p nimbus -db sqlite3 -i /nimbus/sierra/sierra -n sierra
 
 THIS IS ALL INFORMATION (NEED MORE DETAILS TO FILL IN) ABOUT COLLECTING
 RESOURCE INFORMATION FROM IaaS SERVICES.
@@ -397,25 +397,25 @@ Third, we parse and store the information in two ways: real-time, and daily upda
 
 1. Real-time collector with 'tail -f' like logwatcher.py::
 
-    ``python logwatcher.py | python fg-logparser -i -`` in management server.
+    ``python logwatcher.py | python cm-logparser -i -`` in management server.
 
 This way allows us to collect accounting information instantly from logs.
     
 * logwatcher.py script observes cc.log files like a 'tail -f' command,
       but it does not lose file control if the cc.log file is rotated to cc.log.1 or .*
     
-2. fg-logparser (CMParser.py) parses log messages and stores metric values into CM Cloud Metrics db.
+2. cm-logparser (CMParser.py) parses log messages and stores metric values into CM Cloud Metrics db.
 
 3. Daily update::
 
-    cron runs fg-logparser daily to adjust possible missing messages from real-time collector.
-    ``0 4 * * * fg-logparser -s `date +\%Y\%m\%d -d "1 day ago"` -e `date +\%Y\%m\%d -d "1 day ago"` -i $backup_directory -n $nodename -z (zipped) -tz $timezone (e.g. PST)``
+    cron runs cm-logparser daily to adjust possible missing messages from real-time collector.
+    ``0 4 * * * cm-logparser -s `date +\%Y\%m\%d -d "1 day ago"` -e `date +\%Y\%m\%d -d "1 day ago"` -i $backup_directory -n $nodename -z (zipped) -tz $timezone (e.g. PST)``
 
 **This is based on backups of log files**
 
-4. ``fg-euca-gather-log-files (CMCollectFiles.py)`` makes backups by hourly checking log directory with cron::
+4. ``cm-euca-gather-log-files (CMCollectFiles.py)`` makes backups by hourly checking log directory with cron::
 
-       ``2 * * * * fg-euca-gather-log-files``
+       ``2 * * * * cm-euca-gather-log-files``
 
 HERE IS AN OLD INCOMPLETE TEXT I FOUND, THERE IS NOW SOME REDUNDANT
 INFORMATION HERE WITH OTHER PORTIONS:
@@ -473,19 +473,19 @@ Note that in our example the backup directory could be a remote location.
 6. Create crontab::
 
       #Hourly
-      0 * * * * fg-euca-gather-log-files -i <directory of log files> -o <directory of backup>
+      0 * * * * cm-euca-gather-log-files -i <directory of log files> -o <directory of backup>
 
 A more detailed description is provided as part of the
-`fg-euca-gather-log-files <./man/fg-euca-gather-log-files.html>`_
+`cm-euca-gather-log-files <./man/cm-euca-gather-log-files.html>`_
 manual page.
 
 Parse A Log Backup 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 Once we collected log files into the backup directory via the
-`fg-euca-gather-log-files`` command, we need to parse them into a
+`cm-euca-gather-log-files`` command, we need to parse them into a
 convenient database that is easier for us to query. The database
-configuration is stored in a file called ``~/.futuregrid/futuregrid.cfg`` and
+configuration is stored in a file called ``~/.cloudmesh/cloudmesh.cfg`` and
 includes hostname, id, password, and port number, thus you need to
 store it securely. The file includes the following::
 
@@ -500,7 +500,7 @@ To invoke the parsing all you have to do is specify
 the backup directory. The ``-i`` flag indicates we insert new data
 into existing data::
 
-        fg-parser -i <directory of the backup>
+        cm-parser -i <directory of the backup>
 
 OpenStack
 ----------------------------------------------------------------------
@@ -508,7 +508,7 @@ OpenStack
 Please refer: `DB access information for CM CloudMetrics <https://docs.google.com/document/d/1aAyrEfZpRukqvsf3-HWdKKE5mMolh-EGtBVaZIgDUck/edit>`_
 (only accessible by collaborators) to obtain db access information.
 
-In ``~/.futuregrid/futuregrid.cfg`` please add::
+In ``~/.cloudmesh/cloudmesh.cfg`` please add::
 
     [NovaDB]
     host=<your openstack database host - mysql>
@@ -523,43 +523,43 @@ Nimbus
 
 Nimbus has sqlite3 database to keep the record on cloud usage. 
 **CM Cloud Metrics** provides a tool to convert service-oriented db into unified CM Cloud Metrics database.
-``fg-metric-converter -s YYYMMDD -e YYYMMDD -p $cloud_service (e.g.nimbus) -db $db_type (e.g. sqlite3, mysql) -i $file_path (sqlite3 is used a single file as a database) -n $nodename (e.g. hotel, india)``
+``cm-metric-converter -s YYYMMDD -e YYYMMDD -p $cloud_service (e.g.nimbus) -db $db_type (e.g. sqlite3, mysql) -i $file_path (sqlite3 is used a single file as a database) -n $nodename (e.g. hotel, india)``
 
 For example, FutureGrid collects nimbus data daily and uses cron to convert and store as following:
 
 ::
 
- 0 6 * * * fg-metric-converter -s `date +\%Y\%m\%d -d "1 day ago"` -e `date +\%Y\%m\%d -d "1 day ago"` -p nimbus -db sqlite3 -i /nimbus/hotel -n hotel
- 0 6 * * * fg-metric-converter -s `date +\%Y\%m\%d -d "1 day ago"` -e `date +\%Y\%m\%d -d "1 day ago"` -p nimbus -db sqlite3 -i /nimbus/sierra -n sierra
- 0 6 * * * fg-metric-converter -s `date +\%Y\%m\%d -d "1 day ago"` -e `date +\%Y\%m\%d -d "1 day ago"` -p nimbus -db sqlite3 -i /nimbus/foxtrot -n foxtrot
- 0 6 * * * fg-metric-converter -s `date +\%Y\%m\%d -d "1 day ago"` -e `date +\%Y\%m\%d -d "1 day ago"` -p nimbus -db sqlite3 -i /nimbus/alamo -n alamo
+ 0 6 * * * cm-metric-converter -s `date +\%Y\%m\%d -d "1 day ago"` -e `date +\%Y\%m\%d -d "1 day ago"` -p nimbus -db sqlite3 -i /nimbus/hotel -n hotel
+ 0 6 * * * cm-metric-converter -s `date +\%Y\%m\%d -d "1 day ago"` -e `date +\%Y\%m\%d -d "1 day ago"` -p nimbus -db sqlite3 -i /nimbus/sierra -n sierra
+ 0 6 * * * cm-metric-converter -s `date +\%Y\%m\%d -d "1 day ago"` -e `date +\%Y\%m\%d -d "1 day ago"` -p nimbus -db sqlite3 -i /nimbus/foxtrot -n foxtrot
+ 0 6 * * * cm-metric-converter -s `date +\%Y\%m\%d -d "1 day ago"` -e `date +\%Y\%m\%d -d "1 day ago"` -p nimbus -db sqlite3 -i /nimbus/alamo -n alamo
 
 Usage
 ======================================================================
 
-Now you can use the convenient fg-metric shell to create results. The
+Now you can use the convenient cm-metric shell to create results. The
 reason why we have developed a shell is to allow us to issue
 consecutive commands as is typically needed in a production
 environment. Here we show an example on how to analyze and create
 reports for the year 2012::
 
-        $ fg-metric-beta
+        $ cm-metric-beta
         Welcome to FutureGrid Cloud Metrics!
-        fg-metric] set date 2012-01-01T00:00:00 2012-12-31T00:00:00
-        fg-metric] set metric runtime
-        fg-metric] analyze 
-        fg-metric] chart
+        cm-metric] set date 2012-01-01T00:00:00 2012-12-31T00:00:00
+        cm-metric] set metric runtime
+        cm-metric] analyze 
+        cm-metric] chart
 ..
 
 As our metric system can use scripts either via pipe or a file,
 you can store more complex queries into a file and start the metric
 framework with them::
 
-        cat examples/example2.txt | fg-metric
+        cat examples/example2.txt | cm-metric
 
 or with file flag::
 
-        fg-metric -f examples/example2.txt
+        cm-metric -f examples/example2.txt
 
 Commands
 -----------
@@ -568,10 +568,10 @@ Commands
    :header: Command, Description
    :widths: 15, 50
 
-   `fg-cleanup-db <./man/fg-cleanup-db.html>`_ ,     erases the content of the database
-   `fg-parser <./man/fg-parser.html>`_ ,    parses eucalyptus log entries and includes them into the database
-   `fg-euca-gather-log-files <./man/fg-euca-gather-log-files.html>`_ , gathers all eucalyptus log files into a single directory from the eucalyptus log file directory. This script can be called from cron repeatedly in order to avoid that log data is lost by using log file rotation in eucalyptus.
-     `fg-metric <./man/fg-metric.html>`_, a shell to interact with the metric database. 
+   `cm-cleanup-db <./man/cm-cleanup-db.html>`_ ,     erases the content of the database
+   `cm-parser <./man/cm-parser.html>`_ ,    parses eucalyptus log entries and includes them into the database
+   `cm-euca-gather-log-files <./man/cm-euca-gather-log-files.html>`_ , gathers all eucalyptus log files into a single directory from the eucalyptus log file directory. This script can be called from cron repeatedly in order to avoid that log data is lost by using log file rotation in eucalyptus.
+     `cm-metric <./man/cm-metric.html>`_, a shell to interact with the metric database. 
 
 Setting up a Production Environment
 ======================================================================
@@ -599,7 +599,7 @@ If you met all the prerequisits, you will find the index file in::
 
 A live example of data produced with cloudmetrics can be found at
 
-*   `http://portal.futuregrid.org/metrics/html/results.html <http://portal.futuregrid.org/metrics/html/results.html>`_
+*   `http://portal.cloudmesh.org/metrics/html/results.html <http://portal.cloudmesh.org/metrics/html/results.html>`_
 
 Production Web Pages using Flask
 ----------------------------------------------------------------------

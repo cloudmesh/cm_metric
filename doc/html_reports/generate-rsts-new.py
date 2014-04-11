@@ -1,5 +1,5 @@
 import datetime
-from futuregrid.cloud.metric.Utility import Utility
+from cloudmesh.cloud.metric.Utility import Utility
 import os
 
 class html:

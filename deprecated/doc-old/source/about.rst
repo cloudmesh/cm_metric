@@ -43,8 +43,8 @@ the prefix: "METRICS: " in the subject of email messages.
 
 The contribution impact is recorded at
 
-* https://github.com/futuregrid/futuregrid-cloud-metrics/graphs
-* https://github.com/futuregrid/cloud-metrics/contributors
+* https://github.com/cloudmesh/cloudmesh-cloud-metrics/graphs
+* https://github.com/cloudmesh/cloud-metrics/contributors
 
 The original database integration was contributed by Fugang Wang and
 was not tracked.
@@ -63,12 +63,12 @@ Related Activities
 Inca
       Inca does monitoring at specific time intervals. The information
       about clouds on CM is available at
-      https://portal.futuregrid.org/monitoring/cloud
+      https://portal.cloudmesh.org/monitoring/cloud
 
 
 Nimbus
     Nimbus provides their own metric framework. For CM you can see it
-    at http://inca.futuregrid.org/nimbus-stats/.
+    at http://inca.cloudmesh.org/nimbus-stats/.
     This front page is not very pretty, but lists in its pu data the
     following metrics for each machine:
 

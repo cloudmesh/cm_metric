@@ -15,7 +15,7 @@ Usage Report %(hostname)s
 ================================================================
 
 - Period: %(tmpl_period)s
-- Hostname: %(hostname)s.futuregrid.org
+- Hostname: %(hostname)s.cloudmesh.org
 - Services: %(service_name)s
 - Metrics: VMs count, Users count, Wall time (hours), Distribution by wall time, project, project leader, and institution, and systems
 

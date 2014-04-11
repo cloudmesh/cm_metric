@@ -1,7 +1,7 @@
  Statitical data of utilization (csv file)
  ========================================
 
- fg-parser generates csv files which contains usage data of users, instances, etc.
+ cm-parser generates csv files which contains usage data of users, instances, etc.
 
  Filename type
  -------------

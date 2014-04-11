@@ -137,7 +137,7 @@ class ResourceReporter:
         We get " R " state. This can be performed in the other way like 'qstat -B' but it is same, we keep our own way.
         
         '''
-        return subprocess.check_output(["ssh","-i", "/home/hyungro/.ssh/.i","hrlee@" + server + ".futuregrid.org","source /etc/bashrc;qstat|grep \" R \"|awk '{ print $3}'|sort -u|wc -l"])
+        return subprocess.check_output(["ssh","-i", "/home/hyungro/.ssh/.i","hrlee@" + server + ".cloudmesh.org","source /etc/bashrc;qstat|grep \" R \"|awk '{ print $3}'|sort -u|wc -l"])
  
     def _hpc_nodecount(self, server, data=None):
         ''' Execute qstat in remote and parse exec_host values to get nodes
@@ -145,10 +145,10 @@ class ResourceReporter:
         qstat -f -1 displays full information. exec_host means running host information with specific template like 'hostname/core_number+...'
         our script simply separates them and counts it'''
 
-        return subprocess.check_output(["ssh","-i", "/home/hyungro/.ssh/.i","hrlee@" + server + ".futuregrid.org","source /etc/bashrc;qstat -f -1|sed -ne \"s/^\\s*exec_host = //p\"|sed \"s/+/\\n/g\"|awk -F\"/\" '{ print $1}'|sort -u|wc -l"])
+        return subprocess.check_output(["ssh","-i", "/home/hyungro/.ssh/.i","hrlee@" + server + ".cloudmesh.org","source /etc/bashrc;qstat -f -1|sed -ne \"s/^\\s*exec_host = //p\"|sed \"s/+/\\n/g\"|awk -F\"/\" '{ print $1}'|sort -u|wc -l"])
 
     def _hpc_corecount(self, server, data=None):
-        return subprocess.check_output(["ssh","-i", "/home/hyungro/.ssh/.i","hrlee@" + server + ".futuregrid.org","source /etc/bashrc;qstat -f -1|sed -ne \"s/^\\s*exec_host = //p\"|sed \"s/+/\\n/g\"|wc -l"])
+        return subprocess.check_output(["ssh","-i", "/home/hyungro/.ssh/.i","hrlee@" + server + ".cloudmesh.org","source /etc/bashrc;qstat -f -1|sed -ne \"s/^\\s*exec_host = //p\"|sed \"s/+/\\n/g\"|wc -l"])
             #awk -F\"/\" '{ print $2}'|awk '{s+=1} END {print s}'"])
 
     def nimbustools(self, server, name, data=None):
@@ -156,7 +156,7 @@ class ResourceReporter:
         return func(server, data)
 
     def _nimbus_users(self, server, data=None):
-        res = subprocess.check_output(["ssh","-i", "/home/hyungro/.ssh/.i","hrlee@hotel.futuregrid.org","cat /home/nimbus/realtime_metrics/" + server + "/nimbus_admin.json"])
+        res = subprocess.check_output(["ssh","-i", "/home/hyungro/.ssh/.i","hrlee@hotel.cloudmesh.org","cat /home/nimbus/realtime_metrics/" + server + "/nimbus_admin.json"])
         data = json.loads(res)
         self.nimbus_users = data
         users = {}
@@ -169,7 +169,7 @@ class ResourceReporter:
         try:
             data = self.nimbus_users
         except:
-            res = subprocess.check_output(["ssh","-i", "/home/hyungro/.ssh/.i","hrlee@hotel.futuregrid.org","cat /home/nimbus/realtime_metrics/" + server + "/nimbus_admin.json"])
+            res = subprocess.check_output(["ssh","-i", "/home/hyungro/.ssh/.i","hrlee@hotel.cloudmesh.org","cat /home/nimbus/realtime_metrics/" + server + "/nimbus_admin.json"])
             data = json.loads(res)
             self.nimbus_users = data
         cores = 0
@@ -179,7 +179,7 @@ class ResourceReporter:
         return cores
 
     def _nimbus_nodes(self, server, data=None):
-        res = subprocess.check_output(["ssh","-i", "/home/hyungro/.ssh/.i","hrlee@hotel.futuregrid.org","cat /home/nimbus/realtime_metrics/" + server + "/nimbus_admin.json"])
+        res = subprocess.check_output(["ssh","-i", "/home/hyungro/.ssh/.i","hrlee@hotel.cloudmesh.org","cat /home/nimbus/realtime_metrics/" + server + "/nimbus_admin.json"])
         data = json.loads(res)
         cnt = 0
         for record in data:
