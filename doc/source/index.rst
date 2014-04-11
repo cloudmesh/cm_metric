@@ -1,5 +1,5 @@
 **********************************************************************
-Welcome to Cloud Metrics's documentation!
+Welcome to CloudMesh Metric's documentation!
 **********************************************************************
 
 
@@ -33,36 +33,35 @@ Welcome to Cloud Metrics's documentation!
    <table>
    <tr>
    <td> 
-   <img src="_static/examples/daily_active_user_count.png"/>
+   <img width="30%" src="_static/examples/daily_active_user_count.png"/>
    </td>
    <td>
-   <img src="_static/examples/vms_count_by_project.png"/>
+   <img width="30%" src="_static/examples/vms_count_by_project.png"/>
    </td>
    </tr>
    </table>
     <hr>
 
-Cloud metrics is an open source code project that allows to analyze
-the log files for various cloud infrastructure tools. At this time, we
-are focusing on the development of a tool to analyze eucalyptus log
-data. It will include
+CloudMesh Metric is an open source code project that analyzes resource allocation from
+several IaaS platforms. OpenStack, Nimbus, and Eucalyptus are supported. 
+It will include
 
 * a framework to explore the data via a shell 
 * a framework to display the data
 * a mechanism to replace the charting library
 * a web framework (currently based on sphinx and flask)
 
-Our gols include to enable the following capabilities
+CloudMesh Metric aims to enable the following capabilities
 
-* integration of multiple centers
+* integration of multiple centers (regions)
 * integration of multiple cloud deployments within each center
 * integraton of OpenStack
 * Integration of HPC services
 * integration of Nimbus
 * integration of OpenNebula
 
-Relevant data will be uploaded into a
-database.  We have several convenient mechanisms to deal with the
+Relevant data will be merged into a database.  
+We have several convenient mechanisms to deal with the
 data.  We can create summary of the data and can export in a variety
 of formats. This summary is especially important for administrators
 who like to find out what is happening on their clouds, but also for
