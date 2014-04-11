@@ -5,13 +5,13 @@ import json
 import argparse
 from pprint import pprint
 from datetime import datetime, timedelta
-from fgmetric.shell.FGMetricAPI import FGMetricAPI
+from cm_metric.shell.CMMetricAPI import CMMetricAPI
 
 
-class FGMetricCli:
+class CMMetricCli:
     """
 
-    FGMetricCli
+    CMMetricCli
     -----------
     Command Line Interface for fg-metric.
 
@@ -55,7 +55,7 @@ class FGMetricCli:
         self.default_search_days = 180  # Search usage data for this number
         self.default_search_end = datetime.now(
         )  # Search starts from this date back to days within default_search_days
-        self.api = FGMetricAPI()
+        self.api = CMMetricAPI()
         self.set_default_options()
 
     def set_default_options(self):
@@ -124,7 +124,7 @@ class FGMetricCli:
 
 
 def main():
-    cli = FGMetricCli()
+    cli = CMMetricCli()
     cli.set_argparse()
     cli.get_stats()
     dic = cli.return_dict()

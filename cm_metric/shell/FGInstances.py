@@ -9,7 +9,7 @@ from datetime import *
 from collections import deque
 import argparse
 
-from fgmetric.shell.FGDatabase import FGDatabase
+from cm_metric.shell.FGDatabase import FGDatabase
 
 manual = """
 MANUAL PAGE DRAFT
@@ -127,7 +127,7 @@ class FGInstances:
                 pass
 
         # MISSING error exception for empty res return. it may occur
-        # index error of the call in FGMetrics. i.e. ... [0]
+        # index error of the call in CMMetrics. i.e. ... [0]
         return res
 
     """

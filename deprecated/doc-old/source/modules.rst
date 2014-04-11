@@ -1,23 +1,23 @@
 Modules
 =======
 
-.. automodule:: fgmetric.FGAnalyzer
+.. automodule:: cm_metric.FGAnalyzer
     :members:
 
-.. automodule:: fgmetric.FGEucaGatherLogFiles
+.. automodule:: cm_metric.FGEucaGatherLogFiles
     :members:
 
-.. automodule:: fgmetric.FGEucaMetricsDB
+.. automodule:: cm_metric.FGEucaMetricsDB
     :members:
 
-.. automodule:: fgmetric.FGGoogleMotionChart
+.. automodule:: cm_metric.FGGoogleMotionChart
     :members:
 
-.. automodule:: fgmetric.FGParser
+.. automodule:: cm_metric.FGParser
     :members:
 
-.. automodule:: fgmetric.FGTemplate
+.. automodule:: cm_metric.FGTemplate
     :members:
 
-.. automodule:: fgmetric.FGUtility
+.. automodule:: cm_metric.FGUtility
     :members:

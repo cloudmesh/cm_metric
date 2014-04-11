@@ -2,8 +2,8 @@ import re
 import sys
 import copy
 from datetime import datetime, timedelta
-from fgmetric.util.FGUtility import dotdict
-from fgmetric.util.FGUtility import FGUtility
+from cm_metric.util.FGUtility import dotdict
+from cm_metric.util.FGUtility import FGUtility
 
 from math import ceil
 from pprint import pprint

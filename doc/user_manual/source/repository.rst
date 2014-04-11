@@ -14,7 +14,7 @@ We have designed a directory layout as follows:
                   misc, miscellaneous files
                   examples, Examples for CloudMetrics CLI
                   fghpc, HPC Real-time monitoring
-                  fgmetric, Main development
+                  cm_metric, Main development
                   fgmonitor, Real-time monitoring
                   fgweb, CherryPy of CloudMetrics
                   fgws, Flask WSGI service
@@ -37,7 +37,7 @@ File contents
   | FGHighcharts.py - Highcharts API
   | FGInstall.py - Initializer of Cloud Metrics (db configuration, etc)
   | FGLogParser.py - Eucalyptus log parser
-  | FGMetricsCli.py - fg-metric-cli command tool
+  | CMMetricsCli.py - fg-metric-cli command tool
   | FGNovaDB.py - outdated OpenStack API
   | FGParser.py - old version of VM instance class
   | FGSearch.py - New version of 
@@ -48,8 +48,8 @@ File contents
   | FGGoogleMotionChart.py - Old version of Google Chart API
   | FGHighchartsTemplate.py - outdated Highcharts API
   | FGInstances.py - New version of VM instance class
-  | FGMetricsAPI.py - New version of Metrics API class
-  | FGMetrics.py - New version of main class of Cloud Metrics
+  | CMMetricsAPI.py - New version of Metrics API class
+  | CMMetrics.py - New version of main class of Cloud Metrics
   | FGNovaMetric.py - outdated OpenStack class for metric
   | FGPygooglechart.py - outdated python google chart API
   | FGTester.py - outdated Tester

@@ -90,7 +90,7 @@ for package in requires:
 ######################################################################
 
 setup(
-    name='fgmetric',
+    name='cm_metric',
     version=version,
     description=doclines[0],
     long_description = "\n".join(doclines[2:]),
@@ -110,14 +110,14 @@ setup(
     entry_points={
         'console_scripts':
             [
-             #'fg-cleanup-db = fgmetric.shell.FGEucaMetricsDB:command_clean_database',
-             'fg-euca-gather-log-files = fgmetric.shell.FGCollectFiles:main',
-             'fg-parser = fgmetric.shell.FGParser:main',
-             'fg-logparser = fgmetric.shell.FGLogParser:main',
-             'fg-metric-converter = fgmetric.shell.FGConverter:main',
-             #'fg-metric-old = fgmetric.shell.FGAnalyzer:main',
-             'fg-metric = fgmetric.shell.FGMetricShell:main',
-             'fg-metric-install = fgmetric.setup.FGInstall:main'
+             #'fg-cleanup-db = cm_metric.shell.FGEucaMetricsDB:command_clean_database',
+             'fg-euca-gather-log-files = cm_metric.shell.FGCollectFiles:main',
+             'fg-parser = cm_metric.shell.FGParser:main',
+             'fg-logparser = cm_metric.shell.FGLogParser:main',
+             'fg-metric-converter = cm_metric.shell.FGConverter:main',
+             #'fg-metric-old = cm_metric.shell.FGAnalyzer:main',
+             'fg-metric = cm_metric.shell.CMMetricShell:main',
+             'fg-metric-install = cm_metric.setup.FGInstall:main'
              # TODO: fg-metric-install will be merged into fg-metric subshell
              ]},
 

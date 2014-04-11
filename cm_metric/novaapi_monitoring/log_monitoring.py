@@ -1,6 +1,6 @@
 import logging
 from mongolog.handlers import MongoHandler
-from fgmetric.shell.FGConfig import FGConfig
+from cm_metric.shell.FGConfig import FGConfig
 from docopt import docopt
 import re
 import time

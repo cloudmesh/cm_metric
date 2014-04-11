@@ -1,6 +1,6 @@
 import paramiko
 from datetime import datetime
-from fgmetric.realtime.FGMongodb import FGMongodb
+from cm_metric.realtime.FGMongodb import FGMongodb
 
 class FGMonitor:
 

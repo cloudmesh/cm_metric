@@ -22,7 +22,7 @@ PAPER         =
 BUILDDIR      = _build_$(FROM_DATE)_$(TO_DATE)
 
 # Latest FG Cloud Metrics should be installed to run Makefile.
-FGMETRIC      = fg-metric
+CMMETRIC      = fg-metric
 PHANTOMJS     = phantomjs
 HTMLPATH      = output
 IMGPATH       = images
@@ -87,7 +87,7 @@ generatereport:
 data:
 	@echo
 	@echo "Start generating data..."
-	cat reports/cmd/*.txt | $(FGMETRIC) 
+	cat reports/cmd/*.txt | $(CMMETRIC) 
 	@echo
 	@echo "All data generated."
 

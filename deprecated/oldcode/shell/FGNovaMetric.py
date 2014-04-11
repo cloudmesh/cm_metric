@@ -1,5 +1,5 @@
 
-import fgmetric.FGNovaDB
+import cm_metric.FGNovaDB
 
 class FGNovaMetric:
 
@@ -8,7 +8,7 @@ class FGNovaMetric:
         self.userinfo = []
         self.users = {}
         self.nodename = None
-        self.novadb = fgmetric.FGNovaDB.FGNovaDB("futuregrid.cfg")
+        self.novadb = cm_metric.FGNovaDB.FGNovaDB("futuregrid.cfg")
 
         self.from_date = None
         self.to_date = None

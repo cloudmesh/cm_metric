@@ -13,10 +13,10 @@ from datetime import *
 from collections import deque
 import argparse
 
-import fgmetric.shell.FGEucaMetricsDB
+import cm_metric.shell.FGEucaMetricsDB
 
-from fgmetric.shell.FGEucaMetricsDB import FGEucaMetricsDB
-import fgmetric.util.FGTimeZone
+from cm_metric.shell.FGEucaMetricsDB import FGEucaMetricsDB
+import cm_metric.util.FGTimeZone
 
 manual = """
 MANUAL PAGE DRAFT
@@ -125,7 +125,7 @@ class Instances:
         return
 
     def set_conf(self, filename):
-        self.eucadb = fgmetric.FGEucaMetricsDB.FGEucaMetricsDB(filename)
+        self.eucadb = cm_metric.FGEucaMetricsDB.FGEucaMetricsDB(filename)
         return
 
     def get(self):
@@ -478,7 +478,7 @@ def parse_type_and_date(line, data):
     try:
         m = re.search(r'\[(.*)\]\[(.*)\]\[(.*)\](.*)', line, re.M | re.I)
         data['date'] = datetime.strptime(m.group(1), '%a %b %d %H:%M:%S %Y')
-        data['date'] = fgmetric.FGTimeZone.convert_timezone(
+        data['date'] = cm_metric.FGTimeZone.convert_timezone(
             data['date'], global_timezone, "EST")
         data['id'] = m.group(2)
         data['msgtype'] = m.group(3)

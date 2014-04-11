@@ -7,14 +7,14 @@ import subprocess
 from datetime import datetime
 from calendar import monthrange
 from pprint import pprint
-from fgmetric.shell.FGSearch import FGSearch
-from fgmetric.shell.FGInstances import FGInstances
-from fgmetric.charts.FGCharts import FGCharts
-from fgmetric.shell.FGDatabase import FGDatabase
-from fgmetric.util.FGUtility import FGUtility
+from cm_metric.shell.FGSearch import FGSearch
+from cm_metric.shell.FGInstances import FGInstances
+from cm_metric.charts.FGCharts import FGCharts
+from cm_metric.shell.FGDatabase import FGDatabase
+from cm_metric.util.FGUtility import FGUtility
 
 
-class FGMetricShell(Cmd):
+class CMMetricShell(Cmd):
 
     instances = None
     search = None
@@ -417,7 +417,7 @@ class FGMetricShell(Cmd):
 
 
 def main():
-    app = FGMetricShell()
+    app = CMMetricShell()
     parser = optparse.OptionParser()
     parser.add_option('--conf', help='Run unit test suite')
     (callopts, callargs) = parser.parse_args()

@@ -3,7 +3,7 @@ import sys
 import re
 import subprocess
 import datetime
-from fgmetric.shell.FGInstances import FGInstances  # for insert_userinfo
+from cm_metric.shell.FGInstances import FGInstances  # for insert_userinfo
 import errno
 
 

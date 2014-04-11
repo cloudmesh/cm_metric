@@ -1,6 +1,6 @@
-from fgmetric.charts.FGPygooglechart import FGPyGoogleChart
-from fgmetric.charts.FGHighcharts import FGHighcharts
-from fgmetric.util.FGUtility import FGUtility
+from cm_metric.charts.FGPygooglechart import FGPyGoogleChart
+from cm_metric.charts.FGHighcharts import FGHighcharts
+from cm_metric.util.FGUtility import FGUtility
 import sys
 
 class FGCharts:

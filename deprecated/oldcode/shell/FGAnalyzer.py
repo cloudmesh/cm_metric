@@ -24,16 +24,16 @@ import calendar
 import re
 import string
 
-from fgmetric.shell.FGParser import Instances
+from cm_metric.shell.FGParser import Instances
 
-from fgmetric.util.FGUtility import FGUtility
+from cm_metric.util.FGUtility import FGUtility
 # GVL: THE NEXT LINE IS NOT IN THE CODE
-from fgmetric.shell.FGNovaMetric import FGNovaMetric
+from cm_metric.shell.FGNovaMetric import FGNovaMetric
 
-from fgmetric.charts.FGPygooglechart import FGPyGoogleChart
-from fgmetric.charts.FGGoogleMotionChart import FGGoogleMotionChart
-from fgmetric.charts.FGHighcharts import FGHighcharts
-from fgmetric.charts.FGCharts import FGCharts
+from cm_metric.charts.FGPygooglechart import FGPyGoogleChart
+from cm_metric.charts.FGGoogleMotionChart import FGGoogleMotionChart
+from cm_metric.charts.FGHighcharts import FGHighcharts
+from cm_metric.charts.FGCharts import FGCharts
 
 
 class CmdLineAnalyzeEucaData(Cmd):

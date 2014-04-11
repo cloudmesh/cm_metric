@@ -1,5 +1,5 @@
 from pygooglechart import SimpleLineChart, StackedVerticalBarChart, Axis
-from fgmetric.util.FGUtility import FGUtility
+from cm_metric.util.FGUtility import FGUtility
 
 class FGPyGoogleChart:
 

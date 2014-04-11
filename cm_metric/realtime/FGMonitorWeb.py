@@ -1,7 +1,7 @@
 import cherrypy
 import json
-from fgmetric.realtime.FGMongodb import FGMongodb
-from fgmetric.charts.FGCharts import FGCharts
+from cm_metric.realtime.FGMongodb import FGMongodb
+from cm_metric.charts.FGCharts import FGCharts
 
 class FGmonitorWeb:
     def __init__(self):

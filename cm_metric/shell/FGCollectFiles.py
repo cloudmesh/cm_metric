@@ -147,7 +147,7 @@ import shutil
 from datetime import datetime
 import fnmatch
 import argparse
-from fgmetric.util.FGUtility import FGUtility
+from cm_metric.util.FGUtility import FGUtility
 from pprint import pprint
 import gzip
 import sys
