@@ -9,19 +9,19 @@ if sys.platform == 'darwin':
 @task
 def view():
     """view the documentation in a browser"""
-    local("{browser} doc/user_manual/build/html/index.html".format(browser=browser))
+    local("{browser} doc/build/html/index.html".format(browser=browser))
 
 @task
 def html():
     """build the doc locally and view"""
-    local("cd doc/user_manual; make html")
+    local("cd doc; make html")
     view()
 
 
 @task
 def gh():
     """deploy the documentation on gh-pages"""
-    local("rm -f doc/user_manual/source/modules/*")
+    local("rm -f doc/source/modules/*")
     local("git checkout gh-pages")
     local("make pages")
 
@@ -29,6 +29,6 @@ def gh():
 def man():
     """deploy the documentation on gh-pages"""
     #TODO: match on "Commands"
-    local("cm man | tail -n+21 > doc/user_manual/source/man/man.rst")
+    local("cm man | tail -n+21 > doc/source/man/man.rst")
 
 
