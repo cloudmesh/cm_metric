@@ -18,7 +18,7 @@ For example, to generate a report between January 1st, 2013 and March 31th, 2013
 Prerequisites
 --------------
 - [phantomjs](http://phantomjs.org/)
-- [cloudmesh/cm-metrics](../../)
+- [cloudmesh/cm-metrics](https://github.com/cloudmesh/cm_metric/)
 
 How does it work?
 ------------------
