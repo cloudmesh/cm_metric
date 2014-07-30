@@ -14,8 +14,11 @@ def get_index_page():
     return "The server is running\n"
 
 @app.route('/metric/<cloudname>/<hostname>/<userid>/<metric>/<timestart>/<timeend>/<period>')
-def get_metric(cloudname,hostname,userid,metric,timestart,timeend,period):
+@app.route('/metric/<cloudname>/<hostname>/<userid>/<metric>/<timestart>/<timeend>/<period>/<projectid>')
+def get_metric(cloudname, hostname, userid, metric, timestart, timeend, period,
+               projectid=None):
 
+    # Setting search options (first step)
     search = SearchSettings()
 
     search.set_cloud(cloudname)
@@ -24,6 +27,10 @@ def get_metric(cloudname,hostname,userid,metric,timestart,timeend,period):
     search.set_userid(userid)
     search.set_period(period)
     search.set_host(hostname)
+    search.set_projectid(projectid)
+
+    # Getting values regarding selected metric (Second step)
+    # Each metric gets value by own class (e.g. VMCount, WallTime, or UserCount)
     if metric.lower() == "vmcount" or metric == "None":
         metrics = VMCount()
         metrics.set_search_settings(search)
@@ -63,6 +70,7 @@ class SearchSettings:
         self.host = None
         self.iaas = None
         self.userid = None
+        self.projectid = None
 
     def __str__(self):
         result = ""
@@ -73,6 +81,7 @@ class SearchSettings:
         result += "host:    %s\n" % self.host
         result += "iaas:      %s\n" % self.iaas
         result += "userid:      %s\n" % self.userid
+        result += "projectid:      %s\n" % self.projectid
         return result
 
     def set_date(self, from_date, to_date):
@@ -100,7 +109,10 @@ class SearchSettings:
     def set_userid(self, userid):
         self.userid = userid
 
-class CloudMetric(View):
+    def set_projectid(self, name):
+        self.projectid = name
+
+class CloudMetricBase(View):
 
     def __init__(self):
         self.db = Database()
@@ -186,8 +198,8 @@ class CloudMetric(View):
 
         ids = []
 
-        self.db.cursor.execute("select cloudPlatformId from cloudplatform" \
-                               + " where hostname = '%s'" % name)
+        self.db.cursor.execute("select cloudPlatformId from %s where hostname="\
+                               + "'%s'" % (self.db.cloudplatform_table, name))
         results = self.db.cursor.fetchall()
         for row in results:
             ids.append(row['cloudPlatformId'])
@@ -196,8 +208,8 @@ class CloudMetric(View):
     def get_iaas_ids(self, name):
         ids = []
 
-        self.db.cursor.execute("select cloudPlatformId from cloudplatform" \
-                               + " where platform = '%s'" % name)
+        self.db.cursor.execute("select cloudPlatformId from %s where platform="\
+                                + "'%s'" % (self.db.cloudplatform_table, name))
         results = self.db.cursor.fetchall()
         for row in results:
             ids.append(row['cloudPlatformId'])
@@ -213,10 +225,10 @@ class CloudMetric(View):
             except:
                 print record
 
-class VMCount(CloudMetric):
+class VMCount(CloudMetricBase):
 
     def __init__(self):
-        CloudMetric.__init__(self)
+        CloudMetricBase.__init__(self)
 
     def read_vms(self):
         cursor = self.db.cursor
@@ -236,10 +248,10 @@ class VMCount(CloudMetric):
         except:
             print sys.exc_info()
 
-class WallTime(CloudMetric):
+class WallTime(CloudMetricBase):
 
     def __init__(self):
-        CloudMetric.__init__(self)
+        CloudMetricBase.__init__(self)
 
     def read_vms(self):
         cursor = self.db.cursor
@@ -260,10 +272,10 @@ class WallTime(CloudMetric):
         except:
             print sys.exc_info()
 
-class UserCount(CloudMetric):
+class UserCount(CloudMetricBase):
 
     def __init__(self):
-        CloudMetric.__init__(self)
+        CloudMetricBase.__init__(self)
 
     def read_vms(self):
         cursor = self.db.cursor
