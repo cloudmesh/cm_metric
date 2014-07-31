@@ -178,23 +178,53 @@ class CloudMetricBase(View):
         t_userinfo = self.db.userinfo_table
         projectid = self.search.projectid
 
-        column = " cloudplatformidref, hostname, cloudplatform.platform," \
-                + " version, count(*) as count "
+        column = (" cloudplatformidref, hostname, %(t_platform)s.platform," \
+                + " version, count(*) as count ") % vars()
 
         t_ownerids = (" (select distinct ownerid from %(t_userinfo)s where " \
-                + " project='fg%(projectid)s') as table3 ") % vars()
+                + " project='fg%(projectid)s') as table_for_userids ") % vars()
 
-        where_clause = (" where %(t_instance)s.ownerid=table3.ownerid " \
+        where_clause = (" where %(t_instance)s.ownerid=table_for_userids.ownerid " \
                         + " and %(t_platform)s.cloudplatformid=cloudplatformidref " \
                        ) % vars()
 
-        extra = " group by cloudplatformidref "
+        groupby = "hostname" # Or platform
+        extra = " group by %(t_platform)s.%(groupby)s " % vars()
         table = " %(t_instance)s, %(t_platform)s, %(t_ownerids)s " % vars()
         query = " select %(column)s from %(table)s %(where_clause)s %(extra)s " % vars()
 
         res = self._execute_query(query)
-        self.add_result({"project-summary": res})
+        self.add_result({"project-summary": 
+                         {"meta": { "groupby" : groupby },
+                          "objects": res}})
         #return res
+
+        # Extra for nimbus and other which don't have project accounts
+        '''
+        select cloudplatformidref, hostname, cloudplatform.platform,version,count(*) from instance, cloudplatform,
+        (select distinct username from userinfo where project='fg82' and
+         username!='admin') as b where instance.ownerid=b.username and
+        cloudplatform.cloudplatformid = cloudplatformidref group by
+        cloudplatformidref;
+        '''
+        column = column # same as before
+        t_ownerids = (" (select distinct username from %(t_userinfo)s where " \
+                      + " project='fg%(projectid)s' and username!='admin') as "\
+                      + " table_for_userids ") % vars()
+
+        where_clause = (" where " \
+                        + " %(t_instance)s.ownerid=table_for_userids.username " \
+                        + " and %(t_platform)s.cloudplatformid=cloudplatformidref " \
+                       ) % vars()
+
+        extra = extra # same as before
+        table = " %(t_instance)s, %(t_platform)s, %(t_ownerids)s " % vars()
+        query = " select %(column)s from %(table)s %(where_clause)s %(extra)s " % vars()
+
+        res = self._execute_query(query)
+        self.add_result({"project-summary-extra": 
+                         { "meta": { "groupby" : groupby },
+                           "objects": res}})
 
     def _read_project_userids(self):
         column = " distinct ownerid "
