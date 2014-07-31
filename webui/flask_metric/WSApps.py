@@ -178,6 +178,8 @@ class CloudMetricBase(View):
         t_userinfo = self.db.userinfo_table
         projectid = self.search.projectid
 
+        """ Summary for host or platform """
+
         column = (" cloudplatformidref, hostname, %(t_platform)s.platform," \
                 + " version, count(*) as count ") % vars()
 
@@ -197,10 +199,11 @@ class CloudMetricBase(View):
         self.add_result({"project-summary": 
                          {"meta": { "groupby" : groupby },
                           "objects": res}})
-        #return res
+        
+        """ Summary for other clouds which don't have project account. """
 
-        # Extra for nimbus and other which don't have project accounts
         '''
+        # Extra for nimbus and other which don't have project accounts
         select cloudplatformidref, hostname, cloudplatform.platform,version,count(*) from instance, cloudplatform,
         (select distinct username from userinfo where project='fg82' and
          username!='admin') as b where instance.ownerid=b.username and
@@ -225,6 +228,28 @@ class CloudMetricBase(View):
         self.add_result({"project-summary-extra": 
                          { "meta": { "groupby" : groupby },
                            "objects": res}})
+
+        """ Summary for users """
+        column = " first_name, last_name, count(*) as count " 
+        t_ownerids = (" (select distinct ownerid, username, first_name, " \
+                      + " last_name from %(t_userinfo)s where " \
+                      + " project='fg%(projectid)s') as table_for_userids ") \
+                      % vars()
+        where_clause = "where %(t_instance)s.ownerid=table_for_userids.ownerid"\
+                % vars()
+        groupby = "username"
+        orderby = "count"
+        extra = " group by %(groupby)s order by %(orderby)s " \
+                % vars()
+        table = " %(t_instance)s, %(t_ownerids)s " % vars()
+        query = " select %(column)s from %(table)s %(where_clause)s %(extra)s " % vars()
+
+        print query
+        res = self._execute_query(query)
+        self.add_result({"user-summary": 
+                         {"meta": { "groupby" : groupby,
+                                    "orderby" : orderby },
+                          "objects": res}})
 
     def _read_project_userids(self):
         column = " distinct ownerid "
