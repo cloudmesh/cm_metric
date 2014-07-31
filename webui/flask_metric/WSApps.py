@@ -120,6 +120,8 @@ class CloudMetricBase(View):
         self.db.connect()
         self.cloudservice = None
         self.data = {"message":None}
+        self.where_clause = ""
+        self.where_clause_extra = ""
         #self.search = SearchSettings()
 
     @mimerender
@@ -154,8 +156,13 @@ class CloudMetricBase(View):
     def read_project_info(self):
         if self.search.projectid == "None":
             return
-        cursor = self.db.cursor
 
+        self._read_project_basic()
+        self._read_project_userids()
+
+    def _read_project_basic(self):
+        ''' Basic project info such as title, id, and leader '''
+        cursor = self.db.cursor
         column = ", ".join(['title', 'projectid', 'projectlead'])
         table = self.db.projectinfo_table
         where_clause = " where projectid=%s " % self.search.projectid
@@ -168,10 +175,29 @@ class CloudMetricBase(View):
         except:
             print sys.exc_info()
 
+    def _read_project_userids(self):
+        cursor = self.db.cursor
+        column = " distinct ownerid "
+        table = self.db.userinfo_table
+        where_clause = " where project='fg%s' " % self.search.projectid
+        query = "select %(column)s from %(table)s %(where_clause)s " \
+                % vars()
+        try:
+            cursor.execute(query)
+            results = cursor.fetchall()
+            ids = map(lambda x: x['ownerid'], results)
+            ids = "'" + "', '".join(map(str, ids)) + "'"
+            res = "ownerid in (%s)" % ids
+            self.add_where_clause(res)
+        except:
+            print sys.exc_info()
 
     def get_where_clause(self):
         self.generate_where_clause()
         return self.where_clause
+
+    def add_where_clause(self, extra):
+        self.where_clause_extra = extra
 
     def generate_where_clause(self):
         where = []
@@ -215,7 +241,10 @@ class CloudMetricBase(View):
             where.append("t_start >= '%s'" % str(self.search.from_date))
         if self.search.to_date:
             where.append("t_end <= '%s'" % str(self.search.to_date))
-            
+
+        if self.where_clause_extra:
+            where.append(self.where_clause_extra)
+
         self.where_clause = " where " + " and ".join(map(str,where))
         return self.where_clause
 
