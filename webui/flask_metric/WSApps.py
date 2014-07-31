@@ -119,15 +119,30 @@ class CloudMetricBase(View):
         self.db.conf()
         self.db.connect()
         self.cloudservice = None
-        self.data = None
+        self.data = {"message":None}
         #self.search = SearchSettings()
 
     @mimerender
     def dispatch_request(self):
         self.read_cloud_service()
+        self.read_project_info()
         self.read_vms()
-        res = self.data
-        return {"message": res}
+        return self.data
+
+    def set_result(self, data):
+        self.data['message'] = data
+
+    def add_result(self, data):
+        # data (dict) addes to the current data
+        # data (other types) replaces 'message'
+        try:
+            for k,v in data.iteritems():
+                self.data[k] = v
+        except:
+            self.data['message'] = data
+
+    def get_result(self, keyname='message'):
+        return self.data[keyname]
 
     def read_cloud_service(self):
         res = self.db.read_cloudplatform()
@@ -135,6 +150,24 @@ class CloudMetricBase(View):
         for cloud in res:
             new_res[cloud['cloudPlatformId']] = cloud
             self.cloudservice = new_res
+
+    def read_project_info(self):
+        if self.search.projectid == "None":
+            return
+        cursor = self.db.cursor
+
+        column = ", ".join(['title', 'projectid', 'projectlead'])
+        table = self.db.projectinfo_table
+        where_clause = " where projectid=%s " % self.search.projectid
+        query = "select %(column)s from %(table)s %(where_clause)s " \
+                % vars()
+        try:
+            cursor.execute(query)
+            res = cursor.fetchall()
+            self.add_result({"project": res})
+        except:
+            print sys.exc_info()
+
 
     def get_where_clause(self):
         self.generate_where_clause()
@@ -219,7 +252,7 @@ class CloudMetricBase(View):
         self.search = searchObject
 
     def map_cloudname(self):
-        for record in self.data:
+        for record in self.get_result():
             try: 
                 cloudname = self.cloudservice[record['cloudplatformidref']]
             except:
@@ -244,7 +277,7 @@ class VMCount(CloudMetricBase):
                 YEAR(date), MONTH(date)" % vars()
         try:
             cursor.execute(query)
-            self.data = cursor.fetchall()
+            self.set_result(cursor.fetchall())
         except:
             print sys.exc_info()
 
@@ -268,7 +301,7 @@ class WallTime(CloudMetricBase):
                 YEAR(date), MONTH(date)" % vars()
         try:
             cursor.execute(query)
-            self.data = cursor.fetchall()
+            self.set_result(cursor.fetchall())
         except:
             print sys.exc_info()
 
@@ -294,7 +327,7 @@ class UserCount(CloudMetricBase):
         try:
             print "Be patient, it takes about 10 to 30 seconds ..."
             cursor.execute(query)
-            self.data = cursor.fetchall()
+            self.set_result(cursor.fetchall())
         except:
             print sys.exc_info()
 
