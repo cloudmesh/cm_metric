@@ -159,39 +159,66 @@ class CloudMetricBase(View):
             return
 
         self._read_project_basic()
-        self._read_project_userids()
+        ids = self._read_project_userids()
+        self._add_columns_to_where("ownerid", ids)
+        self._read_project_summary()
 
     def _read_project_basic(self):
         ''' Basic project info such as title, id, and leader '''
-        cursor = self.db.cursor
         column = ", ".join(['title', 'projectid', 'projectlead'])
         table = self.db.projectinfo_table
         where_clause = " where projectid=%s " % self.search.projectid
-        query = "select %(column)s from %(table)s %(where_clause)s " \
-                % vars()
-        try:
-            cursor.execute(query)
-            res = cursor.fetchall()
-            self.add_result({"project": res})
-        except:
-            print sys.exc_info()
+        query = "select %(column)s from %(table)s %(where_clause)s " % vars()
+        res = self._execute_query(query)
+        self.add_result({"project": res})
+
+    def _read_project_summary(self):
+        t_instance = self.db.instance_table
+        t_platform = self.db.cloudplatform_table
+        t_userinfo = self.db.userinfo_table
+        projectid = self.search.projectid
+
+        column = " cloudplatformidref, hostname, cloudplatform.platform," \
+                + " version, count(*) as count "
+
+        t_ownerids = (" (select distinct ownerid from %(t_userinfo)s where " \
+                + " project='fg%(projectid)s') as table3 ") % vars()
+
+        where_clause = (" where %(t_instance)s.ownerid=table3.ownerid " \
+                        + " and %(t_platform)s.cloudplatformid=cloudplatformidref " \
+                       ) % vars()
+
+        extra = " group by cloudplatformidref "
+        table = " %(t_instance)s, %(t_platform)s, %(t_ownerids)s " % vars()
+        query = " select %(column)s from %(table)s %(where_clause)s %(extra)s " % vars()
+
+        res = self._execute_query(query)
+        self.add_result({"project-summary": res})
+        #return res
 
     def _read_project_userids(self):
-        cursor = self.db.cursor
         column = " distinct ownerid "
         table = self.db.userinfo_table
         where_clause = " where project='fg%s' " % self.search.projectid
-        query = "select %(column)s from %(table)s %(where_clause)s " \
-                % vars()
+        query = "select %(column)s from %(table)s %(where_clause)s " % vars()
+        res = self._execute_query(query)
+        return res
+
+    def _execute_query(self, query):
+        cursor = self.db.cursor
+        results = None
         try:
             cursor.execute(query)
             results = cursor.fetchall()
-            ids = map(lambda x: x['ownerid'], results)
-            ids = "'" + "', '".join(map(str, ids)) + "'"
-            res = "ownerid in (%s)" % ids
-            self.add_where_clause(res)
         except:
             print sys.exc_info()
+        return results
+
+    def _add_columns_to_where(self, column_name, results):
+        ids = map(lambda x: x[column_name], results)
+        ids = "'" + "', '".join(map(str, ids)) + "'"
+        res = "%s in (%s)" % (column_name, ids)
+        self.add_where_clause(res)
 
     def get_where_clause(self):
         self.generate_where_clause()
