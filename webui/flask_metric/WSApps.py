@@ -119,7 +119,7 @@ class CloudMetricBase(View):
         self.db.conf()
         self.db.connect()
         self.cloudservice = None
-        self.data = {"message":None}
+        self.data = { "default": None }
         self.where_clause = ""
         self.where_clause_extra = ""
         #self.search = SearchSettings()
@@ -129,10 +129,11 @@ class CloudMetricBase(View):
         self.read_cloud_service()
         self.read_project_info()
         self.read_vms()
-        return self.data
+        message = {"message" : self.data }
+        return message
 
     def set_result(self, data):
-        self.data['message'] = data
+        self.data['default'] = data
 
     def add_result(self, data):
         # data (dict) addes to the current data
@@ -141,9 +142,9 @@ class CloudMetricBase(View):
             for k,v in data.iteritems():
                 self.data[k] = v
         except:
-            self.data['message'] = data
+            self.data['default'] = data
 
-    def get_result(self, keyname='message'):
+    def get_result(self, keyname='default'):
         return self.data[keyname]
 
     def read_cloud_service(self):
@@ -154,7 +155,7 @@ class CloudMetricBase(View):
             self.cloudservice = new_res
 
     def read_project_info(self):
-        if self.search.projectid == "None":
+        if self.search.projectid == "None" or not self.search.projectid:
             return
 
         self._read_project_basic()
