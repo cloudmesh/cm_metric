@@ -19,6 +19,7 @@ def get_metric(cloudname, hostname, userid, metric, timestart, timeend, period,
                projectid=None):
 
     # Setting search options (first step)
+
     search = SearchSettings()
 
     search.set_cloud(cloudname)
@@ -30,7 +31,12 @@ def get_metric(cloudname, hostname, userid, metric, timestart, timeend, period,
     search.set_projectid(projectid)
 
     # Getting values regarding selected metric (Second step)
-    # Each metric gets value by own class (e.g. VMCount, WallTime, or UserCount)
+    #
+    # - Each metric such as e.g. VMCount, WallTime, or UserCount
+    # - can be collected by creating its own class instance.
+    # - VMCount, WallTime, and UserCount are inherited by
+    # - CloudMetricBase()
+
     if metric.lower() == "vmcount" or metric == "None":
         metrics = VMCount()
         metrics.set_search_settings(search)
