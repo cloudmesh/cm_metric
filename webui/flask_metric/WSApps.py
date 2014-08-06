@@ -37,7 +37,7 @@ def get_metric(cloudname, hostname, userid, metric, timestart, timeend, period,
     # - VMCount, WallTime, and UserCount are inherited by
     # - CloudMetricBase()
 
-    if metric.lower() == "vmcount" or metric == "None":
+    if metric.lower() == "vmcount": # or metric == "None":
         metrics = VMCount()
         metrics.set_search_settings(search)
     elif metric.lower() in ["walltime", "runtime", "wallclock"]:
@@ -46,11 +46,21 @@ def get_metric(cloudname, hostname, userid, metric, timestart, timeend, period,
     elif metric.lower() in ["usercount", "user"]:
         metrics = UserCount()
         metrics.set_search_settings(search)
+    else:
+        metrics = ProjectSummary()
+        metrics.set_search_settings(search)
 
     result = metrics.dispatch_request()
     #print result
     return result
-   
+
+@app.route('/metric-summary/<projectid>/')
+@app.route('/project-summary/<projectid>/')
+def get_metric_summary(projectid=None):
+
+    return get_metric(cloudname="None", hostname="None", userid="None", metric="None",
+                      timestart="None", timeend="None", period="None", projectid=projectid)
+
 @app.route('/metric/list_vms')
 def get_list_vms():
 
@@ -375,6 +385,15 @@ class CloudMetricBase(View):
                 cloudname = self.cloudservice[record['cloudplatformidref']]
             except:
                 print record
+
+    def read_vms(self):
+        # not implemented
+        pass
+
+class ProjectSummary(CloudMetricBase):
+    def __init__(self):
+        CloudMetricBase.__init__(self)
+
 
 class VMCount(CloudMetricBase):
 
