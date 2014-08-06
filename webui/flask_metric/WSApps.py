@@ -1,5 +1,6 @@
 import sys
 import os
+import datetime
 from flask import Flask, jsonify
 from flask.views import View
 from Mimerender import mimerender
@@ -47,19 +48,26 @@ def get_metric(cloudname, hostname, userid, metric, timestart, timeend, period,
         metrics = UserCount()
         metrics.set_search_settings(search)
     else:
-        metrics = ProjectSummary()
-        metrics.set_search_settings(search)
+        if projectid and projectid != "None":
+            metrics = ProjectSummary()
+            metrics.set_search_settings(search)
+        else:
+            metrics = SummaryAll()
+            metrics.set_search_settings(search)
 
     result = metrics.dispatch_request()
     #print result
     return result
 
+@app.route('/metric-summary/')
 @app.route('/metric-summary/<projectid>/')
 @app.route('/project-summary/<projectid>/')
-def get_metric_summary(projectid=None):
+def get_metric_summary(cloudname="None", hostname="None", userid="None",
+                       metric="None", timestart="None", timeend="None",
+                       period="None", projectid="None"):
 
-    return get_metric(cloudname="None", hostname="None", userid="None", metric="None",
-                      timestart="None", timeend="None", period="None", projectid=projectid)
+    return get_metric(cloudname, hostname, userid, metric,
+                      timestart, timeend, period, projectid)
 
 @app.route('/metric/list_vms')
 def get_list_vms():
@@ -394,6 +402,28 @@ class ProjectSummary(CloudMetricBase):
     def __init__(self):
         CloudMetricBase.__init__(self)
 
+class SummaryAll(CloudMetricBase):
+    def __init__(self):
+        CloudMetricBase.__init__(self)
+
+    def read_vms(self):
+        cursor = self.db.cursor
+        table = self.db.instance_table
+        table2 = self.db.cloudplatform_table
+        where_clause = self.get_where_clause()
+        last_3_months = str(get_last_3_months())
+
+        query = "select %(table2)s.platform, hostname, count(*) as count from \
+        %(table)s, %(table2)s where t_start > '%(last_3_months)s' and \
+        %(table2)s.cloudplatformid=%(table)s.cloudplatformidref group by \
+        %(table2)s.platform, hostname" % vars()
+        
+        try:
+            cursor.execute(query)
+            self.set_result(cursor.fetchall())
+        except:
+            print sys.exc_info()
+
 
 class VMCount(CloudMetricBase):
 
@@ -468,7 +498,13 @@ class UserCount(CloudMetricBase):
         except:
             print sys.exc_info()
 
+# utility function
+def get_last_3_months():
+    return get_last_months(3)
 
+def get_last_months(month):
+    m = int(month)
+    return (datetime.date.today() - datetime.timedelta(m*365/12)).isoformat()
 
 #app.add_url_rule('/list_vms.json', view_func = ListVMs.as_view('list_vms'))
 
