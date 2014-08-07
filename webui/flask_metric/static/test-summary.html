@@ -1,0 +1,89 @@
+<script type='text/javascript' src='/_static/js/jquery-1.9.1.js'></script>
+<script src="/_static/js/highcharts.js"></script>
+<script src="/_static/js/modules/exporting.js"></script>
+<script type='text/javascript'>//<![CDATA[
+	var cnt;
+	var hostname = [];
+	var platform = [];
+	var this1, this2;
+	var nested_data = {};
+
+var options = {
+chart: {
+renderTo: 'container',
+	  defaultSeriesType: 'spline',},
+title: { text: 'Summary of IaaS Platform Usage' },
+xAxis: { categories: []},
+yAxis: { title: { text: 'Units'}},
+labels: {
+items: [{
+html: '',
+style: {
+left: '50px',
+top: '18px',
+color: (Highcharts.theme && Highcharts.theme.textColor) || 'black'
+}
+}]
+},
+series: []
+}; // end of chart 
+
+function requestData() {
+	$.ajax({
+url: '/metric-summary/',
+success: function(point) {
+
+var source = point['message']['default'];
+for (var key in source) {
+cnt = source[key]['count'];
+this1 = source[key]['hostname'];
+if (hostname.indexOf(this1) === -1) {
+hostname.push(this1);
+nested_data[this1] = {};
+}
+this2 = source[key]['platform'];
+if (platform.indexOf(this2) === -1)
+platform.push(this2);
+nested_data[this1][this2] = cnt;
+}
+
+var platform_data = {};
+for (var key1 in platform) {
+var tmp = [];
+for (var key2 in hostname) {
+	var p = platform[key1];
+	var h = hostname[key2];
+	if (p in nested_data[h])
+		value = nested_data[h][p];
+	else
+		value = 0;
+	tmp.push(value);
+}
+platform_data[p] = tmp;
+var series = { 
+data: []
+};
+series.type = 'column';
+series.name = p;
+series.data = tmp;
+options.series.push(series);
+
+}
+options.xAxis.categories = hostname;
+//alert(point.toSource());
+
+}}); // end of ajax
+}; // end of requestData
+
+$(document).ready(function() {
+		Highcharts.setOptions({
+global: { useUTC: false }
+});
+		requestData();
+		setTimeout(function(){
+
+			var chart = new Highcharts.Chart(options);}, 500);
+}); // end of ready()
+//]]>
+</script>
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
