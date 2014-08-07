@@ -7,12 +7,20 @@ from Mimerender import mimerender
 from cm_metric.shell.Database import Database
 from dateutil import parser
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static', static_url_path='')
 
 @app.route('/')
 def get_index_page():
     print "The server is running"
+    return app.send_static_file('test-summary.html')
     return "The server is running\n"
+
+@app.route('/<path:filename>')
+def send_foo(filename):
+    return "The server is running\n"
+    return
+    #return app.send_from_directory('/home/hyungro/github/cloudmesh/cm_metric/webui/flask_metric/', filename)
+    return app.send_static_file(filename)
 
 @app.route('/metric/<cloudname>/<hostname>/<userid>/<metric>/<timestart>/<timeend>/<period>')
 @app.route('/metric/<cloudname>/<hostname>/<userid>/<metric>/<timestart>/<timeend>/<period>/<projectid>')
