@@ -14,7 +14,7 @@ chart: { renderTo: 'container',
 title: { text: 'Summary of IaaS Platform Usage' },
 xAxis: { categories: []},
 yAxis: { title: { text: 'Units'}},
-labels: { items: [{ html: '', style: { left: '50px', top: '18px',
+labels: { items: [{ html: 'Total Usage', style: { left: '50px', top: '18px',
 color: (Highcharts.theme && Highcharts.theme.textColor) || 'black' }}]},
 series: []}; 
 
@@ -49,6 +49,7 @@ success: function(point) {
 
 var source = point['message']['platform-summary']['objects'];
 var source2 = point['message']['10-projects']['objects'];
+var data = [];
 for (var key in source) {
 cnt = source[key]['count'];
 this1 = source[key]['hostname'];
@@ -73,7 +74,7 @@ for (var key2 in hostname) {
 	else
 		value = 0;
 	tmp.push(value);
-}
+} // end of the loop of hostname
 platform_data[p] = tmp;
 var series = { 
 data: []
@@ -83,8 +84,28 @@ series.name = p;
 series.data = tmp;
 options.series.push(series);
 
+var count = 0;
+for(var i = 0; i < tmp.length; i++)
+{
+	count = count + tmp[i];
 }
+
+data.push({name: p,
+		y: count,
+		color: Highcharts.getOptions().colors[key1]})
+
+} // end of the loop of platform
 options.xAxis.categories = hostname;
+series = { type: 'pie',
+	name: 'Total Usage',
+	data: data,
+	center: [100, 80],
+	size:100,
+	showInLegend: false,
+	dataLabels: {
+enabled: false}
+}
+options.series.push(series);
 //alert(point.toSource());
 
 //////////////////////
