@@ -42,14 +42,21 @@ def get_metric(cloudname, hostname, userid, metric, timestart, timeend, period,
     # - VMCount, WallTime, and UserCount are inherited by
     # - CloudMetricBase()
 
-    if metric.lower() == "vmcount": # or metric == "None":
+    l_metric = metric.lower()
+    if l_metric == "vmcount": # or metric == "None":
         metrics = VMCount()
         metrics.set_search_settings(search)
-    elif metric.lower() in ["walltime", "runtime", "wallclock"]:
+    elif l_metric in ["walltime", "runtime", "wallclock"]:
         metrics = WallTime()
         metrics.set_search_settings(search)
-    elif metric.lower() in ["usercount", "user"]:
+    elif l_metric in ["usercount", "user"]:
         metrics = UserCount()
+        metrics.set_search_settings(search)
+    elif l_metric in ['top-ten-projects']:
+        metrics = TopTenProjects()
+        metrics.set_search_settings(search)
+    elif l_metric in ['top-ten-users']:
+        metrics = TopTenUsers()
         metrics.set_search_settings(search)
     else:
         if projectid and projectid != "None":
@@ -72,6 +79,19 @@ def get_metric_summary(cloudname="None", hostname="None", userid="None",
 
     return get_metric(cloudname, hostname, userid, metric,
                       timestart, timeend, period, projectid)
+
+@app.route('/top-ten-projects/')
+def get_top_ten_projects(cloudname="None", hostname="None", userid="None",
+                       metric="None", timestart="None", timeend="None",
+                       period="None", projectid="None"):
+
+    return get_metric(cloudname, hostname, userid, "top-ten-projects",
+                      timestart, timeend, period, projectid)
+
+@app.route('/top-ten-users/')
+def get_top_ten_users():
+    return get_metric("None","None","None", "top-ten-users", "None", "None",
+                      "None", "None")
 
 @app.route('/metric/list_vms')
 def get_list_vms():
@@ -405,6 +425,77 @@ class CloudMetricBase(View):
 class ProjectSummary(CloudMetricBase):
     def __init__(self):
         CloudMetricBase.__init__(self)
+
+class TopTenUsers(CloudMetricBase):
+    def __init__(self):
+        CloudMetricBase.__init__(self)
+
+    def _top10_users(self):
+
+        cursor = self.db.cursor
+        t_instance = self.db.instance_table
+        t_userinfo = self.db.userinfo_table
+        t_projectinfo = self.db.projectinfo_table
+        last_3_months = str(get_last_3_months())
+        groupby = 'username'
+        orderby = 'count desc'
+        extra = 'limit 10'
+
+        query = "select first_name, last_name, count(*) as count from \
+                %(t_instance)s inner join %(t_userinfo)s on \
+                %(t_instance)s.ownerid=%(t_userinfo)s.ownerid \
+                where t_start > '%(last_3_months)s' group by %(groupby)s \
+                order by %(orderby)s %(extra)s" % vars()
+
+        try:
+            cursor.execute(query)
+            self.add_result({self.search.metric: { 
+                "meta": {
+                    "groupby": groupby,
+                    "orderby": orderby},
+                "objects": cursor.fetchall()}})
+        except:
+            print sys.exc_info()
+
+    def read_vms(self):
+        self._top10_users()
+
+
+class TopTenProjects(CloudMetricBase):
+    def __init__(self):
+        CloudMetricBase.__init__(self)
+
+    def _top10_projects(self):
+
+        cursor = self.db.cursor
+        t_instance = self.db.instance_table
+        t_userinfo = self.db.userinfo_table
+        t_projectinfo = self.db.projectinfo_table
+        last_3_months = str(get_last_3_months())
+        groupby = 'projectid'
+        orderby = 'count desc'
+        extra = 'limit 10'
+
+        query = "select projectid, title, count(*) as count from \
+                %(t_instance)s inner join %(t_userinfo)s on \
+                %(t_instance)s.ownerid=%(t_userinfo)s.ownerid \
+                inner join %(t_projectinfo)s on \
+                concat('fg',%(t_projectinfo)s.projectid)=%(t_userinfo)s.project\
+                where t_start > '%(last_3_months)s' group by %(groupby)s \
+                order by %(orderby)s %(extra)s" % vars()
+
+        try:
+            cursor.execute(query)
+            self.add_result({"10-projects": { 
+                "meta": {
+                    "groupby": groupby,
+                    "orderby": orderby},
+                "objects": cursor.fetchall()}})
+        except:
+            print sys.exc_info()
+
+    def read_vms(self):
+        self._top10_projects()
 
 class SummaryAll(CloudMetricBase):
     def __init__(self):
