@@ -33,7 +33,7 @@ function requestData() {
 url: '/metric-summary/',
 success: function(point) {
 
-var source = point['message']['default'];
+var source = point['message']['platform-summary']['objects'];
 for (var key in source) {
 cnt = source[key]['count'];
 this1 = source[key]['hostname'];
@@ -82,7 +82,7 @@ global: { useUTC: false }
 		requestData();
 		setTimeout(function(){
 
-			var chart = new Highcharts.Chart(options);}, 500);
+			var chart = new Highcharts.Chart(options);}, 4000);
 }); // end of ready()
 //]]>
 </script>

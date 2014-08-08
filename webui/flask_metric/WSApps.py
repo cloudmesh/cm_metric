@@ -414,21 +414,61 @@ class SummaryAll(CloudMetricBase):
     def __init__(self):
         CloudMetricBase.__init__(self)
 
+    def _top10_projects(self):
+
+        cursor = self.db.cursor
+        t_instance = self.db.instance_table
+        t_userinfo = self.db.userinfo_table
+        t_projectinfo = self.db.projectinfo_table
+        last_3_months = str(get_last_3_months())
+        groupby = 'projectid'
+        orderby = 'count desc'
+        extra = 'limit 10'
+
+        query = "select projectid, title, count(*) as count from \
+                %(t_instance)s inner join %(t_userinfo)s on \
+                %(t_instance)s.ownerid=%(t_userinfo)s.ownerid \
+                inner join %(t_projectinfo)s on \
+                concat('fg',%(t_projectinfo)s.projectid)=%(t_userinfo)s.project\
+                where t_start > '%(last_3_months)s' group by %(groupby)s \
+                order by %(orderby)s %(extra)s" % vars()
+
+        try:
+            cursor.execute(query)
+            self.add_result({"10-projects": { 
+                "meta": {
+                    "groupby": groupby,
+                    "orderby": orderby},
+                "objects": cursor.fetchall()}})
+        except:
+            print sys.exc_info()
+
     def read_vms(self):
+        self._platform_usage()
+        self._top10_projects()
+
+    def _platform_usage(self):
         cursor = self.db.cursor
         table = self.db.instance_table
         table2 = self.db.cloudplatform_table
         where_clause = self.get_where_clause()
         last_3_months = str(get_last_3_months())
+        groupby = "%(table2)s.platform, hostname" % vars()
+        orderby = ""
 
         query = "select %(table2)s.platform, hostname, count(*) as count from \
         %(table)s, %(table2)s where t_start > '%(last_3_months)s' and \
         %(table2)s.cloudplatformid=%(table)s.cloudplatformidref group by \
-        %(table2)s.platform, hostname" % vars()
+        %(groupby)s" % vars()
         
         try:
             cursor.execute(query)
-            self.set_result(cursor.fetchall())
+            #self.set_result(cursor.fetchall())
+            self.add_result({"platform-summary": { 
+                "meta": {
+                    "groupby": groupby,
+                    "orderby": orderby},
+                "objects": cursor.fetchall()}})
         except:
             print sys.exc_info()
 
