@@ -71,10 +71,10 @@ def get_metric(cloudname, hostname, userid, metric, timestart, timeend, period,
     return result
 
 @app.route('/metric-summary/')
-@app.route('/metric-summary/<projectid>/')
+@app.route('/metric-summary/<timeline>/')
 @app.route('/project-summary/<projectid>/')
 def get_metric_summary(cloudname="None", hostname="None", userid="None",
-                       metric="None", timestart="None", timeend="None",
+                       metric="None", timeline="None", timestart="None", timeend="None",
                        period="None", projectid="None"):
 
     return get_metric(cloudname, hostname, userid, metric,
