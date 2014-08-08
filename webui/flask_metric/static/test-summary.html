@@ -9,24 +9,38 @@
 	var nested_data = {};
 
 var options = {
-chart: {
-renderTo: 'container',
+chart: { renderTo: 'container',
 	  defaultSeriesType: 'spline',},
 title: { text: 'Summary of IaaS Platform Usage' },
 xAxis: { categories: []},
 yAxis: { title: { text: 'Units'}},
-labels: {
-items: [{
-html: '',
-style: {
-left: '50px',
-top: '18px',
-color: (Highcharts.theme && Highcharts.theme.textColor) || 'black'
-}
-}]
+labels: { items: [{ html: '', style: { left: '50px', top: '18px',
+color: (Highcharts.theme && Highcharts.theme.textColor) || 'black' }}]},
+series: []}; 
+
+var options2 = {
+chart: { renderTo: 'container2',
+	  defaultSeriesType: 'bar',},
+title: { text: 'Top 10 projects' },
+xAxis: { categories: []},
+yAxis: { min: 0, title: { text: 'Units', align: 'high'}, labels: { overflow: 'justify'}}, 
+tooltip: { valueSuffix: ' '},
+plotOptions: { bar: { dataLabels: { enabled: true }}},
+legend: {
+layout: 'vertical',
+	align: 'right',
+	verticalAlign: 'top',
+	x: -40,
+	y: 100,
+	floating: true,
+	borderWidth: 1,
+	backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+	shadow: true
 },
-series: []
-}; // end of chart 
+credits: {
+enabled: false
+	 },
+series: []}; 
 
 function requestData() {
 	$.ajax({
@@ -34,6 +48,7 @@ url: '/metric-summary/',
 success: function(point) {
 
 var source = point['message']['platform-summary']['objects'];
+var source2 = point['message']['10-projects']['objects'];
 for (var key in source) {
 cnt = source[key]['count'];
 this1 = source[key]['hostname'];
@@ -72,6 +87,31 @@ options.series.push(series);
 options.xAxis.categories = hostname;
 //alert(point.toSource());
 
+//////////////////////
+// top 10 projects
+//////////////////////
+
+nested_data = {};
+var project_titles = [];
+var count = [];
+source = source2;
+for (var key in source) {
+cnt = source[key]['count'];
+this1 = source[key]['projectid'];
+this2 = source[key]['title'];
+project_titles.push(this1 + "-" + this2);
+count.push(cnt);
+}
+var series = { 
+data: []
+};
+series.name = "count";
+series.data = count;
+options2.series.push(series);
+options2.xAxis.categories = project_titles;
+
+//////////////////////
+
 }}); // end of ajax
 }; // end of requestData
 
@@ -82,8 +122,10 @@ global: { useUTC: false }
 		requestData();
 		setTimeout(function(){
 
-			var chart = new Highcharts.Chart(options);}, 4000);
-}); // end of ready()
+			var chart = new Highcharts.Chart(options);
+			var chart2 = new Highcharts.Chart(options2);}, 4000);
+		}); // end of ready()
 //]]>
 </script>
 <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+<div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
