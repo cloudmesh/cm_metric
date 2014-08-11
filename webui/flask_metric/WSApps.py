@@ -73,6 +73,7 @@ def get_metric(cloudname, hostname, userid, metric, timestart, timeend, period,
 @app.route('/metric-summary/')
 @app.route('/metric-summary/<timeline>/')
 @app.route('/project-summary/<projectid>/')
+@app.route('/project-summary/<projectid>/<timestart>/<timeend>/')
 def get_metric_summary(cloudname="None", hostname="None", userid="None",
                        metric="None", timeline="None", timestart="None", timeend="None",
                        period="None", projectid="None"):
@@ -238,6 +239,11 @@ class CloudMetricBase(View):
                         + " and %(t_platform)s.cloudplatformid=cloudplatformidref " \
                        ) % vars()
 
+        if self.search.from_date:
+            where_clause += " and t_start >= '%s' " % str(self.search.from_date)
+        if self.search.to_date:
+            where_clause += " and t_end <= '%s' " % str(self.search.to_date)
+
         groupby = "hostname" # Or platform
         extra = " group by %(t_platform)s.%(groupby)s " % vars()
         table = " %(t_instance)s, %(t_platform)s, %(t_ownerids)s " % vars()
@@ -267,6 +273,10 @@ class CloudMetricBase(View):
                         + " %(t_instance)s.ownerid=table_for_userids.username " \
                         + " and %(t_platform)s.cloudplatformid=cloudplatformidref " \
                        ) % vars()
+        if self.search.from_date:
+            where_clause += " and t_start >= '%s' " % str(self.search.from_date)
+        if self.search.to_date:
+            where_clause += " and t_end <= '%s' " % str(self.search.to_date)
 
         extra = extra # same as before
         table = " %(t_instance)s, %(t_platform)s, %(t_ownerids)s " % vars()
@@ -285,6 +295,11 @@ class CloudMetricBase(View):
                       % vars()
         where_clause = "where %(t_instance)s.ownerid=table_for_userids.ownerid"\
                 % vars()
+        if self.search.from_date:
+            where_clause += " and t_start >= '%s' " % str(self.search.from_date)
+        if self.search.to_date:
+            where_clause += " and t_end <= '%s' " % str(self.search.to_date)
+
         groupby = "username"
         orderby = "count"
         extra = " group by %(groupby)s order by %(orderby)s " \
