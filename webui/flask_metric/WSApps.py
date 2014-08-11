@@ -81,6 +81,15 @@ def get_metric_summary(cloudname="None", hostname="None", userid="None",
     return get_metric(cloudname, hostname, userid, metric,
                       timestart, timeend, period, projectid)
 
+@app.route('/user-summary/<userid>/')
+@app.route('/user-summary/<userid>/<timestart>/<timeend>/')
+def get_metric_summary(cloudname="None", hostname="None", userid="None",
+                       metric="None", timeline="None", timestart="None", timeend="None",
+                       period="None", projectid="None"):
+
+    return get_metric(cloudname, hostname, userid, metric,
+                      timestart, timeend, period, projectid)
+
 @app.route('/top-ten-projects/')
 def get_top_ten_projects(cloudname="None", hostname="None", userid="None",
                        metric="None", timestart="None", timeend="None",
