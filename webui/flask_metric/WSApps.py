@@ -76,16 +76,16 @@ def get_metric(cloudname, hostname, userid, metric, timestart, timeend, period,
 @app.route('/project-summary/<projectid>/<timestart>/<timeend>/')
 def get_metric_summary(cloudname="None", hostname="None", userid="None",
                        metric="None", timeline="None", timestart="None", timeend="None",
-                       period="None", projectid="None"):
+                       period="None", projectid=None):
 
     return get_metric(cloudname, hostname, userid, metric,
                       timestart, timeend, period, projectid)
 
 @app.route('/user-summary/<userid>/')
 @app.route('/user-summary/<userid>/<timestart>/<timeend>/')
-def get_metric_summary(cloudname="None", hostname="None", userid="None",
-                       metric="None", timeline="None", timestart="None", timeend="None",
-                       period="None", projectid="None"):
+def get_user_summary(cloudname="None", hostname="None", userid="None",
+                       metric="vmcount", timeline="None", timestart="None", timeend="None",
+                       period="None", projectid=None):
 
     return get_metric(cloudname, hostname, userid, metric,
                       timestart, timeend, period, projectid)
@@ -93,7 +93,7 @@ def get_metric_summary(cloudname="None", hostname="None", userid="None",
 @app.route('/top-ten-projects/')
 def get_top_ten_projects(cloudname="None", hostname="None", userid="None",
                        metric="None", timestart="None", timeend="None",
-                       period="None", projectid="None"):
+                       period="None", projectid=None):
 
     return get_metric(cloudname, hostname, userid, "top-ten-projects",
                       timestart, timeend, period, projectid)
@@ -101,7 +101,7 @@ def get_top_ten_projects(cloudname="None", hostname="None", userid="None",
 @app.route('/top-ten-users/')
 def get_top_ten_users():
     return get_metric("None","None","None", "top-ten-users", "None", "None",
-                      "None", "None")
+                      "None", None)
 
 @app.route('/metric/list_vms')
 def get_list_vms():
