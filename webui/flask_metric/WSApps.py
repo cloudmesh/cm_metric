@@ -58,6 +58,9 @@ def get_metric(cloudname, hostname, userid, metric, timestart, timeend, period,
     elif l_metric in ['top-ten-users']:
         metrics = TopTenUsers()
         metrics.set_search_settings(search)
+    elif l_metric in ['activity']:
+        metrics = Activity()
+        metrics.set_search_settings(search)
     else:
         if projectid and projectid != "None":
             metrics = ProjectSummary()
@@ -101,6 +104,11 @@ def get_top_ten_projects(cloudname="None", hostname="None", userid="None",
 @app.route('/top-ten-users/')
 def get_top_ten_users():
     return get_metric("None","None","None", "top-ten-users", "None", "None",
+                      "None", None)
+
+@app.route('/activity/')
+def get_activity():
+    return get_metric("None","None","None", "activity", "None", "None",
                       "None", None)
 
 @app.route('/metric/list_vms')
@@ -180,6 +188,7 @@ class CloudMetricBase(View):
         self.data = { "default": None }
         self.where_clause = ""
         self.where_clause_extra = ""
+        self.set_vars()
         #self.search = SearchSettings()
 
     @mimerender
@@ -189,6 +198,13 @@ class CloudMetricBase(View):
         self.read_vms()
         message = {"message" : self.data }
         return message
+
+    def set_vars(self):
+        self._cursor = self.db.cursor
+        self._t_instance = self.db.instance_table
+        self._t_userinfo = self.db.userinfo_table
+        self._t_projectinfo = self.db.projectinfo_table
+        self._t_cloudplatform = self.db.cloudplatform_table
 
     def set_result(self, data):
         self.data['default'] = data
@@ -484,6 +500,50 @@ class TopTenUsers(CloudMetricBase):
     def read_vms(self):
         self._top10_users()
 
+class Activity(CloudMetricBase):
+
+    def __init__(self):
+        CloudMetricBase.__init__(self)
+        self.init_queries()
+
+    def init_queries(self):
+        self.queries = [( "all_instances", \
+                        "select count(*) as num from %(_t_instance)s"),
+                        ( "all_unique_users", \
+                         "select count(distinct username) as num from \
+                         %(_t_userinfo)s"),
+                        ( "all_platforms", \
+                         "select count(*) as num from %(_t_projectinfo)s"),
+                        ( "all_hosts", \
+                         "select count(distinct platform) as num from \
+                         %(_t_cloudplatform)s"),
+                        ( "all_projects", \
+                         "select count(distinct hostname) as num from \
+                         %(_t_cloudplatform)s")]
+
+    def _activity(self):
+  
+        cursor = self._cursor
+        groupby = ""
+        orderby = ""
+        results = {}
+
+        try:
+            for name, q in self.queries:
+                query = q % vars(self) 
+                cursor.execute(query)
+                results[name] = cursor.fetchall()
+        except:
+            print sys.exc_info()
+
+        self.add_result({self.search.metric: { 
+            "meta": {
+                "groupby": groupby,
+                "orderby": orderby},
+            "objects": results}})
+
+    def read_vms(self):
+        self._activity()
 
 class TopTenProjects(CloudMetricBase):
     def __init__(self):
