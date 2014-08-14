@@ -506,33 +506,51 @@ class Activity(CloudMetricBase):
         CloudMetricBase.__init__(self)
         self.init_queries()
 
+        self.result = {'activity-all':{},
+                       'activity-recent':{}}
+
     def init_queries(self):
-        self.queries = [( "all_instances", \
-                        "select count(*) as num from %(_t_instance)s"),
-                        ( "all_unique_users", \
-                         "select count(distinct username) as num from \
-                         %(_t_userinfo)s"),
-                        ( "all_platforms", \
-                         "select count(*) as num from %(_t_projectinfo)s"),
-                        ( "all_hosts", \
-                         "select count(distinct platform) as num from \
-                         %(_t_cloudplatform)s"),
-                        ( "all_projects", \
-                         "select count(distinct hostname) as num from \
-                         %(_t_cloudplatform)s")]
+        self.queries = {'activity-all': 
+                        [( "instances", \
+                          "select count(*) as total from %(_t_instance)s"),
+                         ( "unique_users", \
+                          "select count(distinct username) as total from \
+                          %(_t_userinfo)s"),
+                         ( "projects", \
+                          "select count(*) as total from %(_t_projectinfo)s"),
+                         ( "platforms", \
+                          "select count(distinct platform) as total from \
+                          %(_t_cloudplatform)s"),
+                         ( "regions", \
+                          "select count(distinct hostname) as total from \
+                          %(_t_cloudplatform)s")],
+                        'activity-recent':
+                        [('running_instances', \
+                          'select count(*) as total from %(_t_instance)s where \
+                          state=\'extant\' and t_start between now() - INTERVAL\
+                          30 DAY AND NOW()'),
+                         ('new_projects', \
+                          'select count(*) as num from projectinfo_ext where \
+                          str_to_date(yearmonth,\'%%Y/%%m\') between now() - \
+                          INTERVAL 50 day and now()'),
+                         ('new_users', \
+                          'select count(*) as num from _userinfo_ext where \
+                          created between now() - interval 30 day and now()')
+                        ]}
 
     def _activity(self):
   
         cursor = self._cursor
         groupby = ""
         orderby = ""
-        results = {}
+        fetched = self.result
 
         try:
-            for name, q in self.queries:
-                query = q % vars(self) 
-                cursor.execute(query)
-                results[name] = cursor.fetchall()
+            for subject, queries in self.queries.iteritems():
+                for name, q in queries:
+                    query = q % vars(self) 
+                    cursor.execute(query)
+                    fetched[subject][name] = cursor.fetchall()
         except:
             print sys.exc_info()
 
@@ -540,7 +558,7 @@ class Activity(CloudMetricBase):
             "meta": {
                 "groupby": groupby,
                 "orderby": orderby},
-            "objects": results}})
+            "objects": self.result}})
 
     def read_vms(self):
         self._activity()
