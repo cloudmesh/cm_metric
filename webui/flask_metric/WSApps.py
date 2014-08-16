@@ -205,6 +205,8 @@ class CloudMetricBase(View):
         self._t_userinfo = self.db.userinfo_table
         self._t_projectinfo = self.db.projectinfo_table
         self._t_cloudplatform = self.db.cloudplatform_table
+        self._t_projectinfo_ext = "projectinfo_ext"
+        self._t_userinfo_ext = "_userinfo_ext"
 
     def set_result(self, data):
         self.data['default'] = data
@@ -530,7 +532,7 @@ class Activity(CloudMetricBase):
                           state=\'extant\' and t_start between now() - INTERVAL\
                           30 DAY AND NOW()'),
                          ('new_projects', \
-                          'select count(*) as num from projectinfo_ext where \
+                          'select count(*) as num from %(_t_projectinfo_ext)s where \
                           str_to_date(yearmonth,\'%%Y/%%m\') between now() - \
                           INTERVAL 50 day and now()'),
                          ('new_users', \
@@ -634,6 +636,8 @@ class SummaryAll(CloudMetricBase):
 
     def read_vms(self):
         self._platform_usage()
+        self._project_changes()
+        self._user_changes()
         self._top10_projects()
 
     def _platform_usage(self):
@@ -661,6 +665,43 @@ class SummaryAll(CloudMetricBase):
         except:
             print sys.exc_info()
 
+    def _project_changes(self):
+        cursor = self._cursor
+        table = self._t_projectinfo_ext
+        groupby = "YEAR(str_to_date(YearMonth,'%Y/%m'))"
+        orderby = ""
+
+        query = "select count(*) as count,YEAR(str_to_date(YearMonth,'%%Y/%%m')) \
+                as Year from %(table)s group by %(groupby)s" \
+                % vars()
+        try:
+            cursor.execute(query)
+            self.add_result({"project-changes": { 
+                "meta": {
+                    "groupby": groupby,
+                    "orderby": orderby},
+                "objects": cursor.fetchall()}})
+        except:
+            print sys.exc_info()
+
+    def _user_changes(self):
+        cursor = self._cursor
+        table = self._t_userinfo_ext
+        groupby = "YEAR(created)"
+        orderby = ""
+
+        query = "select count(*) as count,YEAR(created) \
+                as Year from %(table)s group by %(groupby)s" \
+                % vars()
+        try:
+            cursor.execute(query)
+            self.add_result({"user-changes": { 
+                "meta": {
+                    "groupby": groupby,
+                    "orderby": orderby},
+                "objects": cursor.fetchall()}})
+        except:
+            print sys.exc_info()
 
 class VMCount(CloudMetricBase):
 
