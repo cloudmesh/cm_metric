@@ -1,5 +1,5 @@
 ==========================
-CloudMesh Metrics
+CM (CloudMesh) Metric
 ==========================
 
 Results pages on the portal
